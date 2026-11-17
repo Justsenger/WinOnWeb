@@ -28,5 +28,5 @@ pnpm dev
 
 ## 许可证与版权声明
 
-- 本项目源代码及内置矢量图标（`.ts`、`.astro`、`.css`、`.js`、`.svg`）基于 **MIT License** 开源（见 [LICENSE](./LICENSE)）；`public/win11/fonts/` 为 MIT 开源字体 `FluentSystemIcons-Regular`。
-- 仓库 `public/win11/wallpapers/` 中的 Bloom 壁纸视觉资产及相关品牌商标归 **Microsoft Corporation** 所有，仅用于非商业性的技术演示与学习交流；如权利人提出异议或移除通知，将在核实后第一时间下架替换。
+- 本项目源代码及内置矢量图标（`.ts`、`.astro`、`.css`、`.js`、`public/win11/icons/explorer/` 下的 `.svg`）基于 **MIT License** 开源（见 [LICENSE](./LICENSE)）；`public/win11/fonts/` 为 MIT 开源字体 `FluentSystemIcons-Regular`。
+- 仓库 `public/win11/wallpapers/` 中的 Bloom 壁纸及 `public/win11/icons/*.png` 中的桌面核心视觉图标归 **Microsoft Corporation** 所有，仅用于非商业性的技术演示与 UI 仿真学习交流；本仓库不隶属于微软且未获微软官方背书。如权利人提出异议或移除通知，将在核实后第一时间下架替换。

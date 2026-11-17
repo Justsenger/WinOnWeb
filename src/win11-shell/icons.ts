@@ -1,14 +1,14 @@
 import { getWinDesktopHostConfig } from './host-config';
 
 const PNG_ICON_MAP: Record<string, string> = {
-  start: '/win11/icons/start.svg',
-  'this-pc': '/win11/icons/this-pc.svg',
-  'recycle-bin': '/win11/icons/recycle-bin.svg',
-  'control-panel': '/win11/icons/control-panel.svg',
-  explorer: '/win11/icons/explorer.svg',
-  settings: '/win11/icons/settings.svg',
-  'task-manager': '/win11/icons/task-manager.svg',
-  terminal: '/win11/icons/terminal.svg',
+  start: '/win11/icons/start.png',
+  'this-pc': '/win11/icons/this-pc.png',
+  'recycle-bin': '/win11/icons/recycle-bin.png',
+  'control-panel': '/win11/icons/control-panel.png',
+  explorer: '/win11/icons/explorer.png',
+  settings: '/win11/icons/settings.png',
+  'task-manager': '/win11/icons/task-manager.png',
+  terminal: '/win11/icons/terminal.png',
 };
 
 let fsGradSeq = 0;

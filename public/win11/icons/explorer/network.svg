@@ -1,7 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-  <rect x="6" y="7" width="22" height="15" rx="2" fill="#0284C7" stroke="#64748B" stroke-width="1.2"/>
-  <path d="M14 22v3M20 22v3M11.5 25.5h11" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round"/>
-  <circle cx="10.5" cy="11.5" r="6.5" fill="#38BDF8" stroke="#0369A1" stroke-width="1.1"/>
-  <ellipse cx="10.5" cy="11.5" rx="3" ry="6.5" stroke="#E0F2FE" stroke-width="1"/>
-  <line x1="4" y1="11.5" x2="17" y2="11.5" stroke="#E0F2FE" stroke-width="1"/>
+  <defs>
+    <linearGradient id="w11-net-scr" x1="8" y1="8" x2="29" y2="23" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0260B6"/>
+    </linearGradient>
+    <radialGradient id="w11-net-globe" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(7.2 8.2) rotate(48) scale(13)">
+      <stop offset="0%" stop-color="#A5E5FF"/>
+      <stop offset="55%" stop-color="#2FA4EC"/>
+      <stop offset="100%" stop-color="#0B5CAD"/>
+    </radialGradient>
+    <clipPath id="w11-net-clip">
+      <circle cx="9.5" cy="11.2" r="7.2"/>
+    </clipPath>
+  </defs>
+  <rect x="17" y="23" width="4" height="3.6" fill="#94A3B8"/>
+  <rect x="13" y="26" width="12" height="1.8" rx="0.9" fill="#CBD5E1"/>
+  <rect x="7.5" y="7" width="22.5" height="16.2" rx="2" fill="#273244" stroke="#64748B" stroke-width="1"/>
+  <rect x="9" y="8.5" width="19.5" height="13.2" rx="1" fill="url(#w11-net-scr)"/>
+  <circle cx="9.5" cy="11.6" r="7.5" fill="#0F172A" fill-opacity="0.22"/>
+  <circle cx="9.5" cy="11.2" r="7.2" fill="url(#w11-net-globe)"/>
+  <g clip-path="url(#w11-net-clip)">
+    <path d="M5 7.2c1.4-.9 3.6-1.2 4.3-.2.6.8-.4 1.8.4 2.4.7.5 1.7.4 2 1.2.4 1.1-.8 2.6-2 3.1-1.3.5-1.5 2-.8 2.9-.8.1-2.7-1.1-3.3-2.5-.5-1.2.4-2.5-.2-3.4-.5-.7-1.1-2.5-.4-3.5Z" fill="#E0F2FE" fill-opacity="0.88"/>
+    <path d="M13 6.5c1.5.2 2.8 1.4 3.2 2.9-.6.5-1.5.4-1.9 1.1-.4.7.4 1.7.1 2.4-.3.8-1.4 1.1-1.6.2-.2-.8.3-1.7-.1-2.3-.5-.7-1.2-1.4-.8-2.4.3-.7.5-1.4 1.1-1.9Z" fill="#BAE6FD" fill-opacity="0.82"/>
+  </g>
+  <circle cx="9.5" cy="11.2" r="7" stroke="#E0F2FE" stroke-opacity="0.4" stroke-width="0.6"/>
 </svg>
