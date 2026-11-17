@@ -1,0 +1,35 @@
+---
+import '../win11-shell/win11-tokens.css';
+import Win11Desktop from '../win11-shell/Win11Desktop.astro';
+---
+
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="WinOnWeb - Web Desktop UI Simulation (Unofficial)" />
+    <title>WinOnWeb — Web Desktop Simulation</title>
+    <link rel="preload" as="image" href="/win11/wallpapers/bloom-dark.webp" />
+  </head>
+  <body>
+    <Win11Desktop />
+  </body>
+</html>
+
+<style is:global>
+  [hidden] {
+    display: none !important;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--win-bg-fallback, #050b19);
+    font-family: var(--win-font-sans, 'Segoe UI', system-ui, sans-serif);
+  }
+</style>

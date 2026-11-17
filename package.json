@@ -1,0 +1,26 @@
+{
+  "name": "@justsenger/win-on-web",
+  "private": false,
+  "version": "0.1.0",
+  "type": "module",
+  "license": "MIT",
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": ">=24.19.0 <25"
+  },
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port 5190",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 5190"
+  },
+  "exports": {
+    "./desktop": "./src/win11-shell/Win11Desktop.astro",
+    "./tokens.css": "./src/win11-shell/win11-tokens.css",
+    "./protocol": "./src/win11-shell/app-protocol.ts",
+    "./host-config": "./src/win11-shell/host-config.ts"
+  },
+  "dependencies": {
+    "astro": "7.4.2",
+    "hw-profiler": "file:vendor/hw-profiler-0.1.0.tgz"
+  }
+}
