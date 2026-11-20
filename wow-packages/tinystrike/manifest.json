@@ -1,0 +1,12 @@
+{
+  "format": 1,
+  "id": "tinystrike",
+  "name": "Tiny Strike 战术对战",
+  "version": "1.0.0",
+  "description": "在 Tiny Strike 原作的五张地图中进行 5 对 5 离线机器人拆弹对战。",
+  "entry": "index.html",
+  "icon": "icon.svg",
+  "runtime": "iframe",
+  "permissions": ["fullscreen", "pointer-lock"],
+  "window": { "width": 1120, "height": 720, "minWidth": 680, "minHeight": 440 }
+}

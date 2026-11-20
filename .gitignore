@@ -4,3 +4,26 @@ dist/
 .cache/
 .DS_Store
 Thumbs.db
+public/packages/h5mota-*.wow
+public/packages/hexgl.wow
+work/*-source/
+
+# Local browser sessions and temporary package inspection copies
+/.test-chrome-profile*/
+/work/chrome-qa-profile*/
+/.tmp-wow-inspect/
+/.tmp-wow-inspect.zip
+
+# Local QA captures, browser build inputs and inspection scripts
+/work/**/*.raw
+/work/**/*-raw
+/work/**/*.png
+/work/task-manager-qa/result.json
+/work/SurvivalcraftApi/Survivalcraft.Browser/bin/
+/.tmp-original-main.js
+/.tmp-pack-main.js
+/.tmp-test-http.mjs
+/.wrangler/
+
+# Served by the Pages function from R2; keep local copies for previews
+/public/packages/survivalcraft-api.wow

@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  hw-profiler@0.1.0: d8b4c4cbf96cbfcb9e19f0168c40bbeb3900408e335a18b4829d0cb6a17d5ca1
+
 importers:
 
   .:
@@ -11,9 +14,12 @@ importers:
       astro:
         specifier: 7.4.2
         version: 7.4.2(yaml@2.9.1)
+      fflate:
+        specifier: ^0.8.3
+        version: 0.8.3
       hw-profiler:
         specifier: file:vendor/hw-profiler-0.1.0.tgz
-        version: file:vendor/hw-profiler-0.1.0.tgz
+        version: file:vendor/hw-profiler-0.1.0.tgz(patch_hash=d8b4c4cbf96cbfcb9e19f0168c40bbeb3900408e335a18b4829d0cb6a17d5ca1)
 
 packages:
 
@@ -821,6 +827,9 @@ packages:
       picomatch:
         optional: true
 
+  fflate@0.8.3:
+    resolution: {integrity: sha512-tbZNuJrLwGUp3zshBtdy4W+ORxZuIh8a5ilyIEQDC5rY1f3U20JMry0Ll3WBzU58EZKsEuJFXhb5gwv8CsPvgA==}
+
   flattie@1.1.1:
     resolution: {integrity: sha512-9UbaD6XdAL97+k/n+N7JwX46K/M6Zc6KcFYskrYL8wbBV/Uyk0CTAMY0VT+qiK5PM7AIc9aTWYtq65U7T+aCNQ==}
     engines: {node: '>=8'}
@@ -866,7 +875,7 @@ packages:
     resolution: {integrity: sha512-M5t5LlJpS1UHMjvwRQVdFHvPISGeLAxNcrWuJkeGh0KxsqCHZ1O3NXZU/8x7cD0BDcGW8kapxMKTvwlqrNkHkA==}
 
   hw-profiler@file:vendor/hw-profiler-0.1.0.tgz:
-    resolution: {integrity: sha512-uIBzheg962MdT+hqGdp9x6XVTbiprF7j5cl8NbtKHZyVOHjZErM53hdks4fzgs/Ag68V/TuTX7PI+k2YA4DuKA==, tarball: file:vendor/hw-profiler-0.1.0.tgz}
+    resolution: {integrity: sha512-TapY46OXH2A8PFYUlJgv+k2W8tKGiDsU90I20yxb76JB7d0M3SM8Q2XyZ7S3JqtWZ2M7wcHRWN61YJinNDhJYw==, tarball: file:vendor/hw-profiler-0.1.0.tgz}
     version: 0.1.0
 
   iron-webcrypto@1.2.1:
@@ -2083,6 +2092,8 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.7
 
+  fflate@0.8.3: {}
+
   flattie@1.1.1: {}
 
   fnv1a-64@0.1.2: {}
@@ -2140,7 +2151,7 @@ snapshots:
 
   http-cache-semantics@4.3.0: {}
 
-  hw-profiler@file:vendor/hw-profiler-0.1.0.tgz: {}
+  hw-profiler@file:vendor/hw-profiler-0.1.0.tgz(patch_hash=d8b4c4cbf96cbfcb9e19f0168c40bbeb3900408e335a18b4829d0cb6a17d5ca1): {}
 
   iron-webcrypto@1.2.1: {}
 

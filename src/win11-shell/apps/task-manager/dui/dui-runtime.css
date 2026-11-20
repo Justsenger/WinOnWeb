@@ -1,0 +1,973 @@
+/* ============================================================================
+ * DirectUI (UIFILE 30001 / uxtheme TASKMANAGER) -> Web CSS Runtime Layer
+ * Derived losslessly from C:\Windows\SystemResources\Taskmgr.exe.mun & uxtheme.dll
+ * ============================================================================ */
+
+.w11-tm-shell {
+  --tm-font-family: 'Segoe UI', 'Microsoft YaHei UI', system-ui, sans-serif;
+
+  /*uxtheme fallback tokens; overridden dynamically by compiled DirectUI <style data-dui-compiled> */
+  --dui-fg-primary: #ffffff;
+  --dui-fg-label: #b8b8b8;
+  --dui-fg-scale: #cdcdcd;
+  --dui-chart-bg: #191919;
+  --dui-chart-grid: #2c2c2c;
+  --dui-chart-border: rgba(117, 117, 117, 0.4);
+  --dui-card-active-bg: #272727;
+  --dui-card-hover-bg: rgba(255, 255, 255, 0.045);
+  --dui-thumb-bg: #191919;
+  --dui-thumb-mem-bg: #191919;
+  --dui-legend-cpu: #31b0cd;
+  --dui-legend-mem: #768df1;
+  --dui-legend-disk: #218b8b;
+  --dui-legend-net: #ef8ccb;
+  --dui-legend-gpu: #a083c9;
+  --dui-mem-border: #5c9efa;
+  --dui-mem-used-bg: #0f1d34;
+  --dui-mem-used-edge: #5c9efa;
+  --dui-mem-comp-bg: #0f1d34;
+  --dui-mem-standby-edge: #355485;
+  --dui-scrollbar: rgba(255, 255, 255, 0.18);
+  --dui-detail-padding: 14px 24px 20px 0;
+  --dui-chart-title-pb: 10px;
+  --dui-chart-info-mt: 5px;
+  --dui-chart-info-pl: 2px;
+  --dui-data-info-pl: 2px;
+  --dui-static-pl: 10px;
+  --dui-static-chart-min-h: 80px;
+  --dui-secondary-chart-h: 67px;
+  --dui-mem-bar-h: 52px;
+  --dui-legend-w: 2px;
+  --dui-legend-h: 31px;
+  --dui-legend-mr: 6px;
+  --dui-legend-write-ml: 20px;
+  --dui-static-pb: 3px;
+  --dui-font-title-size: 28px;
+  --dui-font-sub-size: 16px;
+  --dui-font-label-size: 12px;
+  --dui-font-value-size: 20px;
+  --dui-font-axis-size: 11px;
+}
+
+.w11-tm-shell[data-tm-theme='light'] {
+  --dui-fg-primary: #000000;
+  --dui-fg-label: #707070;
+  --dui-fg-scale: #707070;
+  --dui-chart-bg: rgba(255, 255, 255, 0.88);
+  --dui-chart-grid: #ebebeb;
+  --dui-chart-border: rgba(117, 117, 117, 0.4);
+  --dui-card-active-bg: #e9e9e9;
+  --dui-card-hover-bg: rgba(0, 0, 0, 0.04);
+  --dui-thumb-bg: rgba(255, 255, 255, 0.88);
+  --dui-thumb-mem-bg: rgba(255, 255, 255, 0.88);
+  --dui-legend-cpu: #006f91;
+  --dui-legend-mem: #095bde;
+  --dui-legend-disk: #4a7500;
+  --dui-legend-net: #bf174f;
+  --dui-legend-gpu: #7e13f0;
+  --dui-mem-border: #095bde;
+  --dui-mem-used-bg: rgba(76, 154, 255, 0.24);
+  --dui-mem-used-edge: #095bde;
+  --dui-mem-comp-bg: rgba(76, 154, 255, 0.36);
+  --dui-mem-standby-edge: rgba(9, 91, 222, 0.45);
+  --dui-scrollbar: rgba(0, 0, 0, 0.2);
+}
+
+/* --- Left Performance Sidebar (`performancetab_graphs` / `dashSidebar*Button`) --- */
+.w11-tm-perf-layout {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+}
+
+.w11-tm-perf-list {
+  width: 213px;
+  min-width: 172px;
+  max-width: 440px;
+  flex-shrink: 0;
+  /* dashSidebarScrollViewer padding="rect(3rp,7rp,0rp,0rp)" */
+  padding: 7px 1px 8px 3px;
+  overflow-x: hidden !important;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--dui-scrollbar) transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.w11-tm-perf-splitter {
+  /* dashSidebarDivider width="8rp" padding="rect(0rp,7rp,0rp,0rp)" */
+  width: 8px;
+  margin: 7px -3px 8px;
+  flex-shrink: 0;
+  cursor: col-resize;
+  position: relative;
+  z-index: 2;
+  touch-action: none;
+  user-select: none;
+}
+
+.w11-tm-perf-splitter::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 3px;
+  width: 2px;
+  border-radius: 999px;
+  background: transparent;
+  transition: background 0.12s ease;
+}
+
+.w11-tm-perf-splitter:hover::after,
+.w11-tm-perf-splitter.is-dragging::after {
+  background: rgba(76, 194, 255, 0.72);
+}
+
+.w11-tm-perf-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  max-width: none;
+  height: 60px;
+  padding: 8px 6px 8px 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--dui-fg-primary);
+  text-align: left;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.w11-tm-perf-card.is-3line {
+  height: 67px;
+  padding: 9px 6px 9px 10px;
+}
+
+.w11-tm-perf-card:hover {
+  background: var(--dui-card-hover-bg);
+}
+
+.w11-tm-perf-card.is-active {
+  background: var(--dui-card-active-bg);
+}
+
+.w11-tm-perf-thumb {
+  width: 60px;
+  height: 42px;
+  flex-shrink: 0;
+  background: var(--dui-thumb-bg);
+  border: none;
+  overflow: hidden;
+}
+
+.w11-tm-perf-thumb.is-tall {
+  height: 47px;
+}
+
+.w11-tm-perf-thumb.is-memory {
+  background: var(--dui-thumb-mem-bg);
+}
+
+.w11-tm-perf-meta {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+  overflow: hidden;
+  margin-top: -2px;
+}
+
+.w11-tm-perf-card.is-3line .w11-tm-perf-meta {
+  margin-top: -4px;
+}
+
+.w11-tm-perf-title {
+  /* gtf(TASKMANAGER, 16, 0) -> 16px */
+  font-family: var(--tm-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--dui-fg-primary);
+  line-height: 20.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.w11-tm-perf-sub-row {
+  display: flex;
+  align-items: baseline;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.w11-tm-perf-sub {
+  /* gtf(TASKMANAGER, 17, 0) -> 12px, padding-left: 1rp */
+  padding-left: 1px;
+  font-family: var(--tm-font-family);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--dui-fg-label);
+  line-height: 15.6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.w11-tm-perf-sub.is-pad5 {
+  padding-left: 5px;
+}
+
+/* --- Right Performance Host (`performancetab_tables` -> `tablesViewer` -> `detailInfo`) --- */
+.dui-perf-tab-tables {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  /* UIFILE 30001 performancetab_tables padding="rect(17rp,0rp,0rp,0rp)" */
+  padding: 0 3px 0 25px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  container-type: size;
+  container-name: tmPerfDetail;
+}
+
+.dui-perf-tab-tables.is-graph-only {
+  padding: 0;
+}
+
+.dui-tables-viewer {
+  /* <TmScrollViewer id="atom(tablesViewer)" YBarVisibility="asneeded" XBarVisibility="asneeded"> */
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: var(--dui-scrollbar) transparent;
+}
+
+.dui-detail-info {
+  /* <element id="atom(detailInfo)" padding="rect(0rp,10rp,24rp,20rp)"> */
+  flex: 1 0 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--dui-detail-padding);
+  box-sizing: border-box;
+}
+
+.dui-perf-tab-tables.is-graph-only .dui-detail-info {
+  min-width: 0;
+  padding: 10px 14px 12px 14px;
+}
+
+.dui-chart-and-title {
+  /* <element id="atom(chartAndTitle)" layoutpos="client" padding="rect(0rp,0rp,0rp,10rp)"> */
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 var(--dui-chart-title-pb) 0;
+}
+
+.dui-perf-tab-tables.is-graph-only .dui-chart-and-title {
+  padding-bottom: 0;
+}
+
+.dui-title-bar {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.dui-resource-title {
+  /* gtf(TASKMANAGER, 14, 0) -> 29px, contentalign="bottomleft" */
+  flex: 0 0 auto;
+  margin: 0;
+  font-family: var(--tm-font-family);
+  font-size: var(--dui-font-title-size);
+  font-weight: 400;
+  line-height: 34px;
+  color: var(--dui-fg-primary);
+  white-space: nowrap;
+}
+
+.dui-perf-tab-tables.is-graph-only .dui-resource-title {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.dui-resource-name {
+  /* gtf(TASKMANAGER, 15, 0) -> 16px, margin="rect(15rp,0rp,0rp,0rp)" padding="rect(0rp,0rp,0rp,3rp)" */
+  flex: 1 1 0;
+  min-width: 0;
+  margin-left: 15px;
+  padding-bottom: 3px;
+  font-family: var(--tm-font-family);
+  font-size: var(--dui-font-sub-size);
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--dui-fg-primary);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dui-perf-tab-tables.is-graph-only .dui-resource-name {
+  font-size: 13px;
+  line-height: 18px;
+  padding-bottom: 1px;
+}
+
+.dui-chart-info {
+  /* <element id="atom(chartInfo)" padding="rect(2rp,0rp,0rp,0rp)" margin="rect(0rp,5rp,0rp,0rp)"> */
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--dui-chart-info-mt);
+  padding-left: var(--dui-chart-info-pl);
+}
+
+.dui-chart-root {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Chart Axis Headers (`theader`, `bheader`, `cpu_theader`, `cpu_bheader`, `lheader`, `rheader`) --- */
+.dui-theader {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 0 3px 0;
+}
+
+.dui-bheader {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 2px 0 0 0;
+}
+
+.dui-cpu-theader {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 2px 1px 2px;
+}
+
+.dui-cpu-bheader {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0 2px 0 2px;
+  min-height: 14px;
+}
+
+.dui-lheader,
+.dui-rheader {
+  /* gtf(TASKMANAGER, 44, 0) -> 11px */
+  font-family: var(--tm-font-family);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 14px;
+  color: var(--dui-fg-scale);
+  white-space: nowrap;
+}
+
+.dui-lheader {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dui-rheader {
+  flex: 0 0 auto;
+  margin-left: 8px;
+}
+
+/* --- Chart Containers (`staticResourceChart`, `secondaryChart`, `cpuchart`, `gpuchart`) --- */
+.dui-chart-area {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+
+.dui-chart-area.is-static {
+  /* sheet="staticResourceChart" height="80rp" */
+  flex: 1 1 0;
+  min-height: var(--dui-static-chart-min-h);
+}
+
+.dui-chart-area.is-secondary {
+  /* sheet="secondaryChart" height="67rp" */
+  flex: 0 1 var(--dui-secondary-chart-h);
+  min-height: 44px;
+  height: var(--dui-secondary-chart-h);
+}
+
+.dui-single-chart-box {
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: var(--dui-chart-bg);
+  overflow: hidden;
+}
+
+.dui-cpu-grid {
+  flex: 1 1 0;
+  min-height: 110px;
+  display: grid;
+}
+
+.dui-cpu-cell {
+  /* sheet="cpuchart" padding="rect(2rp,2rp,2rp,2rp)" */
+  padding: 2px;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.dui-cpu-cell-inner {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  background: var(--dui-chart-bg);
+  overflow: hidden;
+}
+
+/* --- Memory Availability Bar (`memAvailabilityBar` / `BarchartMemoryHolder`) --- */
+.dui-mem-bar-host {
+  flex: 0 0 auto;
+  margin-top: 6px;
+  padding-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dui-mem-bar-label {
+  padding-bottom: 5px;
+}
+
+.w11-tm-mem-bar {
+  display: flex;
+  height: var(--dui-mem-bar-h);
+  flex-shrink: 0;
+  border: 1px solid var(--dui-mem-border);
+  background: var(--dui-chart-bg);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.w11-tm-mem-used {
+  background: var(--dui-mem-used-bg);
+  border-right: 1px solid var(--dui-mem-used-edge);
+}
+
+.w11-tm-mem-compressed {
+  width: 2px;
+  background: var(--dui-mem-comp-bg);
+  border-right: 1px solid var(--dui-mem-used-edge);
+}
+
+.w11-tm-mem-modified {
+  min-width: 10px;
+  background: var(--dui-mem-comp-bg);
+  border-right: 1px solid var(--dui-mem-used-edge);
+}
+
+.w11-tm-mem-standby {
+  background: transparent;
+  border-right: 1px solid var(--dui-mem-standby-edge);
+}
+
+.w11-tm-mem-free {
+  flex: 1;
+  min-width: 6px;
+  background: transparent;
+}
+
+/* --- Disk Rate & GPU Secondary Sections --- */
+.dui-disk-secondary-wrap {
+  flex: 0 0 auto;
+  padding-top: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dui-gpu-primary-wrap {
+  flex: 1 1 0;
+  min-height: 92px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dui-gpu-grid {
+  flex: 1 1 0;
+  min-height: 92px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.dui-gpu-engine-item {
+  /* resid="gpuEngineChartTemplate" padding="rect(2rp,2rp,2rp,2rp)" */
+  padding: 2px;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.dui-gpu-engine-item .dui-cpu-cell-inner {
+  flex: 1 1 0;
+}
+
+.dui-gpu-mem-wrap {
+  /* id="atom(gpuMemoryCharts)" margin="rect(0rp,5rp,0rp,5rp)" */
+  flex: 0 0 auto;
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dui-gpu-mem-block {
+  /* gpuDedicatedMemory / gpuSharedMemory padding="rect(2rp,2rp,2rp,2rp)" */
+  flex: 0 0 auto;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.w11-tm-gpu-eng-btn {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  padding: 0 3px 0 0;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.w11-tm-gpu-eng-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--dui-fg-primary);
+}
+
+.w11-tm-shell[data-tm-theme='light'] .w11-tm-gpu-eng-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.w11-tm-chev {
+  font-size: 10px;
+  line-height: 1;
+  opacity: 0.85;
+  transform: translateY(-1.5px);
+}
+
+/* --- SVG Chart Primitives --- */
+.w11-tm-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.w11-tm-grid-lines line {
+  stroke: var(--dui-chart-grid);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.w11-tm-peak-label {
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  font-family: var(--tm-font-family);
+  font-size: 11px;
+  line-height: 13px;
+  color: var(--dui-fg-label);
+  pointer-events: none;
+}
+
+/* --- Bottom Stats (`dataInfo`: `dynamicInfo` + `staticInfo`) --- */
+.dui-data-info {
+  /* <element id="atom(dataInfo)" layoutpos="bottom" padding="rect(2rp,0rp,0rp,0rp)"> */
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-left: var(--dui-data-info-pl);
+  min-height: 144px;
+}
+
+.dui-dynamic-info {
+  /* <element id="atom(dynamicInfo)" layout="borderlayout()" layoutpos="left"> */
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.dui-dynamic-panel {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* Deterministic Taskmgr KPI column widths (`SetWidth` parity): right `staticInfo` NEVER shifts on live digit ticks */
+.dui-dynamic-panel[data-dui-resid='dynamic_network'] {
+  width: 126px;
+  min-width: 126px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_disk_client'] {
+  width: 258px;
+  min-width: 258px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_disk_client'] [data-dui-id='disk_time'] {
+  width: 108px;
+  min-width: 108px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_disk_client'] [data-dui-id='disk_response'] {
+  width: 120px;
+  min-width: 120px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_disk_client'] [data-dui-id='disk_read'],
+.dui-dynamic-panel[data-dui-resid='dynamic_disk_client'] [data-dui-id='disk_write'] {
+  width: 110px;
+  min-width: 110px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_cpu'] {
+  width: 220px;
+  min-width: 220px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_cpu'] [data-dui-id='cpuUsage'] {
+  width: 64px;
+  min-width: 64px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_cpu'] [data-dui-id='cpuSpeed'] {
+  width: 96px;
+  min-width: 96px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_cpu'] [data-dui-id='process'] {
+  width: 50px;
+  min-width: 50px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_cpu'] [data-dui-id='thread'] {
+  width: 58px;
+  min-width: 58px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_cpu'] [data-dui-id='handle'] {
+  width: 72px;
+  min-width: 72px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_memory'] {
+  width: 266px;
+  min-width: 266px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_memory'] [data-dui-id='memory_inuse'],
+.dui-dynamic-panel[data-dui-resid='dynamic_memory'] [data-dui-id='memory_commit'],
+.dui-dynamic-panel[data-dui-resid='dynamic_memory'] [data-dui-id='memory_paged'] {
+  width: 162px;
+  min-width: 162px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_memory'] [data-dui-id='memory_avai'],
+.dui-dynamic-panel[data-dui-resid='dynamic_memory'] [data-dui-id='memory_cache'],
+.dui-dynamic-panel[data-dui-resid='dynamic_memory'] [data-dui-id='memory_non_paged'] {
+  width: 84px;
+  min-width: 84px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_gpu'] {
+  width: 252px;
+  min-width: 252px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_gpu'] .dui-dynamic-col:first-child {
+  width: 116px;
+  min-width: 116px;
+}
+
+.dui-dynamic-panel[data-dui-resid='dynamic_gpu'] .dui-dynamic-col:last-child {
+  width: 116px;
+  min-width: 116px;
+}
+
+.dui-dynamic-cols {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.dui-dynamic-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.dui-dynamic-col + .dui-dynamic-col {
+  margin-left: 20px;
+}
+
+.dui-dynamic-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.dui-dynamic-row + .dui-dynamic-row,
+.dui-dynamic-col-item + .dui-dynamic-col-item {
+  /* UIFILE 30001 margin="rect(0rp,8rp,0rp,0rp)" -> compact DirectUI vertical gap */
+  margin-top: 7px;
+}
+
+.dui-kpi-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.dui-dynamic-row > .dui-kpi-cell + .dui-kpi-cell {
+  /* UIFILE 30001 margin="rect(20rp,0rp,0rp,0rp)" */
+  margin-left: 20px;
+}
+
+.dui-dynamic-label {
+  /* gtf(TASKMANAGER, 17, 0) -> 12px */
+  font-family: var(--tm-font-family);
+  font-size: var(--dui-font-label-size);
+  font-weight: 400;
+  line-height: 14px;
+  color: var(--dui-fg-label);
+  white-space: nowrap;
+}
+
+.dui-dynamic-data {
+  /* gtf(TASKMANAGER, 19, 0) -> 20px CSS cap parity without excess line-box half-leading */
+  font-family: var(--tm-font-family);
+  font-size: var(--dui-font-value-size);
+  font-weight: 400;
+  line-height: 22px;
+  margin-top: 1px;
+  color: var(--dui-fg-primary);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.dui-dashboard-legend {
+  /* DashboardStyle + Taskmgr.exe 0x1401A7488 (`0x1402FA1B0` Dark / `CHARTVIEW` Light) */
+  width: var(--dui-legend-w);
+  height: var(--dui-legend-h);
+  margin: 3px var(--dui-legend-mr) 0 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.dui-dashboard-legend.is-write {
+  /* dashboardWriteLegend margin="rect(20rp,0rp,6rp,0rp)" */
+  margin-left: var(--dui-legend-write-ml);
+}
+
+.dui-dashboard-legend.is-solid-disk {
+  background: var(--dui-legend-disk);
+}
+
+.dui-dashboard-legend.is-dashed-disk {
+  background: repeating-linear-gradient(to bottom, var(--dui-legend-disk) 0 3px, transparent 3px 6px);
+}
+
+.dui-dashboard-legend.is-solid-net {
+  background: var(--dui-legend-net);
+}
+
+.dui-dashboard-legend.is-dashed-net {
+  background: repeating-linear-gradient(to bottom, var(--dui-legend-net) 0 3px, transparent 3px 6px);
+}
+
+.w11-tm-perf-list.is-summary-only {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  padding: 10px 14px;
+}
+
+.w11-tm-perf-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin: 0 6px;
+}
+
+.w11-tm-inferred {
+  color: #f6b94d !important;
+}
+
+.w11-tm-fake {
+  color: #ff6b6b !important;
+}
+
+.dui-static-info {
+  /* <element id="atom(staticInfo)" layoutpos="client" padding="rect(10rp,0rp,0rp,0rp)"> */
+  flex: 1 1 0;
+  min-width: 0;
+  padding-left: var(--dui-static-pl, 10px);
+}
+
+.dui-static-grid {
+  /* DirectUI rowlayout(1..5): shared label track across sibling rows */
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: start;
+  justify-content: start;
+}
+
+.dui-static-row {
+  display: contents;
+}
+
+.dui-static-label {
+  /* gtf(TASKMANAGER, 17, 0) -> 12px, padding-bottom: 3rp, margin-right: 10rp */
+  font-family: var(--tm-font-family);
+  font-size: var(--dui-font-label-size);
+  font-weight: 400;
+  line-height: 14px;
+  color: var(--dui-fg-label);
+  margin: 0 10px 0 0;
+  padding: 0 0 var(--dui-static-pb) 0;
+  white-space: nowrap;
+}
+
+.dui-static-data {
+  /* gtf(TASKMANAGER, 18, 0) -> 12px, padding-bottom: 3rp */
+  font-family: var(--tm-font-family);
+  font-size: var(--dui-font-label-size);
+  font-weight: 400;
+  line-height: 14px;
+  color: var(--dui-fg-primary);
+  padding: 0 0 var(--dui-static-pb) 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* DirectUI borderlayout(client + bottom): shrink chart panels gracefully on compact/resized windows so bottom KPIs never clip */
+@container tmPerfDetail (max-height: 460px) {
+  .dui-detail-info {
+    padding: 8px 20px 14px 0;
+  }
+  .dui-chart-and-title {
+    padding-bottom: 6px;
+  }
+  .dui-cpu-grid {
+    min-height: 76px;
+  }
+  .dui-chart-area.is-static {
+    min-height: 54px;
+  }
+  .dui-chart-area.is-secondary {
+    height: 50px;
+    min-height: 36px;
+  }
+  .dui-mem-bar-host {
+    padding-bottom: 8px;
+  }
+  .w11-tm-mem-bar {
+    height: 40px;
+  }
+  .dui-gpu-primary-wrap,
+  .dui-gpu-grid {
+    min-height: 68px;
+  }
+}
+
+@container tmPerfDetail (max-height: 380px) {
+  .dui-detail-info {
+    padding: 6px 16px 10px 0;
+  }
+  .dui-chart-and-title {
+    padding-bottom: 4px;
+  }
+  .dui-chart-info {
+    margin-top: 3px;
+  }
+  .dui-resource-title {
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .dui-cpu-grid {
+    min-height: 60px;
+  }
+  .dui-chart-area.is-static {
+    min-height: 44px;
+  }
+  .dui-chart-area.is-secondary {
+    height: 42px;
+    min-height: 32px;
+  }
+  .dui-mem-bar-host {
+    margin-top: 4px;
+    padding-bottom: 6px;
+  }
+  .w11-tm-mem-bar {
+    height: 34px;
+  }
+  .dui-gpu-primary-wrap,
+  .dui-gpu-grid {
+    min-height: 56px;
+  }
+}
+
+.dui-static-grid > .dui-static-row:last-child .dui-static-label,
+.dui-static-grid > .dui-static-row:last-child .dui-static-data {
+  padding-bottom: 0;
+}
+
+/* Light theme tooltips override */
+.w11-tm-shell[data-tm-theme='light'] .w11-tm-tooltip.is-flat {
+  background: #ffffff;
+  border-color: #767676;
+  color: #1f1f1f;
+}

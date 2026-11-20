@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>战术射击训练场</title>
+  <style>
+    :root { color-scheme: dark; font-family: "Segoe UI", "Microsoft YaHei", sans-serif; }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #080d14; }
+    body { display: grid; place-items: center; }
+    #wrap { position: relative; width: 100%; height: 100%; background: #080d14; }
+    canvas { display:block; width:100%; height:100%; image-rendering:auto; cursor: crosshair; }
+    #hud { position:absolute; inset:0; pointer-events:none; text-shadow:0 2px 4px #000; }
+    #top { position:absolute; left:24px; top:18px; color:#e9f6ff; font-size:14px; letter-spacing:.2px; }
+    #top strong { color:#59d6ff; font-size:18px; }
+    #score { position:absolute; right:24px; top:18px; color:#fff; text-align:right; font-size:14px; }
+    #score strong { color:#f8c35d; font-size:20px; }
+    #cross { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:22px; height:22px; }
+    #cross::before, #cross::after { content:""; position:absolute; background:rgba(255,255,255,.9); box-shadow:0 0 6px #45d4ff; }
+    #cross::before { left:10px; top:1px; width:2px; height:20px; } #cross::after { left:1px; top:10px; width:20px; height:2px; }
+    #bottom { position:absolute; left:24px; right:24px; bottom:20px; display:flex; justify-content:space-between; align-items:end; }
+    #weapon { color:#bfeaff; font-size:13px; } #weapon b { display:block; color:#fff; font-size:19px; margin-top:3px; }
+    #hint { color:rgba(234,248,255,.7); font-size:12px; text-align:right; line-height:1.55; }
+    #overlay { position:absolute; inset:0; display:grid; place-items:center; background:rgba(2,8,15,.72); backdrop-filter:blur(3px); }
+    #card { width:min(440px, calc(100% - 36px)); padding:28px 30px; border:1px solid rgba(90,209,255,.35); border-radius:14px; background:linear-gradient(155deg,rgba(20,42,62,.96),rgba(9,18,29,.96)); box-shadow:0 16px 60px rgba(0,0,0,.4); }
+    h1 { margin:0 0 8px; font-size:25px; letter-spacing:1px; } p { color:#b5ccdc; line-height:1.55; font-size:13px; margin:8px 0 18px; }
+    button { border:0; border-radius:7px; padding:11px 18px; color:#06131b; background:#61d9ff; font-weight:700; cursor:pointer; font-size:14px; } button:hover { background:#9ae9ff; }
+    #status { min-height:19px; margin-top:14px; color:#f5c979; font-size:12px; }
+    .keys { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0; } kbd { padding:3px 7px; border-radius:4px; background:#132a3b; color:#d8f2ff; border:1px solid #31556d; font:12px ui-monospace,monospace; }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <canvas id="view"></canvas>
+    <div id="hud">
+      <div id="top">TACTICAL RANGE<br><strong>战术射击训练场</strong></div>
+      <div id="score">命中 <strong id="hits">0</strong>　目标 <strong id="remaining">6</strong></div>
+      <div id="cross"></div>
+      <div id="bottom"><div id="weapon">装备 <b>TR-9 脉冲步枪　弹药 ∞</b></div><div id="hint">WASD 移动　鼠标瞄准<br>左键射击　Esc 释放鼠标　R 重置</div></div>
+    </div>
+    <div id="overlay"><div id="card"><h1>战术射击训练场</h1><p>在虚拟训练场中清除所有靶标。点击开始后，鼠标会锁定在游戏窗口内。按 Esc 可释放鼠标，再点击画面即可重新锁定。</p><div class="keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><kbd>鼠标</kbd><kbd>左键</kbd><kbd>R</kbd></div><button id="start">开始训练</button><div id="status"></div></div></div>
+  </div>
+  <script>
+  (() => {
+    const canvas = document.querySelector('#view'), ctx = canvas.getContext('2d');
+    const overlay = document.querySelector('#overlay'), start = document.querySelector('#start'), status = document.querySelector('#status');
+    const hitsEl = document.querySelector('#hits'), remainEl = document.querySelector('#remaining');
+    const FOV = Math.PI / 3, map = ['111111111111','100000000001','100011000001','100000000001','100001110001','100000000001','100110000001','100000000001','111111111111'];
+    let w=0,h=0,dpr=1, raf=0, last=0, started=false, hits=0, pointer=false, muzzle=0;
+    const keys = new Set();
+    const player = { x:2.2, y:2.2, a:0.15, speed:2.7 };
+    let targets = [];
+    function reset() { player.x=2.2; player.y=2.2; player.a=0.15; hits=0; muzzle=0; targets=[{x:7.8,y:1.9,alive:1},{x:9.4,y:2.9,alive:1},{x:6.8,y:3.5,alive:1},{x:2.4,y:5.6,alive:1},{x:8.5,y:6.0,alive:1},{x:4.6,y:7.2,alive:1}]; updateUi(); }
+    function updateUi(){ hitsEl.textContent=hits; remainEl.textContent=targets.filter(t=>t.alive).length; }
+    function resize(){ const r=canvas.getBoundingClientRect(); dpr=Math.min(devicePixelRatio||1,2); w=Math.max(1,Math.floor(r.width*dpr)); h=Math.max(1,Math.floor(r.height*dpr)); canvas.width=w; canvas.height=h; ctx.setTransform(dpr,0,0,dpr,0,0); w=r.width; h=r.height; }
+    function cell(x,y){ return map[Math.floor(y)]?.[Math.floor(x)]==='1'; }
+    function blocked(x,y){ return cell(x-.18,y)||cell(x+.18,y)||cell(x,y-.18)||cell(x,y+.18); }
+    function cast(angle){ const sin=Math.sin(angle), cos=Math.cos(angle); let d=0; for(;d<20;d+=.025){ if(cell(player.x+cos*d,player.y+sin*d)) return d; } return 20; }
+    function shoot(){ if(!started) return; muzzle=.1; let best=null, bestD=999; for(const t of targets){ if(!t.alive) continue; const dx=t.x-player.x,dy=t.y-player.y,d=Math.hypot(dx,dy); let da=Math.atan2(dy,dx)-player.a; while(da>Math.PI)da-=Math.PI*2; while(da<-Math.PI)da+=Math.PI*2; if(Math.abs(da)<.06 && d<cast(player.a)+.25 && d<bestD){ best=t;bestD=d; } } if(best){ best.alive=0; hits++; updateUi(); if(!targets.some(t=>t.alive)){ status.textContent='训练完成！按 R 可重新开始。'; overlay.style.display='grid'; } } }
+    function draw(){
+      ctx.clearRect(0,0,w,h); const horizon=h*.48; const sky=ctx.createLinearGradient(0,0,0,horizon); sky.addColorStop(0,'#091726'); sky.addColorStop(1,'#31556b'); ctx.fillStyle=sky;ctx.fillRect(0,0,w,horizon);
+      const floor=ctx.createLinearGradient(0,horizon,0,h);floor.addColorStop(0,'#26333c');floor.addColorStop(1,'#070c12');ctx.fillStyle=floor;ctx.fillRect(0,horizon,w,h-horizon);
+      const rays=Math.ceil(w/3), z=[]; for(let i=0;i<rays;i++){ const sx=i/rays-0.5, a=player.a+sx*FOV, d=cast(a)*Math.cos(a-player.a); const wallH=Math.min(h*1.7,h/(d*.72)); const x=i*3; const shade=Math.max(25,Math.min(180,165-d*14)); ctx.fillStyle=`rgb(${shade*.43},${shade*.65},${shade})`;ctx.fillRect(x,horizon-wallH/2,4,wallH); z[i]=d; }
+      const sorted=targets.filter(t=>t.alive).map(t=>{ const dx=t.x-player.x,dy=t.y-player.y,d=Math.hypot(dx,dy);let a=Math.atan2(dy,dx)-player.a;while(a>Math.PI)a-=Math.PI*2;while(a<-Math.PI)a+=Math.PI*2;return {...t,d,a};}).filter(t=>Math.abs(t.a)<FOV*.65).sort((a,b)=>b.d-a.d);
+      for(const t of sorted){ const sx=w/2+Math.tan(t.a)/Math.tan(FOV/2)*w/2; const size=Math.min(h*.6,h/(t.d*.85)); const col=Math.max(0,Math.min(rays-1,Math.floor((sx/w)*rays))); if(t.d>z[col]+.1)continue; const y=horizon-size*.42; ctx.fillStyle='rgba(0,0,0,.35)';ctx.beginPath();ctx.ellipse(sx,y+size*.86,size*.38,size*.1,0,0,Math.PI*2);ctx.fill(); ctx.fillStyle='#e9a947';ctx.fillRect(sx-size*.27,y+size*.22,size*.54,size*.54); ctx.fillStyle='#f2c581';ctx.beginPath();ctx.arc(sx,y+size*.13,size*.18,0,Math.PI*2);ctx.fill();ctx.fillStyle='#13283b';ctx.fillRect(sx-size*.31,y+size*.68,size*.62,size*.16);ctx.fillStyle='#111';ctx.fillRect(sx-size*.1,y+size*.08,size*.045,size*.055);ctx.fillRect(sx+size*.055,y+size*.08,size*.045,size*.055); }
+      if(muzzle>0){ctx.fillStyle=`rgba(255,212,92,${muzzle*7})`;ctx.beginPath();ctx.moveTo(w/2,h*.81);ctx.lineTo(w/2-35,h*.9);ctx.lineTo(w/2,h*.72);ctx.lineTo(w/2+35,h*.9);ctx.closePath();ctx.fill();}
+    }
+    function loop(now){ const dt=Math.min(.05,(now-last)/1000||0);last=now;if(started){ let dx=0,dy=0;if(keys.has('w')){dx+=Math.cos(player.a);dy+=Math.sin(player.a);}if(keys.has('s')){dx-=Math.cos(player.a);dy-=Math.sin(player.a);}if(keys.has('a')){dx+=Math.cos(player.a-Math.PI/2);dy+=Math.sin(player.a-Math.PI/2);}if(keys.has('d')){dx+=Math.cos(player.a+Math.PI/2);dy+=Math.sin(player.a+Math.PI/2);}const m=Math.hypot(dx,dy)||1;const nx=player.x+dx/m*player.speed*dt,ny=player.y+dy/m*player.speed*dt;if(!blocked(nx,player.y))player.x=nx;if(!blocked(player.x,ny))player.y=ny;muzzle=Math.max(0,muzzle-dt);} draw();raf=requestAnimationFrame(loop); }
+    function begin(){ started=true; overlay.style.display='none'; reset(); canvas.requestPointerLock?.(); }
+    start.addEventListener('click',begin); canvas.addEventListener('click',()=>{if(started&&!pointer)canvas.requestPointerLock?.(); else shoot();});
+    document.addEventListener('pointerlockchange',()=>{pointer=document.pointerLockElement===canvas; if(started)status.textContent=pointer?'':'鼠标已释放，点击画面重新锁定。';});
+    document.addEventListener('mousemove',e=>{if(pointer){player.a+=e.movementX*.0025;}}); document.addEventListener('mousedown',e=>{if(pointer&&e.button===0)shoot();});
+    window.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(['w','a','s','d','r',' '].includes(k))e.preventDefault();if(k==='r'){reset();overlay.style.display='none';started=true;return;}keys.add(k);}); window.addEventListener('keyup',e=>keys.delete(e.key.toLowerCase())); window.addEventListener('resize',resize);
+    resize();reset();raf=requestAnimationFrame(loop);
+  })();
+  </script>
+</body>
+</html>

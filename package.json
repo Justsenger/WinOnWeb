@@ -9,9 +9,13 @@
     "node": ">=24.19.0 <25"
   },
   "scripts": {
-    "dev": "astro dev --host 0.0.0.0 --port 5190",
-    "build": "astro build",
-    "preview": "astro preview --host 0.0.0.0 --port 5190"
+    "dev": "node scripts/start.mjs",
+    "build:wow": "node scripts/build-wow.mjs && pnpm build:wow:voxel && pnpm build:wow:games",
+    "build:wow:voxel": "node scripts/prepare-voxel-sources.mjs && node scripts/build-classicube-wow.mjs && node scripts/build-luanti-wow.mjs",
+    "build:wow:games": "node scripts/build-h5mota-wow.mjs && node scripts/build-tinystrike-wow.mjs && node scripts/build-ouro.mjs && node scripts/build-upstream-arcade.mjs && node scripts/write-game-catalog.mjs",
+    "build": "node scripts/write-game-catalog.mjs && astro build",
+    "build:pages": "pnpm build && node scripts/stage-pages.mjs",
+    "preview": "node scripts/start.mjs preview"
   },
   "exports": {
     "./desktop": "./src/win11-shell/Win11Desktop.astro",
@@ -21,6 +25,7 @@
   },
   "dependencies": {
     "astro": "7.4.2",
+    "fflate": "^0.8.3",
     "hw-profiler": "file:vendor/hw-profiler-0.1.0.tgz"
   }
 }

@@ -1,0 +1,10 @@
+const base='http://127.0.0.1:9222';
+const targetUrl='https://localhost:5190/?desktop=1';
+const r=await fetch(`${base}/json/new?${encodeURIComponent(targetUrl)}`,{method:'PUT'}); const tab=await r.json();
+const socket=new WebSocket(tab.webSocketDebuggerUrl); let id=0; const pending=new Map();
+socket.addEventListener('message',e=>{const m=JSON.parse(e.data); const p=pending.get(m.id); if(p){pending.delete(m.id); m.error?p.reject(m.error):p.resolve(m.result);}});
+await new Promise((resolve,reject)=>{socket.addEventListener('open',resolve,{once:true});socket.addEventListener('error',reject,{once:true});});
+const send=(method,params={})=>new Promise((resolve,reject)=>{const n=++id;pending.set(n,{resolve,reject});socket.send(JSON.stringify({id:n,method,params}));});
+await send('Page.enable'); await send('Runtime.enable'); await send('Security.enable'); await send('Security.setIgnoreCertificateErrors',{ignore:true}); await send('Emulation.setDeviceMetricsOverride',{width:1024,height:644,deviceScaleFactor:2,mobile:false}); await new Promise(r=>setTimeout(r,1200));
+await send('Runtime.evaluate',{expression:"document.querySelector('[data-win11-root]')?.__winOnWebApi?.launchApp('task-manager')",awaitPromise:true}); await new Promise(r=>setTimeout(r,500));
+const q=await send('Runtime.evaluate',{expression:"JSON.stringify({heads:[...document.querySelectorAll('.w11-tm-proc-table thead th')].map(x=>({text:x.textContent,rect:x.getBoundingClientRect().toJSON(),style:x.getAttribute('style')})),cells:[...document.querySelectorAll('.w11-tm-proc-row td')].slice(0,7).map(x=>({text:x.textContent,rect:x.getBoundingClientRect().toJSON(),scrollWidth:x.scrollWidth,clientWidth:x.clientWidth}))})",returnByValue:true}); console.log(q.result.value); await send('Browser.close'); socket.close();

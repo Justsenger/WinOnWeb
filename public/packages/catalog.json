@@ -1,0 +1,86 @@
+[
+  {
+    "id": "h5mota-24",
+    "name": "24层魔塔",
+    "description": "胖老鼠原作，小艾、秋橙、北海小羊 H5 复刻。",
+    "source": "https://h5mota.com/tower/?name=24",
+    "icon": "🏰",
+    "accent": "#e0ab62",
+    "localOnly": true
+  },
+  {
+    "id": "h5mota-51",
+    "name": "50层魔塔",
+    "description": "N.W 原作，数码宝贝51、鹿间裕贵 H5 复刻。",
+    "source": "https://h5mota.com/tower/?name=51",
+    "icon": "🗝️",
+    "accent": "#e0ab62",
+    "localOnly": true
+  },
+  {
+    "id": "h5mota-xinxin",
+    "name": "新新魔塔",
+    "description": "cos105hk 原作，劒橫酱沽月、杨子默、水波神木 H5 复刻。",
+    "source": "https://h5mota.com/tower/?name=xinxin",
+    "icon": "🛡️",
+    "accent": "#e0ab62",
+    "localOnly": true
+  },
+  {
+    "id": "tinystrike",
+    "name": "Tiny Strike",
+    "description": "Guy Zyskind 制作的战术射击游戏，内置地图、机器人与拆弹回合。",
+    "source": "https://github.com/guyz/tinystrike",
+    "icon": "🎯",
+    "accent": "#ff7b72"
+  },
+  {
+    "id": "classicube",
+    "name": "ClassiCube 网页版",
+    "description": "ClassiCube 项目的单人方块沙盒，支持本地地图存档。",
+    "source": "https://github.com/ClassiCube/ClassiCube",
+    "icon": "🧱",
+    "accent": "#49b86b"
+  },
+  {
+    "id": "luanti",
+    "name": "Luanti 网页版",
+    "description": "Luanti 引擎与 Minetest Game，含世界创建和本地存档。",
+    "source": "https://github.com/luanti-org/luanti",
+    "icon": "⛏️",
+    "accent": "#725cf0"
+  },
+  {
+    "id": "ouro",
+    "name": "Ouro",
+    "description": "CatanCats 的蛇形竞技游戏，在离线竞技场与 AI 蛇争夺空间。",
+    "source": "https://github.com/CatanCats/Ouro",
+    "icon": "🐍",
+    "accent": "#55d6be"
+  },
+  {
+    "id": "2048",
+    "name": "2048",
+    "description": "Gabriele Cirulli 的原作，用方向键滑动并合并数字。",
+    "source": "https://github.com/gabrielecirulli/2048",
+    "icon": "🔢",
+    "accent": "#eec65a"
+  },
+  {
+    "id": "hexgl",
+    "name": "HexGL",
+    "description": "BKcore 的 WebGL 科幻竞速游戏。",
+    "source": "https://github.com/BKcore/HexGL",
+    "icon": "🏎️",
+    "accent": "#ff82b2",
+    "localOnly": true
+  },
+  {
+    "id": "breakout",
+    "name": "JavaScript Breakout",
+    "description": "Jake Gordon 制作的打砖块游戏。",
+    "source": "https://github.com/jakesgordon/javascript-breakout",
+    "icon": "🧱",
+    "accent": "#66b6ff"
+  }
+]

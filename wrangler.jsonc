@@ -1,0 +1,8 @@
+{
+  "name": "winonweb",
+  "pages_build_output_dir": ".cache/pages",
+  "compatibility_date": "2026-08-01",
+  "r2_buckets": [
+    { "binding": "WOW_PACKAGES", "bucket_name": "winonweb-packages" }
+  ]
+}

@@ -1,5 +1,12 @@
-import { explorerApp } from '../explorer';
-import { taskManagerApp } from '../task-manager';
+import { appStoreApp } from './app-store-app';
+import { APP_COMMANDS } from './commands';
+import { explorerApp } from './explorer';
+import { mountIframeApp } from './iframe-host';
+import { notepadApp } from './notepad-app';
+import { placeholderApp } from './placeholder-app';
+import { settingsApp } from './settings-app';
+import { storageLabApp } from './storage-lab-app';
+import { taskManagerApp } from './task-manager';
 import type {
   WinAppHostContext,
   WinAppHostHooks,
@@ -8,12 +15,6 @@ import type {
   WinAppShellApi,
   WinAppLaunchArgs,
 } from '../types';
-import { getManifestById } from '../registry';
-import { APP_COMMANDS } from './commands';
-import { mountIframeApp } from './iframe-host';
-import { placeholderApp } from './placeholder-app';
-import { settingsApp } from './settings-app';
-import { storageLabApp } from './storage-lab-app';
 
 const BUILTIN_APP_MODULES: Record<string, WinAppModule> = {
   'this-pc': explorerApp,
@@ -21,6 +22,8 @@ const BUILTIN_APP_MODULES: Record<string, WinAppModule> = {
   'task-manager': taskManagerApp,
   settings: settingsApp,
   'storage-lab': storageLabApp,
+  notepad: notepadApp,
+  'app-store': appStoreApp,
 };
 
 export function executeCommandApp(
@@ -38,7 +41,7 @@ export function mountAppInstance(
   ctx: WinAppHostContext,
   hooks: WinAppHostHooks = {},
 ): WinAppLifecycle {
-  const manifest = getManifestById(ctx.appId);
+  const manifest = ctx.manifest ?? ctx.shell.getAppManifest(ctx.appId);
   if (!manifest) {
     return placeholderApp.mount(ctx) ?? {};
   }

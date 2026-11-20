@@ -1,0 +1,3 @@
+/* Server-backed features are unavailable in the packaged solo client. */
+#hud-career, #hud-online-open, #hud-leaderboard-open, #hud-end-leaderboard,
+#hud-progress-details, #hud-end-rank, #hud-end-rewards { display: none !important; }

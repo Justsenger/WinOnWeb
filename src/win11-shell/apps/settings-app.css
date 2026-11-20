@@ -1,0 +1,85 @@
+.w11-shell .w11-window[data-app='settings'] { border-radius:0; overflow:hidden; background:#202020; }
+.w11-shell .w11-window[data-app='settings'] .w11-win-titlebar { height:45px !important; padding:0 0 0 4px !important; background:#202020 !important; border-bottom:0 !important; }
+.w11-shell .w11-window[data-app='settings'] .w11-win-controls, .w11-shell .w11-window[data-app='settings'] .w11-win-ctrl { height:45px; }
+.w11-shell .w11-window[data-app='settings'] .w11-win-ctrl { width:46px; }
+.w11-shell .w11-window[data-app='settings'] .w11-win-body { background:#202020; overflow:hidden; }
+.w11-settings-titlebar-content { display:flex; align-items:center; gap:12px; flex:1; min-width:0; height:100%; color:#f2f2f2; position:relative; }
+.w11-settings-back { width:34px; height:34px; border:0; border-radius:4px; color:#bdbdbd; background:transparent; display:grid; place-items:center; cursor:pointer; }
+.w11-settings-back:hover { background:rgba(255,255,255,.08); color:#fff; }
+.w11-settings-back span { font-size:35px; font-weight:200; line-height:20px; transform:translateY(-2px); }
+.w11-settings-title { font-size:15px; font-weight:600; white-space:nowrap; }
+.w11-settings-search { position:absolute; left:185px; width:426px; height:32px; margin:0; transform:none; border-radius:20px; background:#2c2c2c; display:flex; align-items:center; gap:10px; padding:0 16px; box-sizing:border-box; color:#d5d5d5; }
+.w11-settings-search-icon { display:grid; place-items:center; color:#f4f4f4; }
+.w11-settings-search-icon svg { width:18px; height:18px; }
+.w11-settings-search input { flex:1; min-width:0; border:0; outline:0; background:transparent; color:#f4f4f4; font:inherit; font-size:16px; }
+.w11-settings-search input::placeholder { color:#d6d6d6; opacity:1; }
+.w11-settings-shell { height:100%; display:flex; color:#f6f6f6; background:#202020; font-family:'Segoe UI Variable Text','Segoe UI','Microsoft YaHei UI',sans-serif; overflow:hidden; }
+.w11-settings-sidebar { width:300px; flex:0 0 300px; padding:3px 2.5px 14px 2.5px; box-sizing:border-box; background:#202020; overflow:hidden; }
+.w11-settings-user-card { width:100%; height:80px; padding:7px 14px; border:1px solid #f2f2f2; border-radius:8px; background:#202020; color:#f5f5f5; display:flex; align-items:center; gap:13px; text-align:left; cursor:pointer; }
+.w11-settings-user-card:hover { background:#2a2a2a; }
+.w11-settings-avatar { width:59px; height:59px; border-radius:50%; background:#f7f7f7; display:block; position:relative; flex:0 0 59px; }
+.w11-settings-avatar::before { content:''; position:absolute; width:18px; height:18px; left:20px; top:12px; border-radius:50%; background:#8d8d8d; }
+.w11-settings-avatar i { position:absolute; width:34px; height:18px; left:12px; top:33px; border-radius:16px 16px 10px 10px; background:#8d8d8d; }
+.w11-settings-user-card strong,.w11-settings-user-card small { display:block; }
+.w11-settings-user-card strong { font-size:15px; line-height:22px; }
+.w11-settings-user-card small { font-size:13px; line-height:20px; color:#ededed; }
+.w11-settings-sidebar nav { margin:16px 0 0 13.5px; width:calc(100% - 17px); display:flex; flex-direction:column; gap:2px; }
+.w11-settings-nav-item { position:relative; height:36px; width:100%; border:0; border-radius:7px; padding:0 8px; background:transparent; color:#f0f0f0; display:flex; align-items:center; gap:12px; font:inherit; font-size:16px; text-align:left; cursor:pointer; }
+.w11-settings-nav-item:hover { background:#2a2a2a; }
+.w11-settings-nav-item.is-active { background:#303030; }
+.w11-settings-nav-item.is-active::before { content:''; position:absolute; left:0; top:10px; width:3px; height:16px; border-radius:2px; background:#4cc2ff; }
+.w11-settings-nav-icon { width:24px; height:24px; display:grid; place-items:center; color:var(--settings-icon); font-size:23px; line-height:1; font-family:'Segoe UI Symbol','Segoe UI',sans-serif; }
+.w11-settings-main { flex:1; min-width:0; overflow:auto; scrollbar-width:none; padding:14px 25px 24px 27px; box-sizing:border-box; background:#202020; }
+.w11-settings-main::-webkit-scrollbar { display:none; }
+.w11-settings-main h1 { margin:0 0 25px; font-size:32px; line-height:1.15; font-weight:650; letter-spacing:-.4px; }
+.w11-settings-device-row { display:flex; align-items:center; gap:15px; margin:0 0 11px; }
+.w11-settings-device-image { width:120px; height:76px; border:8px solid #060606; border-radius:8px; background:url('/win11/wallpapers/bloom-dark.webp') center/cover; box-sizing:border-box; }
+.w11-settings-device-copy strong,.w11-settings-device-copy span,.w11-settings-device-copy button { display:block; }
+.w11-settings-device-copy strong { font-size:19px; line-height:26px; }
+.w11-settings-device-copy span { font-size:16px; line-height:25px; }
+.w11-settings-device-copy button { margin-top:1px; border:0; padding:0; background:transparent; color:#53c7f5; font:inherit; font-size:15px; cursor:pointer; }
+.w11-settings-device-copy button:hover { text-decoration:underline; }
+.w11-settings-status-row { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin:0 0 20px; }
+.w11-settings-status-card { border:0; background:transparent; color:#f5f5f5; display:flex; align-items:center; gap:17px; text-align:left; font:inherit; cursor:pointer; padding:5px 0; }
+.w11-settings-status-card:hover strong { text-decoration:underline; }
+.w11-settings-status-card strong,.w11-settings-status-card small { display:block; }
+.w11-settings-status-card strong { font-size:16px; line-height:25px; }
+.w11-settings-status-card small { color:#a9a9a9; font-size:14px; line-height:20px; white-space:nowrap; }
+.status-glyph { width:28px; height:28px; display:grid; place-items:center; color:#9d9d9d; font-size:25px; }
+.status-glyph.update { border-radius:50%; background:#1787ed; color:white; font-size:22px; }
+.w11-settings-recommend-card { border-radius:10px; overflow:hidden; background:#2d2d2d; }
+.w11-settings-recommend-card header { padding:25px 24px 22px; border-bottom:1px solid #1c1c1c; }
+.w11-settings-recommend-card h2 { margin:0 0 8px; font-size:24px; line-height:28px; font-weight:500; }
+.w11-settings-recommend-card p { margin:0; color:#c5c5c5; font-size:16px; }
+.w11-settings-recommend-card button { width:100%; min-height:70px; border:0; border-bottom:1px solid #1c1c1c; background:transparent; color:#f6f6f6; display:grid; grid-template-columns:40px 1fr 24px; align-items:center; gap:4px; padding:0 24px; text-align:left; font:inherit; font-size:17px; cursor:pointer; }
+.w11-settings-recommend-card button:last-child { border-bottom:0; }
+.w11-settings-recommend-card button:hover { background:#343434; }
+.w11-settings-recommend-card b { font-size:28px; font-weight:300; text-align:right; }
+.recommend-glyph { width:30px; height:30px; display:grid; place-items:center; font-size:21px; color:#f8f8f8; }
+.w11-settings-section-description { margin:-14px 0 22px; color:#bdbdbd; font-size:15px; }
+.w11-settings-section-cards { display:flex; flex-direction:column; gap:8px; }
+.w11-settings-section-card { min-height:72px; border:0; border-radius:8px; background:#2d2d2d; color:#f5f5f5; display:flex; justify-content:space-between; align-items:center; padding:14px 20px; text-align:left; cursor:pointer; }
+.w11-settings-section-card:hover { background:#363636; }
+.w11-settings-section-card strong,.w11-settings-section-card small { display:block; }
+.w11-settings-section-card strong { font-size:16px; font-weight:500; }
+.w11-settings-section-card small { margin-top:4px; color:#bcbcbc; font-size:13px; }
+.w11-settings-section-card b { font-size:28px; font-weight:300; color:#cfcfcf; }
+@media (max-width:760px) { .w11-settings-sidebar { width:220px; flex-basis:220px; } .w11-settings-nav-item { font-size:13px; gap:10px; } .w11-settings-status-row { gap:10px; } }
+.w11-taskbar-preferences { font-size:14px; }
+.w11-taskbar-preferences h1 { font-size:28px; line-height:34px; font-weight:550; margin: -2px 0 20px; }
+.w11-taskbar-preferences h1 button { background:none; color:#ccc; border:0; font:inherit; padding:0; }
+.w11-taskbar-preferences h1 span { color:#ccc; font-size:22px; margin:0 7px; }
+.w11-taskbar-preferences details { border-radius:5px; overflow:hidden; margin-bottom:4px; background:#292929; }
+.w11-taskbar-preferences summary { list-style:none; position:relative; cursor:pointer; background:#2d2d2d; padding:16px; min-height:68px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; }
+.w11-taskbar-preferences summary::after { content:'⌄'; position:absolute; right:18px; top:24px; }
+.w11-taskbar-preferences details[open] summary::after { transform:rotate(180deg); }
+.w11-taskbar-preferences small { display:block; font-size:12px; line-height:16px; color:#ccc; }
+.taskbar-option { display:grid; grid-template-columns:20px minmax(0,1fr) auto; align-items:center; gap:10px; padding:10px 44px 10px 60px; min-height:59px; border-top:1px solid #202020; box-sizing:border-box; }
+.taskbar-option:has(select) { min-height:50px; }
+.taskbar-option i { font:16px "Segoe Fluent Icons","Segoe MDL2 Assets",sans-serif; }
+.taskbar-option select { width:130px; height:32px; border-radius:4px; color:white; background:#373737; border:1px solid #414141; padding:0 8px; font:inherit; }
+.taskbar-switch { display:flex; gap:12px; align-items:center; }
+.taskbar-switch input { appearance:none; margin:0; width:40px; height:20px; border:1px solid #aaa; border-radius:20px; background:#333; }
+.taskbar-switch input::before { display:block; content:''; width:12px; height:12px; border-radius:50%; margin:3px; background:#ccc; }
+.taskbar-switch input:checked { background:#4cc2ff; border-color:#4cc2ff; }
+.taskbar-switch input:checked::before { margin-left:23px; background:#191919; }

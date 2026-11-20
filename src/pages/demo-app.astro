@@ -1,0 +1,241 @@
+---
+import '../win11-shell/win11-tokens.css';
+---
+
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WinOnWeb 生态能力测试台</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 18px;
+        background: var(--win-mica-bg, #202020);
+        color: var(--win-text, #f3f3f3);
+        font-family: var(--win-font-sans, 'Segoe UI Variable', 'Segoe UI', 'Microsoft YaHei UI', sans-serif);
+        font-size: 13px;
+        line-height: 1.5;
+        overflow-y: auto;
+        height: auto;
+        box-sizing: border-box;
+      }
+      .wrap {
+        max-width: 780px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .card {
+        padding: 14px;
+        border-radius: 8px;
+        background: var(--win-card-bg, rgba(255, 255, 255, 0.05));
+        border: 1px solid var(--win-border, rgba(255, 255, 255, 0.1));
+      }
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      button {
+        padding: 6px 12px;
+        border-radius: 5px;
+        border: 1px solid var(--win-border-strong, rgba(255, 255, 255, 0.16));
+        background: var(--win-card-hover, rgba(255, 255, 255, 0.08));
+        color: inherit;
+        cursor: pointer;
+        font-size: 12.5px;
+      }
+      button.primary {
+        background: var(--win-accent, #4cc2ff);
+        color: var(--win-accent-text, #002133);
+        border-color: transparent;
+        font-weight: 600;
+      }
+      textarea, input {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 5px;
+        border: 1px solid var(--win-border-strong, rgba(255, 255, 255, 0.16));
+        background: rgba(0, 0, 0, 0.22);
+        color: inherit;
+        font-family: inherit;
+        box-sizing: border-box;
+      }
+      pre {
+        margin: 0;
+        padding: 10px;
+        border-radius: 6px;
+        background: rgba(0, 0, 0, 0.28);
+        font-size: 12px;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h2 style="margin:0 0 4px;">外部网页应用接入测试台</h2>
+        <div id="env-line" style="font-size:12px;opacity:0.8;">正在与 WinOnWeb 桌面内核握手...</div>
+      </div>
+
+      <div class="card">
+        <strong>1. 系统文件选择与读写（跨应用共享 C: / 真实 D:）</strong>
+        <div class="btn-row">
+          <button type="button" class="primary" id="btn-open">调用系统打开文件弹窗</button>
+          <button type="button" id="btn-save">另存内容到 C: 或 D: 盘</button>
+        </div>
+        <div id="file-path" style="font-size:12px;margin:8px 0 4px;opacity:0.8;">尚未打开文件</div>
+        <textarea id="file-editor" rows="5" placeholder="打开文件后内容会显示在这里，也可自行编写后保存..."></textarea>
+      </div>
+
+      <div class="card">
+        <strong>2. 敏感权限按需申请 + 系统通知 + 应用私有数据空间</strong>
+        <div class="btn-row">
+          <button type="button" id="btn-hw">请求虚拟硬件快照</button>
+          <button type="button" id="btn-notify">发送桌面通知气泡</button>
+          <button type="button" id="btn-kv-save">写入本应用私有配置</button>
+          <button type="button" id="btn-kv-read">读取私有配置</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <strong>3. 跨应用双向请求-应答协同（调用“记事本”）</strong>
+        <div class="btn-row">
+          <button type="button" id="btn-open-np">打开记事本</button>
+          <button type="button" id="btn-np-read">读取记事本当前正文</button>
+          <button type="button" id="btn-np-append">向记事本追加一行内容</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <strong>运行日志</strong>
+        <pre id="log">等待操作...</pre>
+      </div>
+    </div>
+
+    <script>
+      import { createWin11AppClient } from '../win11-shell/app-protocol';
+
+      const envEl = document.getElementById('env-line')!;
+      const logEl = document.getElementById('log')!;
+      const editorEl = document.getElementById('file-editor') as HTMLTextAreaElement;
+      const pathEl = document.getElementById('file-path')!;
+      let currentFilePath: string | null = null;
+
+      function log(msg: string) {
+        logEl.textContent = `[${new Date().toLocaleTimeString('zh-CN', { hour12: false })}] ${msg}\n` + logEl.textContent;
+      }
+
+      const client = createWin11AppClient({
+        onInit: (init) => {
+          document.documentElement.setAttribute('data-theme', init.theme);
+          envEl.textContent = `已连接桌面内核 · 应用标识: ${init.appId} · 进程号: ${init.pid}`;
+          const openPath = typeof init.launchArgs?.openPath === 'string' ? init.launchArgs.openPath : null;
+          if (openPath) {
+            void client.readFile(openPath).then(
+              (f) => {
+                currentFilePath = f.path;
+                pathEl.textContent = f.path;
+                editorEl.value = f.content;
+                log(`通过文件关联启动并读取：${f.path}`);
+              },
+              (err) => log(`读取关联文件失败：${String(err)}`),
+            );
+          }
+        },
+        onThemeChange: (theme) => {
+          document.documentElement.setAttribute('data-theme', theme);
+        },
+      });
+
+      if (!client.isEmbedded) {
+        envEl.textContent = '独立打开模式（未嵌入 WinOnWeb 桌面窗口中）';
+      }
+
+      document.getElementById('btn-open')?.addEventListener('click', async () => {
+        try {
+          const picked = await client.pickOpenFile();
+          if (!picked) return;
+          currentFilePath = picked.path;
+          pathEl.textContent = picked.path;
+          editorEl.value = picked.content;
+          log(`成功读取文件 ${picked.path}（${picked.sizeBytes} 字节）`);
+        } catch (err) {
+          log(`打开文件被拒绝或出错：${err instanceof Error ? err.message : String(err)}`);
+        }
+      });
+
+      document.getElementById('btn-save')?.addEventListener('click', async () => {
+        try {
+          const target = await client.pickSaveFile({ defaultFileName: '来自外部应用.txt', initialPath: 'C:\\Users\\Administrator\\桌面' });
+          if (!target) return;
+          const res = await client.writeFile(target.path, editorEl.value);
+          currentFilePath = res.path;
+          pathEl.textContent = res.path;
+          log(`已成功写入 ${res.path}（${res.sizeBytes} 字节）`);
+        } catch (err) {
+          log(`写入失败：${err instanceof Error ? err.message : String(err)}`);
+        }
+      });
+
+      document.getElementById('btn-hw')?.addEventListener('click', async () => {
+        try {
+          const hw = await client.getHwSnapshot();
+          log(`获取虚拟硬件成功：CPU ${hw.cpu.shortName}（${hw.cpu.logicalCores} 逻辑核心）· 内存 ${hw.memory.totalGb} GB`);
+        } catch (err) {
+          log(`硬件访问失败：${err instanceof Error ? err.message : String(err)}`);
+        }
+      });
+
+      document.getElementById('btn-notify')?.addEventListener('click', async () => {
+        try {
+          await client.notify({
+            title: '外部网页应用消息',
+            body: currentFilePath ? `当前正在编辑：${currentFilePath}` : '跨框架通知通道工作正常！',
+          });
+          log('已发送系统通知气泡。');
+        } catch (err) {
+          log(`通知发送失败：${err instanceof Error ? err.message : String(err)}`);
+        }
+      });
+
+      document.getElementById('btn-kv-save')?.addEventListener('click', async () => {
+        await client.kvSet('savedNote', editorEl.value || '示例私有保存草稿');
+        log('已写入本应用隔离键值区（仅当前应用可读，其他应用不可见）。');
+      });
+
+      document.getElementById('btn-kv-read')?.addEventListener('click', async () => {
+        const val = await client.kvGet<string>('savedNote');
+        log(`读取到私有键值：${val ?? '（空）'}`);
+      });
+
+      document.getElementById('btn-open-np')?.addEventListener('click', () => {
+        client.openApp('notepad');
+        log('已请求系统打开记事本。');
+      });
+
+      document.getElementById('btn-np-read')?.addEventListener('click', async () => {
+        try {
+          const data = await client.callApp<{ fileName: string; text: string }>('notepad', 'notepad.getText');
+          log(`记事本当前正文 (${data.fileName})：${JSON.stringify(data.text)}`);
+        } catch (err) {
+          log(`协同调用失败：${err instanceof Error ? err.message : String(err)}`);
+        }
+      });
+
+      document.getElementById('btn-np-append')?.addEventListener('click', async () => {
+        try {
+          const res = await client.callApp('notepad', 'notepad.appendText', `[来自外部测试台 ${new Date().toLocaleTimeString('zh-CN')}] 协同写入成功！`);
+          log(`协同写入完成：${JSON.stringify(res)}`);
+        } catch (err) {
+          log(`协同写入失败：${err instanceof Error ? err.message : String(err)}`);
+        }
+      });
+    </script>
+  </body>
+</html>

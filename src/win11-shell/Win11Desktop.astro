@@ -1,6 +1,5 @@
 ---
-import './task-manager.css';
-import { getAppIconSvg, UI_ICONS } from './icons';
+import { getAppIconSvg, UI_ICONS } from './shell/icons';
 
 const { hostConfig = null } = Astro.props;
 ---
@@ -148,10 +147,16 @@ const { hostConfig = null } = Astro.props;
       <button type="button" class="w11-tray-btn" data-taskbar-overflow title="显示隐藏的图标">
         <span set:html={UI_ICONS.chevronUp} />
       </button>
-      <button type="button" class="w11-tray-btn w11-tray-ime" data-ime-btn title="切换输入法">中</button>
-      <button type="button" class="w11-tray-btn w11-tray-quick" data-taskbar-quick title="网络、音量与电池">
+      <button type="button" class="w11-tray-btn w11-tray-mute" title="静音">◖</button>
+      <button type="button" class="w11-tray-btn w11-tray-ime" data-ime-btn title="切换输入法">英</button>
+      <button type="button" class="w11-tray-btn w11-tray-ime-secondary" title="输入法">拼</button>
+      <button type="button" class="w11-tray-btn w11-tray-network" data-taskbar-quick title="网络、音量与电池">
         <span set:html={UI_ICONS.wifi} />
+      </button>
+      <button type="button" class="w11-tray-btn w11-tray-volume" title="音量">
         <span set:html={UI_ICONS.volume} />
+      </button>
+      <button type="button" class="w11-tray-btn w11-tray-battery" title="电池">
         <span set:html={UI_ICONS.battery} />
       </button>
       <button type="button" class="w11-tray-btn w11-tray-clock" data-taskbar-clock title="日期与时间">
@@ -162,7 +167,7 @@ const { hostConfig = null } = Astro.props;
     </div>
   </footer>
 
-  <!-- Windows 11 锁屏与登录界面（1:1 复刻 MOBAN11 Bloom 锁屏 / admin 登录 / 欢迎页） -->
+  <!-- Windows 11 锁屏与登录界面（Bloom 锁屏 / admin 登录 / 欢迎页） -->
   <section class="w11-lockscreen is-hidden" data-lock-screen aria-label="Windows 登录屏幕">
     <div class="w11-lock-bg" style="background-image: url('/win11/wallpapers/bloom-dark.webp');"></div>
     <div class="w11-lock-blur-veil"></div>
@@ -272,7 +277,7 @@ const { hostConfig = null } = Astro.props;
     if (vw < 1024 || vh < 580) {
       var rdpW = 1920;
       var rdpH = vw > vh ? Math.max(720, Math.round((vh * rdpW) / vw)) : 1080;
-      var s = vw > vh ? vw / rdpW : Math.min(vw / rdpW, vh / rdpH);
+      var s = Math.min(vw / rdpW, vh / rdpH);
       root.classList.add('is-rdp-scaled');
       root.style.setProperty('--w11-rdp-w', rdpW + 'px');
       root.style.setProperty('--w11-rdp-h', rdpH + 'px');
@@ -282,7 +287,7 @@ const { hostConfig = null } = Astro.props;
 </script>
 
 <script>
-  import { initWin11Desktop } from './desktop';
+  import { initWin11Desktop } from './shell/desktop';
   import type { WinDesktopHostConfig } from './host-config';
 
   const root = document.querySelector<HTMLElement>('[data-win11-root]');
@@ -319,10 +324,13 @@ const { hostConfig = null } = Astro.props;
   }
 
   .w11-shell.is-rdp-scaled {
+    position: fixed;
+    left: 50%;
+    top: 50%;
     width: var(--w11-rdp-w, 1920px);
     height: var(--w11-rdp-h, 1080px);
     flex-shrink: 0;
-    transform: scale(var(--w11-scale, 1));
+    transform: translate(-50%, -50%) scale(var(--w11-scale, 1));
     transform-origin: center center;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 80px rgba(0, 0, 0, 0.72);
   }
@@ -469,6 +477,10 @@ const { hostConfig = null } = Astro.props;
     pointer-events: none;
   }
 
+  .w11-shell.is-task-manager-maximized .w11-windows-layer {
+    inset: 0 0 48px 0;
+  }
+
   .w11-window {
     position: absolute;
     pointer-events: auto;
@@ -483,6 +495,34 @@ const { hostConfig = null } = Astro.props;
 
   .w11-window.is-active {
     box-shadow: var(--win-shadow-window);
+  }
+
+  .w11-shell.is-rdp-scaled:has(.is-game-fullscreen.is-active) {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+  }
+
+  .w11-shell .w11-windows-layer:has(.is-game-fullscreen.is-active) {
+    inset: 0;
+    z-index: 2100;
+  }
+
+  .w11-window.is-game-fullscreen.is-active {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0;
+  }
+
+  .w11-window.is-game-fullscreen [data-win-max],
+  .w11-window.is-game-fullscreen .w11-resize-handle {
+    display: none;
+  }
+
+  .w11-game-fullscreen[aria-pressed='true'] path {
+    d: path('M1 5h4V1m6 0v4h4m0 6h-4v4m-6 0v-4H1');
   }
 
   .w11-window.is-maximized {
@@ -745,6 +785,7 @@ const { hostConfig = null } = Astro.props;
     align-items: center;
     gap: 4px;
     height: 100%;
+    transform: translateX(-40px);
   }
 
   .w11-taskbar-apps {
@@ -807,16 +848,18 @@ const { hostConfig = null } = Astro.props;
 
   .w11-tb-search-pill {
     height: 32px;
-    min-width: 136px;
-    padding: 0 14px 0 12px;
-    margin: 0 2px;
+    width: 40px;
+    min-width: 40px;
+    padding: 0;
+    margin: 0;
     border-radius: 999px;
     border: 1px solid var(--win-border);
     background: rgba(255, 255, 255, 0.10);
     color: var(--win-text);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0;
+    justify-content: center;
     font-size: 12px;
     font-weight: 400;
     cursor: default;
@@ -837,11 +880,54 @@ const { hostConfig = null } = Astro.props;
     opacity: 0.9;
   }
 
+  .w11-tb-search-pill > span:last-child { display: none; }
+  .w11-tb-search-icon svg { width: 20px; height: 20px; }
+
+  .w11-tb-special .w11-tb-glyph {
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+  .w11-tb-special.is-task-view .w11-tb-glyph::before,
+  .w11-tb-special.is-task-view .w11-tb-glyph::after {
+    content: '';
+    position: absolute;
+    width: 13px;
+    height: 11px;
+    border: 2px solid #dedede;
+    border-radius: 2px;
+  }
+  .w11-tb-special.is-task-view .w11-tb-glyph::before { left: 1px; top: 6px; }
+  .w11-tb-special.is-task-view .w11-tb-glyph::after { right: 1px; top: 2px; background: #1d2430; }
+  .w11-tb-special.is-copilot .w11-tb-glyph {
+    border-radius: 8px;
+    background: linear-gradient(135deg, #d84bff 0%, #fd8b62 44%, #28c7ff 100%);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .w11-tb-special.is-edge .w11-tb-glyph {
+    border-radius: 50%;
+    background: conic-gradient(from 210deg, #0abf87, #15a9e9, #0e63d8, #0abf87);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+  }
+  .w11-tb-special.is-rdp .w11-tb-glyph {
+    border-radius: 5px;
+    background: #a14e5a;
+    color: #ffffff;
+    font-size: 14px;
+  }
+
   .w11-taskbar-tray {
     justify-self: end;
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 0;
     height: 100%;
     padding-right: 4px;
   }
@@ -876,6 +962,21 @@ const { hostConfig = null } = Astro.props;
     font-size: 13px;
     font-weight: 400;
   }
+
+  .w11-tray-mute,
+  .w11-tray-ime-secondary,
+  .w11-tray-network,
+  .w11-tray-volume,
+  .w11-tray-battery {
+    min-width: 28px;
+    padding: 0 5px;
+    justify-content: center;
+  }
+  .w11-tray-mute { color: #d5d5d5; font-size: 14px; }
+  .w11-tray-ime-secondary { color: #e8e8e8; font-size: 13px; }
+  .w11-tray-network svg { width: 18px; height: 18px; }
+  .w11-tray-volume svg { width: 17px; height: 17px; }
+  .w11-tray-battery svg { width: 18px; height: 16px; }
 
   .w11-tray-clock {
     flex-direction: column;
@@ -1295,6 +1396,48 @@ const { hostConfig = null } = Astro.props;
   .w11-context-menu.is-open {
     display: block;
   }
+
+  .w11-context-menu.is-taskbar-menu {
+    box-sizing: border-box;
+    width: 130px;
+    min-width: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #191919;
+    border-radius: 9px;
+    background: #2c2c2c;
+    color: white;
+    outline: 0;
+    box-shadow: 0 2px 5px #0002;
+    font-family: "Segoe UI", "Microsoft YaHei UI", sans-serif;
+  }
+  [data-theme='light'] .w11-context-menu.is-taskbar-menu {
+    background: #f9f9f9;
+    color: #191919;
+    border-color: #ccc;
+  }
+  .is-taskbar-menu .w11-ctx-item {
+    box-sizing: border-box;
+    height: 35px;
+    padding: 0 15px;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+  }
+  .is-taskbar-menu .w11-ctx-icon, .is-taskbar-menu .w11-ctx-icon i {
+    display: block;
+    width: 16px;
+    height: 16px;
+    color: inherit;
+  }
+  .is-taskbar-menu .w11-ctx-icon i { background: currentColor; mask-size: contain; }
+  .w11-menu-task-manager { mask-image: url('/win11/icons/menu-task-manager.png'); }
+  .w11-menu-taskbar-settings { mask-image: url('/win11/icons/menu-taskbar-settings.png'); }
+  .is-taskbar-menu .w11-ctx-arrow { display: none; }
+  .is-taskbar-menu .w11-ctx-divider { margin: 0; background: #3d3d3d; }
+  [data-theme='light'] .is-taskbar-menu .w11-ctx-divider { background: #ddd; }
+  .is-taskbar-menu .w11-ctx-item:focus-visible { outline: 1px solid currentColor; outline-offset: -3px; }
 
   .w11-ctx-list {
     display: flex;
@@ -1801,5 +1944,61 @@ const { hostConfig = null } = Astro.props;
     color: #101628;
     font-size: 13px;
     font-weight: 700;
+  }
+
+  /* 桌面右下角系统通知气泡 */
+  .w11-toast-stack {
+    position: fixed;
+    right: 16px;
+    bottom: 62px;
+    z-index: 9600;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 328px;
+    max-width: calc(100% - 32px);
+    pointer-events: none;
+  }
+
+  .w11-toast-card {
+    pointer-events: auto;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: var(--win-flyout-bg, rgba(36, 37, 40, 0.92));
+    border: 1px solid var(--win-border-strong, rgba(255, 255, 255, 0.16));
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(22px) saturate(1.4);
+    color: var(--win-text, #f3f3f3);
+  }
+
+  .w11-toast-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--win-accent, #4cc2ff);
+    margin-bottom: 4px;
+  }
+
+  .w11-toast-x {
+    border: none;
+    background: transparent;
+    color: var(--win-text-secondary, #b8b8b8);
+    cursor: pointer;
+    padding: 0 4px;
+    font-size: 12px;
+  }
+
+  .w11-toast-title {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .w11-toast-body {
+    margin-top: 3px;
+    font-size: 12px;
+    color: var(--win-text-secondary, #cccccc);
+    line-height: 1.45;
   }
 </style>

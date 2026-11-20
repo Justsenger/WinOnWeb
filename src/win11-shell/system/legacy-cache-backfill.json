@@ -1,0 +1,1445 @@
+{
+  "adb-exynos-2200": {
+    "l1KB": 576,
+    "l2KB": 3072,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "adb-exynos-2400": {
+    "l1KB": 704,
+    "l2KB": 5632,
+    "l3KB": 8192,
+    "suspect": true
+  },
+  "adb-google-tensor-g2-gs201": {
+    "l1KB": 768,
+    "l2KB": 3072,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "adb-google-tensor-g3-gs301": {
+    "l1KB": 640,
+    "l2KB": 3584,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "adb-google-tensor-g4-gs401": {
+    "l1KB": 576,
+    "l2KB": 3072,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "adb-snapdragon-8-elite-gen-5-sm8850": {
+    "l1KB": 1728,
+    "suspect": true
+  },
+  "mtk-dimensity-9300": {
+    "l1KB": 768,
+    "l2KB": 6144,
+    "suspect": true
+  },
+  "mtk-dimensity-9400": {
+    "l1KB": 768,
+    "suspect": true
+  },
+  "ndd-1": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-2": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-3": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-4": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-6": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-10": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-11": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-13": {
+    "l1KB": 64,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-14": {
+    "l1KB": 64,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-15": {
+    "l1KB": 128,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-17": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-19": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-20": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-21": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-22": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-23": {
+    "l1KB": 128,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-25": {
+    "l1KB": 768,
+    "l2KB": 3072,
+    "suspect": true
+  },
+  "ndd-28": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-29": {
+    "l1KB": 128,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-30": {
+    "l1KB": 512,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-31": {
+    "l1KB": 64,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-33": {
+    "l1KB": 256,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-34": {
+    "l1KB": 256,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-35": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-36": {
+    "l1KB": 128,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-37": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-38": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-39": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-41": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-42": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-43": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-44": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-45": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-47": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-48": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-49": {
+    "l1KB": 64,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-50": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-51": {
+    "l1KB": 256,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-52": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-53": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-54": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-55": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "l3KB": 2048,
+    "suspect": true
+  },
+  "ndd-56": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-57": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "l3KB": 2048,
+    "suspect": true
+  },
+  "ndd-58": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-60": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-61": {
+    "l1KB": 768,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-62": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "l3KB": 1024,
+    "suspect": true
+  },
+  "ndd-63": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-64": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-65": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-66": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-67": {
+    "l1KB": 768,
+    "l2KB": 2048,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-68": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-69": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-70": {
+    "l1KB": 512,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-71": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-72": {
+    "l1KB": 128,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-73": {
+    "l1KB": 128,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-76": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-78": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-85": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-86": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-93": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-94": {
+    "l1KB": 128,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-95": {
+    "l1KB": 128,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-96": {
+    "l1KB": 576,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-97": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-102": {
+    "l1KB": 256,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-106": {
+    "l1KB": 384,
+    "l2KB": 2048,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-108": {
+    "l1KB": 256,
+    "l2KB": 1024,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-109": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-110": {
+    "l1KB": 256,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-111": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-112": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-113": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-114": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-115": {
+    "l1KB": 768,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-116": {
+    "l1KB": 416,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-117": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-119": {
+    "l1KB": 128,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-121": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-125": {
+    "l1KB": 256,
+    "l2KB": 1024,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-133": {
+    "l1KB": 64,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-134": {
+    "l1KB": 128,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-138": {
+    "l1KB": 128,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-139": {
+    "l1KB": 128,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-140": {
+    "l1KB": 64,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-141": {
+    "l1KB": 768,
+    "l2KB": 1792,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-142": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-145": {
+    "l1KB": 32,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-149": {
+    "l1KB": 32,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-150": {
+    "l1KB": 64,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-157": {
+    "l1KB": 416,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-158": {
+    "l1KB": 64,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-159": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-162": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-165": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-168": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-169": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-172": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-173": {
+    "l1KB": 224,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-174": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-175": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-176": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-177": {
+    "l1KB": 64,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-181": {
+    "l1KB": 128,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-185": {
+    "l1KB": 64,
+    "l2KB": 128,
+    "suspect": true
+  },
+  "ndd-191": {
+    "l1KB": 64,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-194": {
+    "l1KB": 672,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-195": {
+    "l1KB": 64,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-196": {
+    "l1KB": 768,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-199": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-200": {
+    "l1KB": 256,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-201": {
+    "l1KB": 256,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-202": {
+    "l1KB": 128,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-204": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-205": {
+    "l1KB": 768,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-208": {
+    "l1KB": 224,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-210": {
+    "l1KB": 128,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-212": {
+    "l1KB": 64,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-213": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-214": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-215": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-216": {
+    "l1KB": 576,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-217": {
+    "l1KB": 32,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-218": {
+    "l1KB": 32,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-219": {
+    "l1KB": 128,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-220": {
+    "l1KB": 256,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-221": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-222": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-223": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-225": {
+    "l1KB": 576,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-226": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-227": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-228": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-229": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-230": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-232": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-233": {
+    "l1KB": 256,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-237": {
+    "l1KB": 640,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-238": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-239": {
+    "l1KB": 256,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-240": {
+    "l1KB": 64,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-241": {
+    "l1KB": 768,
+    "l2KB": 2048,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-242": {
+    "l1KB": 640,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-243": {
+    "l1KB": 128,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-244": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-245": {
+    "l1KB": 64,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-247": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-248": {
+    "l1KB": 640,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-249": {
+    "l1KB": 704,
+    "suspect": true
+  },
+  "ndd-250": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-251": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-252": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-253": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-254": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-255": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-256": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-257": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-258": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "l3KB": 1024,
+    "suspect": true
+  },
+  "ndd-259": {
+    "l1KB": 640,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-260": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "l3KB": 1024,
+    "suspect": true
+  },
+  "ndd-261": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "l3KB": 1024,
+    "suspect": true
+  },
+  "ndd-262": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-263": {
+    "l1KB": 512,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-264": {
+    "l1KB": 576,
+    "l2KB": 2304,
+    "suspect": true
+  },
+  "ndd-266": {
+    "l1KB": 128,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-267": {
+    "l1KB": 768,
+    "l2KB": 3072,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-269": {
+    "l1KB": 768,
+    "l2KB": 2048,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-270": {
+    "l1KB": 640,
+    "l2KB": 2304,
+    "suspect": true
+  },
+  "ndd-271": {
+    "l1KB": 640,
+    "l2KB": 2304,
+    "suspect": true
+  },
+  "ndd-272": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-273": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "l3KB": 1024,
+    "suspect": true
+  },
+  "ndd-274": {
+    "l1KB": 640,
+    "suspect": true
+  },
+  "ndd-275": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "l3KB": 1024,
+    "suspect": true
+  },
+  "ndd-276": {
+    "l1KB": 128,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-277": {
+    "l1KB": 64,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-278": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-279": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-280": {
+    "l1KB": 64,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-281": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-283": {
+    "l1KB": 768,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-284": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-285": {
+    "l1KB": 768,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-286": {
+    "l1KB": 64,
+    "l2KB": 256,
+    "suspect": true
+  },
+  "ndd-287": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-289": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "l3KB": 1024,
+    "suspect": true
+  },
+  "ndd-290": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "suspect": true
+  },
+  "ndd-291": {
+    "l1KB": 672,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-293": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-294": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-295": {
+    "l1KB": 64,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-296": {
+    "l1KB": 768,
+    "suspect": true
+  },
+  "ndd-297": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-298": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "l3KB": 1024,
+    "suspect": true
+  },
+  "ndd-299": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-300": {
+    "l1KB": 640,
+    "suspect": true
+  },
+  "ndd-301": {
+    "l1KB": 768,
+    "l2KB": 2560,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-302": {
+    "l1KB": 640,
+    "suspect": true
+  },
+  "ndd-303": {
+    "l1KB": 640,
+    "l2KB": 1536,
+    "l3KB": 2048,
+    "suspect": true
+  },
+  "ndd-304": {
+    "l1KB": 768,
+    "l2KB": 1792,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-306": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-307": {
+    "l1KB": 640,
+    "suspect": true
+  },
+  "ndd-309": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-310": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-312": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-313": {
+    "l1KB": 512,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-314": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-316": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-318": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-319": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-321": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-322": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-323": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-324": {
+    "l1KB": 768,
+    "l2KB": 1792,
+    "suspect": true
+  },
+  "ndd-325": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-328": {
+    "l1KB": 416,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-330": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-331": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-333": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-335": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-336": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-337": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-338": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-339": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-340": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-341": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-345": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-346": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-347": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-349": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-350": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-351": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-352": {
+    "l1KB": 128,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-354": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-355": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-356": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-357": {
+    "l1KB": 576,
+    "l2KB": 3072,
+    "l3KB": 6144,
+    "suspect": true
+  },
+  "ndd-358": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "l3KB": 1024,
+    "suspect": true
+  },
+  "ndd-361": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-362": {
+    "l1KB": 576,
+    "suspect": true
+  },
+  "ndd-363": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-364": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "l3KB": 1024,
+    "suspect": true
+  },
+  "ndd-366": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-367": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-368": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "l3KB": 2048,
+    "suspect": true
+  },
+  "ndd-369": {
+    "l1KB": 768,
+    "l2KB": 1792,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-370": {
+    "l1KB": 512,
+    "l2KB": 3072,
+    "l3KB": 2048,
+    "suspect": true
+  },
+  "ndd-371": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-373": {
+    "l1KB": 576,
+    "l2KB": 3072,
+    "l3KB": 6144,
+    "suspect": true
+  },
+  "ndd-374": {
+    "l1KB": 320,
+    "l2KB": 640,
+    "suspect": true
+  },
+  "ndd-376": {
+    "l1KB": 576,
+    "l2KB": 3072,
+    "l3KB": 8192,
+    "suspect": true
+  },
+  "ndd-379": {
+    "l1KB": 512,
+    "l2KB": 2560,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-380": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-381": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-382": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-384": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-385": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-386": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-387": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "suspect": true
+  },
+  "ndd-388": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-389": {
+    "l1KB": 640,
+    "l2KB": 1280,
+    "suspect": true
+  },
+  "ndd-390": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "l3KB": 4096,
+    "suspect": true
+  },
+  "ndd-391": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-392": {
+    "l1KB": 768,
+    "l2KB": 2048,
+    "suspect": true
+  },
+  "ndd-393": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-394": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-401": {
+    "l1KB": 256,
+    "l2KB": 512,
+    "suspect": true
+  },
+  "ndd-402": {
+    "l1KB": 128,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-403": {
+    "l1KB": 512,
+    "l2KB": 1024,
+    "suspect": true
+  },
+  "ndd-404": {
+    "l1KB": 768,
+    "l2KB": 1536,
+    "l3KB": 2048,
+    "suspect": true
+  },
+  "qcom-sm8650": {
+    "l1KB": 576,
+    "l2KB": 4864,
+    "suspect": true
+  },
+  "qcom-sm8750": {
+    "l1KB": 1728,
+    "suspect": true
+  }
+}

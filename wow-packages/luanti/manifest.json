@@ -1,0 +1,20 @@
+{
+  "format": 1,
+  "id": "luanti",
+  "name": "Luanti 网页版",
+  "version": "5.18.0-dev+wow.2",
+  "description": "Minetest Game 单人版，支持本地世界存档。",
+  "entry": "index.html",
+  "icon": "icon.png",
+  "runtime": "iframe",
+  "permissions": [
+    "fullscreen",
+    "pointer-lock"
+  ],
+  "window": {
+    "width": 1100,
+    "height": 740,
+    "minWidth": 620,
+    "minHeight": 460
+  }
+}

@@ -1,0 +1,6 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Luanti</title>
+<style>*{box-sizing:border-box}html,body{height:100%;margin:0;background:#18211c;color:white;font:14px system-ui}body{display:flex;flex-direction:column}header{display:flex;align-items:center;gap:12px;background:#28362c;padding:5px 12px}button{font:inherit;padding:5px 12px;cursor:pointer}#stage{flex:1;position:relative;min-height:0}canvas{width:100%;height:100%;display:block;outline:0}#launch{position:absolute;inset:0;display:grid;place-content:center;text-align:center;background:#18211c}#launch[hidden]{display:none}#status{margin-left:auto;font-size:12px}</style></head>
+<body><header><strong>Luanti</strong><span id="status" role="status"></span><button id="save" disabled>保存世界</button></header><main id="stage"><canvas id="canvas" tabindex="0"></canvas>
+<div id="launch"><img src="icon.png" width="96" alt="" style="margin:auto"><h1>Minetest Game</h1><p>WASD 移动，鼠标转向，左键挖掘，Esc 暂停。</p><button id="play">进入我的世界</button><button id="menu">管理世界</button></div></main>
+<script src="fflate.js"></script><script src="launcher.js"></script></body></html>

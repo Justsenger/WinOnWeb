@@ -1,0 +1,11 @@
+Tiny Strike by Guy Zyskind
+https://github.com/guyz/tinystrike/tree/04db555c4fc9f43fef3325c37930ad97a0c27aa3
+Game code and original assets: ISC, see LICENSE.
+Models: Quaternius Toon Shooter Game Kit, CC0 1.0, see ASSETS.md.
+Rendering code from mshumer/Claude-of-Duty: MIT, see src/gfx/LICENSE.
+Three.js 0.166.1: MIT, see vendor/three/LICENSE.
+https://www.npmjs.com/package/three/v/0.166.1
+
+WinOnWeb packages the original browser client, maps and models for offline solo play.
+The package includes its renderer locally, omits server-backed rooms and rankings
+and supplies Chinese menu labels. No online server or account is required.

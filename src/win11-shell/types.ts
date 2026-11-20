@@ -1,5 +1,10 @@
-import type { DeviceProbeReport, StorageProbeInfo } from './device-probe';
-import type { VirtualHardwareSnapshot } from './virtual-hardware';
+import type { RuntimeFileHandle, RuntimeScope } from './system/runtime-resources';
+import type { WinDesktopShortcutSpec, WinDesktopStartupSpec } from './host-config';
+export type { WinDesktopShortcutSpec, WinDesktopStartupSpec };
+import type { DeviceProbeReport, StorageProbeInfo } from './system/device-probe';
+import type { VirtualHardwareSnapshot } from './system/virtual-hardware';
+import type { VfsEntryInfo, VirtualStorageService } from './system/virtual-storage';
+export type { VfsEntryInfo };
 
 export type ThemeMode = 'dark' | 'light';
 
@@ -21,15 +26,41 @@ export type WinAppCapability =
   | 'focus'
   | 'visibility'
   | 'hardware-probe'
+  | 'virtual-fs'
+  | 'notifications'
   | 'window-control'
   | 'shell-control'
   | 'app-messaging';
+
+export type WinPermissionDecision = 'granted' | 'denied';
+
+export interface PickedFileResult {
+  path: string;
+  name: string;
+  content: string;
+  sizeBytes: number;
+}
+
+export interface PickedSaveTarget {
+  path: string;
+  name: string;
+}
+
+export interface WinNotificationSpec {
+  title: string;
+  body?: string;
+}
 
 export type WinAppLaunchArgs = Record<string, unknown>;
 
 export interface WinAppWindowSpec {
   defaultWidth?: number;
   defaultHeight?: number;
+  /** 初次打开时的工作区坐标，缺省仍然居中级联。 */
+  defaultX?: number;
+  defaultY?: number;
+  /** 应用首次打开时占满桌面工作区。窗口仍可通过标题栏按钮还原。 */
+  startMaximized?: boolean;
   minWidth?: number;
   minHeight?: number;
   resizable?: boolean;
@@ -46,7 +77,7 @@ export interface WinAppWindowSpec {
 
 export interface WinAppIframeSpec {
   /**
-   * 同源路径（如 `/apps/exhyperv/`）或可嵌入 HTTPS URL。
+   * 同源路径（如 `/apps/custom/`）或可嵌入 HTTPS URL。
    */
   entryUrl: string;
   /**
@@ -90,6 +121,12 @@ export interface WinAppManifest {
   iframe?: WinAppIframeSpec;
   telemetry?: WinAppTelemetrySpec;
   capabilities?: readonly WinAppCapability[];
+  /** 系统内置核心工具免除首次弹窗授权（仍可在权限管理中手动撤回） */
+  systemTrusted?: boolean;
+  /** 声明默认可关联打开的文件后缀（如 ['.txt', '.md']） */
+  supportedExtensions?: readonly string[];
+  /** 应用来源 */
+  source?: 'core' | 'host' | 'user';
   /**
    * 可选运行时动态标题（如“全屏体验 / 退出全屏”）。
    */
@@ -128,6 +165,13 @@ export interface DesktopIconPosition {
   row: number;
 }
 
+export interface OpenedAppRecord {
+  id: string;
+  name: string;
+  iconKey: string;
+  publisher: string;
+}
+
 export interface WinAppShellApi {
   getTheme(): ThemeMode;
   setTheme(theme: ThemeMode): void;
@@ -138,6 +182,14 @@ export interface WinAppShellApi {
   getIconSize(): DesktopIconSize;
   setIconSize(size: DesktopIconSize): void;
   resetDesktopLayout(): void;
+  getMachineName(): string;
+  getHostBootAppId(): string | null;
+  getStartupHostItems(): readonly WinDesktopStartupSpec[];
+  getInstalledApps(): readonly WinAppManifest[];
+  getAppManifest(appId: string): WinAppManifest | undefined;
+  renderAppIcon(iconKey: string, size?: number): string;
+  getAppUsageHistory(): { since: number; apps: readonly OpenedAppRecord[] };
+  clearAppUsageHistory(): void;
   getWindows(): readonly WindowInstance[];
   openApp(appId: string, args?: WinAppLaunchArgs): number | null;
   closeWindow(pid: number): void;
@@ -147,14 +199,38 @@ export interface WinAppShellApi {
   setWindowTitle(pid: number, title: string): void;
   isFullscreen(): boolean;
   toggleFullscreen(): void;
+  getVirtualStorage(): VirtualStorageService;
   getVirtualHardware(): VirtualHardwareSnapshot;
   refreshVirtualHardware(force?: boolean): Promise<VirtualHardwareSnapshot>;
   refreshVirtualStorage(): Promise<StorageProbeInfo>;
   getHardwareReport(): DeviceProbeReport | null;
   refreshHardwareReport(force?: boolean): Promise<DeviceProbeReport>;
+  openFile(path: string): Promise<number | null>;
+  listVirtualDirectory(path: string): Promise<VfsEntryInfo[]>;
+  openVirtualFile(path: string): Promise<RuntimeFileHandle>;
+  readVirtualFile(path: string): Promise<PickedFileResult>;
+  writeVirtualFile(path: string, content: string): Promise<{ path: string; name: string; sizeBytes: number }>;
+  showOpenFileDialog(opts?: { extensions?: string[]; initialPath?: string }): Promise<PickedFileResult | null>;
+  showSaveFileDialog(opts?: { defaultFileName?: string; initialPath?: string }): Promise<PickedSaveTarget | null>;
+  getAppData<T = unknown>(key: string): T | undefined;
+  setAppData(key: string, value: unknown): void;
+  removeAppData(key: string): void;
+  clearAppData(): void;
+  showNotification(spec: WinNotificationSpec): Promise<boolean>;
+  sendToApp(targetAppId: string, channel: string, payload?: unknown): Promise<boolean>;
+  callApp(targetAppId: string, method: string, payload?: unknown, timeoutMs?: number): Promise<unknown>;
+  ensurePermission(capability: WinAppCapability): Promise<boolean>;
+  listPermissionGrants(): Record<string, Partial<Record<WinAppCapability, WinPermissionDecision>>>;
+  setPermissionDecision(appId: string, capability: WinAppCapability, decision: WinPermissionDecision | null): void;
+  installUserApp(manifest: WinAppManifest): void;
+  uninstallUserApp(appId: string): boolean;
+  getFileAssociations(): Record<string, string>;
+  setFileAssociation(ext: string, appId: string): void;
+  subscribeRegistry(listener: () => void): () => void;
 }
 
 export interface WinAppHostContext {
+  resources: RuntimeScope;
   pid: number;
   appId: string;
   manifest: WinAppManifest;
@@ -172,7 +248,8 @@ export interface WinAppLifecycle {
   onShellPrefsChange?: () => void;
   onHardwareUpdate?: (snapshot: VirtualHardwareSnapshot) => void;
   onHardwareReport?: (report: DeviceProbeReport) => void;
-  onMessage?: (channel: string, payload: unknown) => void;
+  onMessage?: (channel: string, payload: unknown, fromAppId?: string) => void;
+  onAppRequest?: (method: string, payload: unknown, fromAppId: string) => unknown | Promise<unknown>;
   destroy?: () => void;
 }
 
@@ -184,4 +261,11 @@ export type WinCommandHandler = (shell: WinAppShellApi, args?: WinAppLaunchArgs)
 
 export interface WinAppHostHooks {
   onAppEvent?: (appId: string, pid: number, channel: string, payload: unknown) => void;
+}
+
+export function hasAppCapability(
+  manifest: WinAppManifest | undefined,
+  capability: WinAppCapability,
+): boolean {
+  return Boolean(manifest?.capabilities?.includes(capability));
 }

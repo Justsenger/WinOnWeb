@@ -1,18 +1,10 @@
+import {
+  computeHostDirStats,
+  listHostDirectory,
+  type HostEntryItem,
+  type OpfsEntrySummary,
+} from '../system/virtual-storage';
 import type { WinAppHostContext, WinAppLifecycle, WinAppModule } from '../types';
-
-interface OpfsEntrySummary {
-  name: string;
-  kind: 'file' | 'directory';
-  sizeBytes: number;
-}
-
-interface HostEntryItem {
-  name: string;
-  kind: 'file' | 'directory';
-  sizeBytes: number;
-  lastModified: number;
-  handle: FileSystemHandle;
-}
 
 interface HostDirState {
   rootName: string;
@@ -50,95 +42,13 @@ function esc(text: string): string {
 export const storageLabApp: WinAppModule = {
   mount(ctx: WinAppHostContext): WinAppLifecycle {
     const { container, shell } = ctx;
+    const vfs = shell.getVirtualStorage();
 
     let statusLog = '就绪：可在下方查看路线 1 为何不弹窗、清理路线 2 测试块（避免 SSD 写入损耗），或用路线 3 挂载本机目录直接预览文件。';
     let busy = false;
+    let monitor: Worker | null = null;
     let opfsEntries: OpfsEntrySummary[] = [];
     let hostDir: HostDirState | null = null;
-
-    async function scanOpfsEntries(): Promise<OpfsEntrySummary[]> {
-      if (typeof navigator === 'undefined' || !navigator.storage?.getDirectory) return [];
-      try {
-        const root = await navigator.storage.getDirectory();
-        const list: OpfsEntrySummary[] = [];
-        const iter = (root as unknown as { values?: () => AsyncIterable<FileSystemHandle> }).values;
-        if (typeof iter === 'function') {
-          for await (const handle of iter.call(root)) {
-            if (handle.kind === 'file') {
-              const file = await (handle as FileSystemFileHandle).getFile();
-              list.push({ name: handle.name, kind: 'file', sizeBytes: file.size });
-            } else {
-              list.push({ name: handle.name, kind: 'directory', sizeBytes: 0 });
-            }
-          }
-        }
-        return list.sort((a, b) => a.name.localeCompare(b.name));
-      } catch {
-        return [];
-      }
-    }
-
-    async function readHostDirectoryEntries(dirHandle: FileSystemDirectoryHandle): Promise<HostEntryItem[]> {
-      const items: HostEntryItem[] = [];
-      const iter = (dirHandle as unknown as { values?: () => AsyncIterable<FileSystemHandle> }).values;
-      if (typeof iter === 'function') {
-        for await (const handle of iter.call(dirHandle)) {
-          if (handle.kind === 'file') {
-            try {
-              const file = await (handle as FileSystemFileHandle).getFile();
-              items.push({
-                name: handle.name,
-                kind: 'file',
-                sizeBytes: file.size,
-                lastModified: file.lastModified,
-                handle,
-              });
-            } catch {
-              items.push({ name: handle.name, kind: 'file', sizeBytes: 0, lastModified: 0, handle });
-            }
-          } else {
-            items.push({ name: handle.name, kind: 'directory', sizeBytes: 0, lastModified: 0, handle });
-          }
-        }
-      }
-      return items.sort((a, b) => {
-        if (a.kind !== b.kind) return a.kind === 'directory' ? -1 : 1;
-        return a.name.localeCompare(b.name, 'zh-CN');
-      });
-    }
-
-    async function computeRecursiveStats(
-      dirHandle: FileSystemDirectoryHandle,
-      maxItems = 600,
-    ): Promise<{ files: number; dirs: number; bytes: number }> {
-      let files = 0;
-      let dirs = 0;
-      let bytes = 0;
-      let visited = 0;
-
-      async function walk(dir: FileSystemDirectoryHandle) {
-        const iter = (dir as unknown as { values?: () => AsyncIterable<FileSystemHandle> }).values;
-        if (typeof iter !== 'function') return;
-        for await (const h of iter.call(dir)) {
-          if (++visited > maxItems) return;
-          if (h.kind === 'file') {
-            files++;
-            try {
-              const f = await (h as FileSystemFileHandle).getFile();
-              bytes += f.size;
-            } catch {}
-          } else {
-            dirs++;
-            try {
-              await walk(h as FileSystemDirectoryHandle);
-            } catch {}
-          }
-        }
-      }
-
-      await walk(dirHandle);
-      return { files, dirs, bytes };
-    }
 
     function render() {
       const hw = shell.getVirtualHardware();
@@ -160,6 +70,7 @@ export const storageLabApp: WinAppModule = {
               <div style="color:#b8b8b8;font-size:12px;">实测路线 1（持久化权限）、路线 2（OPFS 沙盒管理）与路线 3（本机目录挂载与文件预览）</div>
             </div>
             <div style="display:flex;gap:8px;flex-shrink:0;">
+              <button type="button" data-slab-action="monitor">${monitor ? '停止监视' : '监视存储用量'}</button>
               <button type="button" data-slab-action="refresh" ${busy ? 'disabled' : ''} style="padding:6px 12px;border-radius:4px;border:1px solid rgba(255,255,255,0.16);background:#2b2b2b;color:#fff;cursor:pointer;font-size:12px;">刷新配额探测</button>
               <button type="button" data-slab-action="open-tm" style="padding:6px 12px;border-radius:4px;border:1px solid #0078d4;background:#0078d4;color:#fff;cursor:pointer;font-size:12px;">打开任务管理器</button>
             </div>
@@ -319,7 +230,7 @@ export const storageLabApp: WinAppModule = {
     }
 
     async function refreshAll(msg?: string) {
-      opfsEntries = await scanOpfsEntries();
+      opfsEntries = await vfs.listOpfsEntries();
       await shell.refreshVirtualStorage();
       if (msg) statusLog = msg;
       render();
@@ -331,15 +242,7 @@ export const storageLabApp: WinAppModule = {
       statusLog = '正在清理 OPFS 测试块...';
       render();
       try {
-        const root = await navigator.storage.getDirectory();
-        const current = await scanOpfsEntries();
-        let removed = 0;
-        for (const item of current) {
-          if (item.name.startsWith('opfs-block-')) {
-            await root.removeEntry(item.name);
-            removed++;
-          }
-        }
+        const removed = await vfs.clearOpfsTestBlocks('opfs-block-');
         busy = false;
         await refreshAll(`已从 OPFS 删除 ${removed} 个测试块文件，320 MiB 物理空间已立即归还宿主机 SSD。`);
       } catch (err) {
@@ -360,7 +263,7 @@ export const storageLabApp: WinAppModule = {
         if (!item) return;
         if (item.kind === 'directory') {
           const nextDir = item.handle as FileSystemDirectoryHandle;
-          const nextEntries = await readHostDirectoryEntries(nextDir);
+          const nextEntries = await listHostDirectory(nextDir);
           hostDir.dirStack.push(nextDir);
           hostDir.currentPath.push(item.name);
           hostDir.entries = nextEntries;
@@ -397,6 +300,30 @@ export const storageLabApp: WinAppModule = {
       if (!btn || busy) return;
       const action = btn.dataset.slabAction ?? '';
 
+      if (action === 'monitor') {
+        if (monitor) {
+          monitor.terminate();
+          monitor = null;
+          statusLog = '存储用量监视已停止';
+        } else {
+          const worker = ctx.resources.startWorker(new URL('/wow-storage-monitor.js', location.origin));
+          monitor = worker;
+          worker.onmessage = ({ data }) => {
+            if (worker !== monitor) return;
+            statusLog = data.error ?? ('Worker 读取的存储用量：' + formatBytes(data.usage));
+            if (data.error) monitor = null;
+            render();
+          };
+          worker.onerror = () => {
+            if (monitor !== worker) return;
+            monitor = null;
+            statusLog = '存储用量监视启动失败';
+            render();
+          };
+        }
+        render();
+        return;
+      }
       if (action === 'refresh') {
         busy = true;
         render();
@@ -420,7 +347,7 @@ export const storageLabApp: WinAppModule = {
           statusLog = '正在请求浏览器通知权限（Chromium 允许通知后通常会自动放行 storage.persist）...';
           render();
           const perm = await Notification.requestPermission();
-          const granted = navigator.storage?.persist ? await navigator.storage.persist() : false;
+          const { granted } = await vfs.requestPersistence();
           await refreshAll(`通知权限结果: ${perm} -> 再次调用 storage.persist() 返回: ${granted}`);
         } catch (err) {
           statusLog = `请求通知权限失败：${String(err)}`;
@@ -439,7 +366,7 @@ export const storageLabApp: WinAppModule = {
         statusLog = '正在调用 navigator.storage.persist() 请求持久化存储权限...';
         render();
         try {
-          const granted = await navigator.storage.persist();
+          const { granted } = await vfs.requestPersistence();
           busy = false;
           await refreshAll(
             granted
@@ -463,7 +390,7 @@ export const storageLabApp: WinAppModule = {
         hostDir.dirStack.pop();
         hostDir.currentPath.pop();
         const curDir = hostDir.dirStack[hostDir.dirStack.length - 1];
-        hostDir.entries = await readHostDirectoryEntries(curDir);
+        hostDir.entries = await listHostDirectory(curDir);
         hostDir.selectedFilePreview = null;
         render();
         return;
@@ -481,8 +408,9 @@ export const storageLabApp: WinAppModule = {
           statusLog = '请在弹出的系统文件夹选择器中选择一个本机目录...';
           render();
           const dirHandle = await picker({ mode: 'readwrite' });
-          const entries = await readHostDirectoryEntries(dirHandle);
-          const stats = await computeRecursiveStats(dirHandle);
+          await shell.getVirtualStorage().mountDriveD(dirHandle);
+          const entries = await listHostDirectory(dirHandle);
+          const stats = await computeHostDirStats(dirHandle);
           hostDir = {
             rootName: dirHandle.name,
             currentPath: [],
@@ -493,7 +421,7 @@ export const storageLabApp: WinAppModule = {
             recursiveTotalBytes: stats.bytes,
             selectedFilePreview: null,
           };
-          statusLog = `已挂载本机目录 "${dirHandle.name}"：递归扫描到 ${stats.files} 个文件、${stats.dirs} 个子目录，共 ${formatBytes(stats.bytes)}。点击表格中的文件夹或文件可直接浏览内容！`;
+          statusLog = `已将宿主机目录 "${dirHandle.name}" 同步挂载为系统“本地磁盘 (D:)”：递归扫描到 ${stats.files} 个文件、${stats.dirs} 个子目录，共 ${formatBytes(stats.bytes)}。现在所有应用与文件弹窗均可访问 D: 盘！`;
           render();
         } catch (err) {
           statusLog = `未完成本机目录挂载：${String(err)}`;
