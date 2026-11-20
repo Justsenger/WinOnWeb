@@ -149,16 +149,20 @@ export function createRuntimeResources() {
   function snapshot() {
     let threadCount = 1;
     let handleCount = activeWriters.size;
-    for (const scope of scopes.values()) {
-      threadCount += scope.workers.size;
-      handleCount += scope.files.size + scope.owned.handles.size;
+    const byPid: Record<number, { workers: number; handles: number }> = {};
+    for (const [pid, scope] of scopes.entries()) {
+      let workers = scope.workers.size;
+      let handles = scope.files.size + scope.owned.handles.size;
       for (const read of scope.guests) {
         const guest = read();
-        threadCount += guest?.workers ?? 0;
-        handleCount += guest?.handles ?? 0;
+        workers += guest?.workers ?? 0;
+        handles += guest?.handles ?? 0;
       }
+      threadCount += workers;
+      handleCount += handles;
+      if (pid > 0) byPid[pid] = { workers, handles };
     }
-    return { threadCount, handleCount };
+    return { threadCount, handleCount, byPid };
   }
   return { attach, detach, snapshot };
 }

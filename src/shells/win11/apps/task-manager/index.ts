@@ -862,10 +862,18 @@ export function mountTaskManager(ctx: WinAppHostContext): WinAppLifecycle {
         });
       }
 
+      const formatMemScalar = (gb: number) =>
+        gb < 1 ? `${(gb * 1024).toFixed(1)} MB` : `${gb.toFixed(1)} GB`;
+
       const dynamicHtml = renderDuiDynamicPanel('dynamic_memory', {
-        memory_inuse: { text: `${hw.memory.usedGb.toFixed(1)} GB (${hw.memory.compressedMb} MB)` },
+        memory_inuse: { text: `${formatMemScalar(hw.memory.usedGb)} (${hw.memory.compressedMb} MB)` },
         memory_avai: { text: `${hw.memory.availGb.toFixed(1)} GB` },
-        memory_commit: { text: `${hw.memory.committedGb.toFixed(1)}/${hw.memory.commitLimitGb.toFixed(1)} GB` },
+        memory_commit: {
+          text:
+            hw.memory.committedGb < 1
+              ? `${(hw.memory.committedGb * 1024).toFixed(1)} MB/${hw.memory.commitLimitGb.toFixed(1)} GB`
+              : `${hw.memory.committedGb.toFixed(1)}/${hw.memory.commitLimitGb.toFixed(1)} GB`,
+        },
         memory_cache: { text: hw.memory.cachedText },
         memory_paged: { text: `${hw.memory.pagedPoolMb} MB` },
         memory_non_paged: { text: `${hw.memory.nonPagedPoolMb} MB` },
@@ -1303,15 +1311,34 @@ export function mountTaskManager(ctx: WinAppHostContext): WinAppLifecycle {
   }
 
   function renderProcCell(p: TmProcessNode, colKey: TmProcColumnKey): string {
-    if (['cpu','mem','disk','net','gpu','npu','powerUsage','powerTrend'].includes(colKey)) return '<td class="w11-tm-num-cell">—</td>';
+    if (['gpu', 'npu', 'powerUsage', 'powerTrend'].includes(colKey)) {
+      if (colKey === 'gpu' && p.pid === 1) {
+        const metric = getProcMetricValue(p, colKey);
+        const heat = metric.heat > 0 ? getHeatClass(metric.heat) : '';
+        return `<td class="w11-tm-num-cell ${heat}"><span class="w11-tm-ellipsis">${esc(metric.text)}</span></td>`;
+      }
+      return '<td class="w11-tm-num-cell">—</td>';
+    }
     if (colKey === 'status') {
       const icon =
         p.status === 'efficiency'
           ? `<span class="w11-tm-status-ico is-leaf" data-tm-tip="效率模式">${renderTmGlyph('effMode')}</span>`
           : p.status === 'suspended'
-            ? `<span class="w11-tm-status-ico is-paused" data-tm-tip="此 UWP 进程已挂起以改进系统性能。">⏸</span>`
+            ? `<span class="w11-tm-status-ico is-paused" data-tm-tip="窗口已最小化">⏸</span>`
             : '';
       return `<td class="w11-tm-status-cell">${icon}</td>`;
+    }
+    if (
+      (colKey === 'cpu' && p.cpu < 0) ||
+      (colKey === 'mem' && p.memMb < 0) ||
+      (colKey === 'disk' && p.diskMbS < 0) ||
+      (colKey === 'net' && p.netMbps < 0)
+    ) {
+      const tip =
+        p.isolation === '共享主线程'
+          ? '与桌面共享主线程，资源统计归入 Windows 资源管理器'
+          : '浏览器未提供该进程的独立传感器数据';
+      return `<td class="w11-tm-num-cell" title="${tip}">—</td>`;
     }
     const def = TM_PROC_COLUMNS.find((c) => c.key === colKey)!;
     const metric = getProcMetricValue(p, colKey);
@@ -1320,7 +1347,89 @@ export function mountTaskManager(ctx: WinAppHostContext): WinAppLifecycle {
     return `<td class="${numCls} ${heat}"><span class="w11-tm-ellipsis">${esc(metric.text)}</span></td>`;
   }
 
+  let selfBusyMsAccum = 0;
+  let selfCpuPct = 0;
+
+  function estimateDomWeight(rootEl: Element | null): number {
+    if (!rootEl) return 0;
+    const nodes = rootEl.querySelectorAll('*').length;
+    let canvasWeight = 0;
+    rootEl.querySelectorAll('canvas').forEach((c) => {
+      canvasWeight += Math.round((c.width * c.height * 4) / 2048);
+    });
+    return Math.max(10, nodes + canvasWeight);
+  }
+
+  function applyLiveProcessMetrics() {
+    const pm = hw.processMetrics;
+    const totalMainMemMb = pm?.shellMemMb ?? +(hw.memory.usedGb * 1024).toFixed(1);
+    const totalDiskMbS = +((hw.storage.readKb + hw.storage.writeKb) / 1024).toFixed(2);
+    const totalNetMbps = +((hw.network.recvKbps + hw.network.sendKbps) / 1000).toFixed(2);
+    const totalThreads = Math.max(1, hw.cpu.threadCount);
+    const windows = shell.getWindows();
+
+    // 按真实 DOM 节点 + Canvas 像素缓冲权重，将主线程实测总内存合理分摊给外壳与各内置窗口
+    const builtinWeights = new Map<number, number>();
+    let builtinWeightSum = 0;
+    for (const p of processes) {
+      if (p.pid === 1) continue;
+      const manifest = p.appId ? shell.getAppManifest(p.appId) : undefined;
+      if (manifest?.runtime === 'iframe') continue;
+      const procWins = windows.filter((w) => w.pid === p.pid);
+      let wSum = 0;
+      for (const w of procWins) {
+        const body = document.querySelector(`[data-win-body="${w.wid}"]`);
+        wSum += estimateDomWeight(body);
+      }
+      if (wSum > 0) {
+        builtinWeights.set(p.pid, wSum);
+        builtinWeightSum += wSum;
+      }
+    }
+    const shellBaseWeight = 320;
+    const totalWeight = shellBaseWeight + builtinWeightSum;
+
+    for (const p of processes) {
+      if (p.pid === 1) {
+        p.cpu = Math.max(0, +(hw.cpu.usagePct - selfCpuPct).toFixed(1));
+        p.memMb = +((totalMainMemMb * shellBaseWeight) / totalWeight).toFixed(1);
+        p.diskMbS = totalDiskMbS;
+        p.netMbps = totalNetMbps;
+        p.gpuPct = hw.gpus[0]?.usagePct ?? 0;
+        p.isolation = '桌面主进程';
+        continue;
+      }
+      const manifest = p.appId ? shell.getAppManifest(p.appId) : undefined;
+      const pidInfo = pm?.byPid?.[p.pid];
+      const procWindows = windows.filter((w) => w.pid === p.pid);
+      if (procWindows.length > 0 && procWindows.every((w) => w.minimized)) {
+        p.status = 'suspended';
+      } else if (p.status === 'suspended') {
+        p.status = '';
+      }
+
+      if (manifest?.runtime === 'iframe' && p.appId) {
+        const appMem = pm?.byAppIdMemMb?.[p.appId];
+        const appNet = pm?.byAppIdNetMbps?.[p.appId] ?? 0;
+        const workers = pidInfo?.workers ?? 0;
+        p.memMb = typeof appMem === 'number' ? appMem : -1;
+        p.netMbps = appNet;
+        p.diskMbS = -1;
+        p.cpu = workers > 0 ? +((hw.cpu.usagePct * workers) / totalThreads).toFixed(1) : 0;
+        p.isolation = workers > 0 ? `独立沙箱 (${workers} 线程)` : '独立沙箱';
+      } else {
+        const w = builtinWeights.get(p.pid) ?? 0;
+        p.memMb = w > 0 && totalMainMemMb > 0 ? +((totalMainMemMb * w) / totalWeight).toFixed(1) : -1;
+        p.cpu = p.pid === ctx.pid ? selfCpuPct : 0;
+        p.diskMbS = 0;
+        p.netMbps = 0;
+        p.isolation = '共享主线程';
+      }
+    }
+  }
+
   function renderProcessesPage(): string {
+    applyLiveProcessMetrics();
     const cols = getActiveProcCols();
     const sortCaret = (k: 'name' | TmProcColumnKey) => (procSortCol === k ? (procSortDir === 'asc' ? ' ∧' : ' ∨') : '');
     const compareProcs = (a: TmProcessNode, b: TmProcessNode) => {
@@ -1579,8 +1688,10 @@ export function mountTaskManager(ctx: WinAppHostContext): WinAppLifecycle {
   }
 
   function renderContent() {
+    const t0 = performance.now();
     if (!contentEl) {
       renderHeadlessSnapshot();
+      selfBusyMsAccum += performance.now() - t0;
       return;
     }
     const hostEl = contentEl;
@@ -1599,6 +1710,7 @@ export function mountTaskManager(ctx: WinAppHostContext): WinAppLifecycle {
     };
     if (tipCtrl) tipCtrl.preserveDuring(rebuildContent);
     else rebuildContent();
+    selfBusyMsAccum += performance.now() - t0;
   }
 
   function renderChromeAndLayout() {
@@ -2150,6 +2262,8 @@ export function mountTaskManager(ctx: WinAppHostContext): WinAppLifecycle {
     },
     onHardwareUpdate: (next) => {
       hw = next;
+      selfCpuPct = +(Math.min(100, (selfBusyMsAccum / 1000) * 100)).toFixed(1);
+      selfBusyMsAccum = 0;
       if (!tmShell) {
         renderHeadlessSnapshot();
         return;

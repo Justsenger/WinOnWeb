@@ -6,6 +6,20 @@ export const preferences = {
   setItem: (key: string, value: string) => localStorage.setItem('wow:kv:' + key, value),
 };
 const storageManager = () => navigator.storage;
+let pendingReadBytes = 0;
+let pendingWriteBytes = 0;
+export function recordStorageRead(bytes: number) {
+  if (Number.isFinite(bytes) && bytes > 0) pendingReadBytes += bytes;
+}
+export function recordStorageWrite(bytes: number) {
+  if (Number.isFinite(bytes) && bytes > 0) pendingWriteBytes += bytes;
+}
+export function drainStorageIo(): { readBytes: number; writeBytes: number } {
+  const result = { readBytes: pendingReadBytes, writeBytes: pendingWriteBytes };
+  pendingReadBytes = 0;
+  pendingWriteBytes = 0;
+  return result;
+}
 export const directoryPicker = () =>
   (
     window as Window & {
@@ -88,6 +102,7 @@ async function fileAt(v: VersionRecord, path: string, create: boolean) {
   return dir.getFileHandle(name, { create });
 }
 export async function writeContent(v: VersionRecord, path: string, blob: Blob) {
+  recordStorageWrite(blob.size);
   if (v.backend === 'idb') return putRecord('files', [v.id, v.versionHash, path], blob);
   const writer = await (await fileAt(v, path, true)).createWritable();
   try {
@@ -99,9 +114,14 @@ export async function writeContent(v: VersionRecord, path: string, blob: Blob) {
   }
 }
 export async function readContent(v: VersionRecord, path: string): Promise<Blob> {
-  if (v.backend === 'opfs') return (await fileAt(v, path, false)).getFile();
+  if (v.backend === 'opfs') {
+    const file = await (await fileAt(v, path, false)).getFile();
+    recordStorageRead(file.size);
+    return file;
+  }
   const blob = await getRecord<Blob>('files', [v.id, v.versionHash, path]);
   if (!blob) throw new Error('Missing package file: ' + path);
+  recordStorageRead(blob.size);
   return blob;
 }
 export async function discardVersion(v: VersionRecord) {

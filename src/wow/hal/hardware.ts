@@ -6,6 +6,7 @@ import {
   type StorageProbeInfo,
 } from './capabilities';
 import legacySuspectCacheBackfillRaw from './legacy-cache-backfill.json';
+import { drainStorageIo } from './storage';
 
 const HISTORY_LEN = 60;
 
@@ -173,6 +174,12 @@ export interface VirtualHardwareSnapshot {
   display: DeviceProbeReport['display'] | null;
   battery: DeviceProbeReport['battery'] | null;
   peripheralsAndApis: DeviceProbeReport['peripheralsAndApis'] | null;
+  processMetrics: {
+    shellMemMb: number | null;
+    byAppIdMemMb: Record<string, number>;
+    byAppIdNetMbps: Record<string, number>;
+    byPid: Record<number, { workers: number; handles: number }>;
+  };
 }
 
 function seedSpikyHistory(base: number, amp: number, spikeChance = 0.2): number[] {
@@ -405,7 +412,13 @@ function inferDiscreteVramGb(name: string, env?: VirtualHardwareGpuInfo['environ
   return 8;
 }
 
-export function createVirtualHardwareService(runtimeCounts: () => { threadCount: number; handleCount: number }) {
+export function createVirtualHardwareService(
+  runtimeCounts: () => {
+    threadCount: number;
+    handleCount: number;
+    byPid?: Record<number, { workers: number; handles: number }>;
+  },
+) {
   let report: DeviceProbeReport | null = null;
   let liveStorage: StorageProbeInfo | null = null;
   let latchedQuotaBytes: number | null = null;
@@ -433,42 +446,238 @@ export function createVirtualHardwareService(runtimeCounts: () => { threadCount:
 
   const subscribers = new Set<(snap: VirtualHardwareSnapshot) => void>();
 
-  let coreHistories: number[][] = [
-    [12, 14, 17, 19, 17, 12, 9, 15, 12, 9, 14, 21, 25, 20, 20, 16, 17, 17, 20, 20, 17, 13, 19, 19, 24, 32, 27, 34, 20, 17, 17, 15, 18, 26, 20, 20, 16, 14, 42, 40, 31, 26, 22, 16, 15, 13, 13, 13, 12, 10, 15, 21, 99, 84, 40, 30, 20, 26, 40, 40],
-    [13, 12, 10, 10, 7, 9, 12, 14, 14, 12, 21, 22, 21, 14, 13, 15, 21, 31, 16, 15, 9, 7, 11, 13, 21, 36, 40, 47, 24, 25, 26, 20, 26, 34, 20, 21, 20, 20, 45, 40, 21, 18, 15, 15, 20, 21, 19, 16, 13, 17, 16, 40, 60, 56, 50, 32, 20, 31, 50, 40],
-    [10, 7, 9, 9, 9, 11, 10, 7, 5, 7, 9, 21, 23, 7, 10, 11, 21, 24, 12, 13, 6, 10, 9, 9, 27, 32, 41, 40, 17, 20, 18, 12, 17, 22, 22, 24, 24, 19, 40, 21, 32, 24, 12, 13, 18, 17, 17, 9, 5, 9, 12, 23, 100, 79, 50, 24, 13, 30, 53, 40],
-    [21, 10, 10, 15, 10, 20, 22, 16, 9, 9, 6, 12, 24, 9, 11, 9, 8, 10, 9, 11, 8, 9, 17, 17, 12, 30, 40, 41, 25, 24, 23, 20, 18, 26, 22, 20, 18, 25, 50, 50, 23, 18, 15, 9, 12, 12, 19, 16, 15, 9, 12, 60, 100, 84, 53, 40, 20, 17, 50, 40],
-    [11, 12, 12, 13, 4, 7, 11, 9, 8, 20, 25, 20, 15, 6, 7, 6, 6, 16, 12, 21, 11, 20, 25, 31, 42, 50, 31, 24, 30, 23, 30, 21, 12, 13, 13, 17, 14, 11, 17, 16, 22, 21, 20, 23, 20, 16, 17, 14, 14, 11, 23, 21, 60, 45, 25, 21, 21, 32, 32, 21],
-    [24, 30, 30, 20, 26, 30, 16, 18, 20, 15, 33, 37, 32, 27, 33, 25, 31, 32, 30, 24, 22, 30, 30, 31, 31, 30, 31, 24, 26, 32, 30, 40, 39, 38, 39, 36, 40, 49, 39, 30, 40, 41, 32, 33, 42, 40, 33, 30, 26, 30, 28, 30, 81, 60, 42, 35, 31, 36, 36, 33],
-    [12, 10, 7, 6, 12, 13, 12, 10, 11, 12, 11, 14, 17, 20, 14, 12, 20, 21, 12, 13, 16, 20, 17, 17, 13, 14, 16, 16, 13, 10, 9, 14, 17, 15, 21, 30, 34, 31, 57, 56, 50, 20, 21, 20, 15, 22, 21, 18, 16, 15, 20, 60, 100, 70, 43, 40, 20, 23, 31, 30],
-    [17, 12, 15, 17, 11, 6, 7, 10, 9, 12, 11, 12, 12, 7, 5, 6, 7, 9, 12, 12, 21, 26, 20, 20, 20, 15, 12, 14, 12, 13, 20, 9, 17, 13, 9, 6, 11, 12, 28, 23, 33, 20, 18, 18, 20, 20, 30, 22, 20, 16, 17, 60, 99, 71, 31, 20, 15, 20, 20, 8],
-    [20, 26, 30, 20, 20, 20, 9, 7, 5, 7, 11, 9, 10, 11, 11, 9, 11, 15, 20, 16, 14, 11, 13, 20, 25, 30, 30, 39, 30, 30, 25, 14, 17, 20, 9, 7, 10, 11, 11, 11, 24, 21, 18, 16, 13, 16, 15, 14, 16, 30, 30, 30, 80, 70, 37, 30, 24, 31, 37, 37],
-    [26, 20, 21, 31, 32, 24, 22, 18, 12, 11, 16, 30, 32, 20, 20, 20, 16, 20, 16, 17, 17, 20, 20, 20, 21, 23, 20, 25, 22, 20, 20, 30, 39, 43, 42, 46, 43, 35, 59, 32, 39, 33, 20, 20, 17, 16, 21, 20, 24, 20, 20, 61, 98, 72, 30, 22, 20, 35, 39, 30],
-    [20, 25, 24, 13, 20, 30, 33, 36, 39, 35, 39, 41, 32, 34, 31, 21, 20, 20, 20, 20, 28, 31, 25, 22, 20, 20, 14, 11, 10, 10, 11, 7, 10, 11, 11, 10, 11, 6, 9, 26, 34, 30, 22, 25, 22, 25, 30, 30, 24, 30, 30, 60, 100, 71, 33, 31, 32, 39, 34, 25],
-    [4, 6, 11, 5, 6, 11, 13, 12, 7, 8, 12, 11, 11, 7, 15, 21, 30, 30, 30, 30, 26, 26, 30, 34, 27, 21, 30, 20, 9, 9, 9, 16, 16, 13, 11, 10, 17, 10, 39, 36, 39, 20, 16, 16, 14, 20, 26, 22, 20, 20, 16, 50, 80, 73, 60, 20, 16, 16, 20, 14],
-  ];
-  const cpuHistory: number[] = [11.1, 11.1, 11.1, 11.1, 11.1, 11.1, 11.1, 11.1, 6.2, 11.1, 13.6, 13.6, 11.1, 11.1, 8.6, 11.1, 11.1, 13.6, 16.0, 8.6, 13.6, 13.6, 18.5, 16.0, 18.5, 23.5, 23.5, 13.6, 13.6, 13.6, 13.6, 13.6, 16.0, 16.0, 13.6, 16.0, 13.6, 11.1, 18.5, 23.5, 21.0, 23.5, 16.0, 13.6, 13.6, 13.6, 16.0, 16.0, 13.6, 13.6, 13.6, 13.6, 16.0, 23.5, 23.5, 28.4, 13.6, 18.5, 23.5, 30];
-  let procCount = 359;
-  const memHistory: number[] = Array.from({ length: HISTORY_LEN }, (_, i) =>
-    +(25.0 + Math.sin(i / 10) * 0.25 + ((i % 5) - 2) * 0.05).toFixed(1),
-  );
-  const diskActiveHistory: number[] = [0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 4, 2, 1, 2, 3, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0];
-  const diskReadHistory: number[] = [0, 0, 0, 0, 12, 68, 8, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 26, 94, 42, 10, 0, 16, 4, 0, 0, 56, 0, 0, 0, 0, 0, 0, 12, 8, 0, 0, 0, 0, 0, 0];
-  const diskWriteHistory: number[] = [18, 0, 0, 0, 0, 24, 0, 0, 0, 0, 0, 8, 22, 10, 0, 0, 0, 0, 0, 0, 14, 28, 36, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 16, 52, 24, 8, 26, 38, 12, 0, 0, 42, 0, 0, 0, 0, 0, 0, 16, 10, 0, 0, 0, 0, 0, 0];
-  const diskRateHistory: number[] = diskReadHistory.map((v, i) => Math.max(v, diskWriteHistory[i] ?? 0));
-  const wifiRxHistory: number[] = [12.4, 8.2, 4.0, 0, 0, 6.5, 2.0, 0, 0, 14.8, 32.5, 18.2, 6.0, 0, 0, 0, 4.2, 12.6, 8.4, 0, 0, 2.5, 16.4, 8.0, 0, 0, 0, 4.5, 18.2, 38.6, 22.4, 6.0, 0, 0, 44.2, 28.5, 8.2, 0, 0, 12.0, 8.5, 16.4, 10.2, 0, 0, 4.0, 0, 18.6, 24.2, 6.4, 0, 0, 14.2, 48.0, 21.5, 6.2, 0, 16.8, 8.4, 0];
-  const wifiTxHistory: number[] = [6.2, 3.0, 1.5, 0, 0, 4.0, 1.0, 0, 0, 8.2, 14.0, 9.5, 2.0, 0, 0, 0, 2.0, 5.4, 3.2, 0, 0, 1.0, 7.2, 3.5, 0, 0, 0, 2.0, 9.1, 18.4, 10.2, 2.4, 0, 0, 19.6, 12.0, 3.5, 0, 0, 5.5, 3.2, 7.8, 4.6, 0, 0, 2.0, 0, 8.4, 11.2, 2.5, 0, 0, 6.1, 21.4, 9.6, 2.4, 0, 7.2, 3.8, 0];
+  let coreHistories: number[][] = [];
+  const cpuHistory: number[] = Array(HISTORY_LEN).fill(0);
+  let procCount = 1;
+  const memHistory: number[] = Array(HISTORY_LEN).fill(0);
+  const diskActiveHistory: number[] = Array(HISTORY_LEN).fill(0);
+  const diskReadHistory: number[] = Array(HISTORY_LEN).fill(0);
+  const diskWriteHistory: number[] = Array(HISTORY_LEN).fill(0);
+  const diskRateHistory: number[] = Array(HISTORY_LEN).fill(0);
+  const wifiRxHistory: number[] = Array(HISTORY_LEN).fill(0);
+  const wifiTxHistory: number[] = Array(HISTORY_LEN).fill(0);
   let sentBytesTotal = 0;
   let recvBytesTotal = 0;
   const npuHistory: number[] = Array(HISTORY_LEN).fill(0);
   const npuMemHistory: number[] = Array(HISTORY_LEN).fill(0);
-  const gpu3dHistory: number[] = [18.7, 14.3, 7.7, 1.1, 3.3, 7.7, 1.1, 3.3, 5.5, 16.5, 14.3, 12.1, 7.7, 5.5, 5.5, 5.5, 12.1, 7.7, 3.3, 7.7, 7.7, 7.7, 7.7, 9.9, 16.5, 7.7, 20.9, 9.9, 3.3, 3.3, 3.3, 9.9, 16.5, 18.7, 20.9, 14.3, 9.9, 7.7, 9.9, 7.7, 12.1, 7.7, 7.7, 7.7, 7.7, 7.7, 7.7, 7.7, 7.7, 7.7, 7.7, 12.1, 58.2, 40.7, 25.3, 5.5, 12.1, 34.1, 18.7, 7];
-  const gpuCopyHistory: number[] = seedSpikyHistory(3, 8, 0.12);
+  const gpu3dHistory: number[] = Array(HISTORY_LEN).fill(0);
+  const gpuCopyHistory: number[] = Array(HISTORY_LEN).fill(0);
   const gpuEncHistory: number[] = Array(HISTORY_LEN).fill(0);
-  const gpuDecHistory: number[] = seedSpikyHistory(5, 14, 0.15);
+  const gpuDecHistory: number[] = Array(HISTORY_LEN).fill(0);
   const gpuZeroHistory: number[] = Array(HISTORY_LEN).fill(0);
-  const gpuMemHistory: number[] = Array.from({ length: HISTORY_LEN }, (_, i) => +(7.2 + Math.sin(i / 14) * 0.6).toFixed(1));
-  const gpuDedicatedMemHistory: number[] = Array.from({ length: HISTORY_LEN }, (_, i) => +(14.2 + Math.sin(i / 12) * 0.8).toFixed(1));
+  const gpuMemHistory: number[] = Array(HISTORY_LEN).fill(0);
+  const gpuDedicatedMemHistory: number[] = Array(HISTORY_LEN).fill(0);
+
+  // --- WOW 自身真实运行态遥测探针 ---
+  let wowMemBytes: number | null = null;
+  let wowMemCommittedBytes: number | null = null;
+  let wowMemLimitBytes: number | null = null;
+  let wowMemSource: 'ua-specific' | 'js-heap' | 'none' = 'none';
+  let memMeasureInFlight = false;
+  let shellMemMb: number | null = null;
+  let byAppIdMemMb: Record<string, number> = {};
+  let pendingNetByAppBytes: Record<string, number> = {};
+  let byAppIdNetMbps: Record<string, number> = {};
+
+  let longTaskBusyMs = 0;
+  let eventLoopLagMs = 0;
+  let lastLagCheckAt = 0;
+  let lagTimer: number | null = null;
+
+  let pendingNetRxBytes = 0;
+  let pendingNetTxBytes = 0;
+  let lastStorageUsageBytes: number | null = null;
+
+  let rafId: number | null = null;
+  let lastRafAt = 0;
+  let frameCountInSec = 0;
+  let slowFrameMsInSec = 0;
+
+  let longTaskObserver: PerformanceObserver | null = null;
+  let resourceObserver: PerformanceObserver | null = null;
+
+  function onVisibilityChange() {
+    lastLagCheckAt = performance.now();
+    lastRafAt = lastLagCheckAt;
+    eventLoopLagMs = 0;
+    longTaskBusyMs = 0;
+    slowFrameMsInSec = 0;
+    frameCountInSec = 0;
+  }
+
+  function extractWowAppIdFromUrl(rawUrl?: string): string | null {
+    if (!rawUrl) return null;
+    const match = /\/wow\/apps\/([a-z0-9_-]+)\//i.exec(rawUrl);
+    return match ? match[1] : null;
+  }
+
+  function sampleWowMemoryNow() {
+    if (typeof performance === 'undefined') return;
+    const perf = performance as Performance & {
+      memory?: { usedJSHeapSize?: number; totalJSHeapSize?: number; jsHeapSizeLimit?: number };
+      measureUserAgentSpecificMemory?: () => Promise<{
+        bytes: number;
+        breakdown?: Array<{
+          bytes: number;
+          attribution?: Array<{ url?: string; container?: { src?: string } }>;
+        }>;
+      }>;
+    };
+    if (typeof perf.memory?.jsHeapSizeLimit === 'number' && perf.memory.jsHeapSizeLimit > 0) {
+      wowMemLimitBytes = perf.memory.jsHeapSizeLimit;
+    }
+    if (typeof perf.memory?.totalJSHeapSize === 'number' && perf.memory.totalJSHeapSize >= 0) {
+      wowMemCommittedBytes = perf.memory.totalJSHeapSize;
+    }
+    if (
+      typeof perf.measureUserAgentSpecificMemory === 'function' &&
+      typeof self !== 'undefined' &&
+      self.crossOriginIsolated
+    ) {
+      if (memMeasureInFlight) return;
+      memMeasureInFlight = true;
+      void perf
+        .measureUserAgentSpecificMemory()
+        .then((res) => {
+          if (typeof res?.bytes === 'number' && Number.isFinite(res.bytes) && res.bytes >= 0) {
+            wowMemBytes = res.bytes;
+            wowMemSource = 'ua-specific';
+            const nextByApp: Record<string, number> = {};
+            let attributedAppBytes = 0;
+            if (Array.isArray(res.breakdown)) {
+              for (const item of res.breakdown) {
+                if (!item || typeof item.bytes !== 'number' || item.bytes <= 0) continue;
+                let matchedApp: string | null = null;
+                for (const attr of item.attribution ?? []) {
+                  matchedApp =
+                    extractWowAppIdFromUrl(attr?.url) ?? extractWowAppIdFromUrl(attr?.container?.src);
+                  if (matchedApp) break;
+                }
+                if (matchedApp) {
+                  nextByApp[matchedApp] = (nextByApp[matchedApp] ?? 0) + item.bytes;
+                  attributedAppBytes += item.bytes;
+                }
+              }
+            }
+            const formattedByApp: Record<string, number> = {};
+            for (const [k, v] of Object.entries(nextByApp)) {
+              formattedByApp[k] = +(v / 1024 ** 2).toFixed(1);
+            }
+            byAppIdMemMb = formattedByApp;
+            shellMemMb = +(Math.max(0, res.bytes - attributedAppBytes) / 1024 ** 2).toFixed(1);
+          }
+        })
+        .catch(() => {})
+        .finally(() => {
+          memMeasureInFlight = false;
+        });
+      return;
+    }
+    if (typeof perf.memory?.usedJSHeapSize === 'number' && perf.memory.usedJSHeapSize >= 0) {
+      wowMemBytes = perf.memory.usedJSHeapSize;
+      wowMemSource = 'js-heap';
+      shellMemMb = +(perf.memory.usedJSHeapSize / 1024 ** 2).toFixed(1);
+      byAppIdMemMb = {};
+    }
+  }
+
+  function startLiveProbes() {
+    if (typeof window === 'undefined') return;
+    sampleWowMemoryNow();
+    if (typeof document !== 'undefined') {
+      document.addEventListener('visibilitychange', onVisibilityChange);
+    }
+
+    if (lagTimer === null) {
+      lastLagCheckAt = performance.now();
+      lagTimer = window.setInterval(() => {
+        const now = performance.now();
+        if (typeof document !== 'undefined' && document.hidden) {
+          lastLagCheckAt = now;
+          return;
+        }
+        const drift = Math.max(0, now - lastLagCheckAt - 100);
+        // 超过 800ms 的单次跳变通常是标签页刚从后台冻结/节流恢复，不计入 CPU 满载
+        if (drift < 800) {
+          eventLoopLagMs += drift;
+        }
+        lastLagCheckAt = now;
+      }, 100);
+    }
+
+    if (typeof PerformanceObserver !== 'undefined') {
+      if (!longTaskObserver) {
+        try {
+          const supported = PerformanceObserver.supportedEntryTypes ?? [];
+          const entryType = supported.includes('long-animation-frame')
+            ? 'long-animation-frame'
+            : supported.includes('longtask')
+              ? 'longtask'
+              : null;
+          if (entryType) {
+            longTaskObserver = new PerformanceObserver((list) => {
+              for (const entry of list.getEntries()) {
+                longTaskBusyMs += Math.min(1000, Math.max(0, entry.duration));
+              }
+            });
+            longTaskObserver.observe({ type: entryType, buffered: false });
+          }
+        } catch {}
+      }
+      if (!resourceObserver) {
+        try {
+          resourceObserver = new PerformanceObserver((list) => {
+            for (const entry of list.getEntries() as PerformanceResourceTiming[]) {
+              const rx = entry.transferSize > 0 ? entry.transferSize : entry.encodedBodySize || 0;
+              if (rx > 0) {
+                pendingNetRxBytes += rx;
+                const appId = extractWowAppIdFromUrl(entry.name);
+                if (appId) {
+                  pendingNetByAppBytes[appId] = (pendingNetByAppBytes[appId] ?? 0) + rx;
+                }
+              }
+              if (entry.initiatorType === 'fetch' || entry.initiatorType === 'xmlhttprequest') {
+                pendingNetTxBytes += 256;
+              }
+            }
+          });
+          resourceObserver.observe({ type: 'resource', buffered: false });
+        } catch {}
+      }
+    }
+
+    if (rafId === null && typeof requestAnimationFrame === 'function') {
+      lastRafAt = performance.now();
+      const step = (now: number) => {
+        const delta = now - lastRafAt;
+        lastRafAt = now;
+        frameCountInSec += 1;
+        if (delta > 20) {
+          slowFrameMsInSec += Math.min(250, delta - 16.67);
+        }
+        rafId = requestAnimationFrame(step);
+      };
+      rafId = requestAnimationFrame(step);
+    }
+  }
+
+  function stopLiveProbes() {
+    if (typeof document !== 'undefined') {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+    }
+    if (lagTimer !== null && typeof window !== 'undefined') {
+      window.clearInterval(lagTimer);
+      lagTimer = null;
+    }
+    if (rafId !== null && typeof cancelAnimationFrame === 'function') {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+    longTaskObserver?.disconnect();
+    longTaskObserver = null;
+    resourceObserver?.disconnect();
+    resourceObserver = null;
+  }
 
   function getLogicalCoreCount(): number {
     const raw =
@@ -481,11 +690,7 @@ export function createVirtualHardwareService(runtimeCounts: () => { threadCount:
   function ensureCores(cores: number) {
     const count = Math.max(1, Math.min(32, cores));
     if (coreHistories.length === count) return;
-    coreHistories = Array.from({ length: count }, (_, idx) => {
-      if (idx < Math.ceil(count * 0.42)) return seedSpikyHistory(16, 48, 0.24);
-      if (idx < Math.ceil(count * 0.67)) return seedSpikyHistory(6, 36, 0.16);
-      return seedSpikyHistory(2, 26, 0.09);
-    });
+    coreHistories = Array.from({ length: count }, () => Array(HISTORY_LEN).fill(0));
   }
 
   ensureCores(getLogicalCoreCount());
@@ -493,105 +698,120 @@ export function createVirtualHardwareService(runtimeCounts: () => { threadCount:
   function advanceSeries() {
     ensureCores(getLogicalCoreCount());
     const cores = coreHistories.length;
+    const counts = runtimeCounts();
+    const activeWorkers = Math.max(0, counts.threadCount - 1);
+    procCount = Math.max(1, counts.threadCount);
+
+    // 1. WOW 自身真实 CPU 负载（主线程 LongTask + 事件循环滞后 + 活跃 Worker 算力）
+    const mainBusyPct = Math.min(100, Math.round(((longTaskBusyMs + eventLoopLagMs * 1.4) / 1000) * 100));
+    longTaskBusyMs = 0;
+    eventLoopLagMs = 0;
+
     let sum = 0;
-
     coreHistories.forEach((arr, idx) => {
-      const prev = arr[arr.length - 1] ?? 6;
-      let target: number;
-      if (idx < Math.ceil(cores * 0.42)) {
-        target = Math.random() < 0.24 ? 26 + Math.random() * 44 : 5 + Math.random() * 18;
-      } else if (idx < Math.ceil(cores * 0.67)) {
-        target = Math.random() < 0.16 ? 18 + Math.random() * 34 : 2 + Math.random() * 9;
-      } else {
-        target = Math.random() < 0.1 ? 10 + Math.random() * 26 : 1 + Math.random() * 3;
+      let val = 0;
+      if (idx === 0) {
+        val = mainBusyPct;
+      } else if (idx <= activeWorkers) {
+        val = Math.min(100, Math.max(4, Math.round(mainBusyPct * 0.55 + 12)));
       }
-      const next = Math.max(1, Math.min(95, Math.round(prev * 0.22 + target * 0.78)));
-      arr.push(next);
+      arr.push(val);
       if (arr.length > HISTORY_LEN) arr.shift();
-      sum += next;
+      sum += val;
     });
-
-    cpuHistory.push(Math.round(sum / coreHistories.length));
+    const overallCpu = Math.min(100, Math.round(sum / cores));
+    cpuHistory.push(overallCpu);
     if (cpuHistory.length > HISTORY_LEN) cpuHistory.shift();
 
-    procCount = Math.max(350, Math.min(368, procCount + Math.round((Math.random() - 0.5) * 2)));
-
-    const memPrev = memHistory[memHistory.length - 1] ?? 25.0;
-    const memPull = (25.0 - memPrev) * 0.08;
-    const memNext = Math.max(22, Math.min(28, +(memPrev + memPull + (Math.random() - 0.5) * 0.18).toFixed(1)));
-    memHistory.push(memNext);
+    // 2. WOW 自身真实内存占用百分比
+    if (sampleTick % 2 === 0 || wowMemBytes === null) {
+      sampleWowMemoryNow();
+    }
+    const memLimit = wowMemLimitBytes ?? 4 * 1024 ** 3;
+    const memPctNow =
+      wowMemBytes !== null && memLimit > 0
+        ? Math.min(100, +((wowMemBytes / memLimit) * 100).toFixed(2))
+        : 0;
+    memHistory.push(memPctNow);
     if (memHistory.length > HISTORY_LEN) memHistory.shift();
 
-    const diskSpike = Math.random() < 0.14;
-    const diskActNext = diskSpike ? Math.round(2 + Math.random() * 14) : (Math.random() < 0.25 ? 1 : 0);
+    // 3. WOW 自身真实磁盘 I/O（HAL storage 字节计数器 + storage.estimate 增量）
+    const io = drainStorageIo();
+    let deltaWriteBytes = io.writeBytes;
+    const curStorageUsage = liveStorage?.usageBytes ?? report?.storage.usageBytes ?? null;
+    if (curStorageUsage !== null) {
+      if (lastStorageUsageBytes !== null && curStorageUsage > lastStorageUsageBytes) {
+        deltaWriteBytes = Math.max(deltaWriteBytes, curStorageUsage - lastStorageUsageBytes);
+      }
+      lastStorageUsageBytes = curStorageUsage;
+    }
+    const readKb = +(io.readBytes / 1024).toFixed(1);
+    const writeKb = +(deltaWriteBytes / 1024).toFixed(1);
+    const diskActNext =
+      readKb + writeKb <= 0 ? 0 : Math.min(100, Math.max(1, Math.round(((readKb + writeKb) / 2048) * 100)));
     diskActiveHistory.push(diskActNext);
     if (diskActiveHistory.length > HISTORY_LEN) diskActiveHistory.shift();
-
-    const readNext = diskSpike
-      ? +(12 + Math.random() * 110).toFixed(1)
-      : diskActNext > 0
-        ? +(4 + Math.random() * 22).toFixed(1)
-        : (Math.random() < 0.2 ? +(1.2 + Math.random() * 8).toFixed(1) : 0);
-    const writeNext = diskSpike
-      ? +(18 + Math.random() * 140).toFixed(1)
-      : diskActNext > 0
-        ? +(6 + Math.random() * 28).toFixed(1)
-        : (Math.random() < 0.25 ? +(1.5 + Math.random() * 12).toFixed(1) : 0);
-    diskReadHistory.push(readNext);
+    diskReadHistory.push(readKb);
     if (diskReadHistory.length > HISTORY_LEN) diskReadHistory.shift();
-    diskWriteHistory.push(writeNext);
+    diskWriteHistory.push(writeKb);
     if (diskWriteHistory.length > HISTORY_LEN) diskWriteHistory.shift();
-    diskRateHistory.push(Math.max(readNext, writeNext));
+    diskRateHistory.push(Math.max(readKb, writeKb));
     if (diskRateHistory.length > HISTORY_LEN) diskRateHistory.shift();
 
+    // 4. WOW 自身真实网络吞吐（PerformanceObserver resource 真实字节）
     const isNetOnline = typeof navigator !== 'undefined' ? navigator.onLine : report?.network.onLine ?? true;
-    const netSpike = isNetOnline && Math.random() < 0.16;
-    const rxNext = !isNetOnline
-      ? 0
-      : netSpike
-        ? +(18 + Math.random() * 54).toFixed(1)
-        : (Math.random() < 0.45 ? +(1.2 + Math.random() * 14).toFixed(1) : 0);
-    const txNext = !isNetOnline
-      ? 0
-      : netSpike
-        ? +(8 + Math.random() * 26).toFixed(1)
-        : (rxNext > 0 ? +(rxNext * (0.3 + Math.random() * 0.28)).toFixed(1) : 0);
-    wifiRxHistory.push(rxNext);
-    if (wifiRxHistory.length > HISTORY_LEN) wifiRxHistory.shift();
-    wifiTxHistory.push(txNext);
-    if (wifiTxHistory.length > HISTORY_LEN) wifiTxHistory.shift();
-    if (typeof navigator === 'undefined' || navigator.onLine) {
-      sentBytesTotal += Math.round((txNext * 1000) / 8);
-      recvBytesTotal += Math.round((rxNext * 1000) / 8);
+    const rxKbps = isNetOnline ? +((pendingNetRxBytes * 8) / 1000).toFixed(1) : 0;
+    const txKbps = isNetOnline ? +((pendingNetTxBytes * 8) / 1000).toFixed(1) : 0;
+    if (isNetOnline) {
+      recvBytesTotal += pendingNetRxBytes;
+      sentBytesTotal += pendingNetTxBytes;
     }
+    pendingNetRxBytes = 0;
+    pendingNetTxBytes = 0;
+    const nextNetByApp: Record<string, number> = {};
+    if (isNetOnline) {
+      for (const [appId, bytes] of Object.entries(pendingNetByAppBytes)) {
+        nextNetByApp[appId] = +((bytes * 8) / 1_000_000).toFixed(2);
+      }
+    }
+    byAppIdNetMbps = nextNetByApp;
+    pendingNetByAppBytes = {};
+    wifiRxHistory.push(rxKbps);
+    if (wifiRxHistory.length > HISTORY_LEN) wifiRxHistory.shift();
+    wifiTxHistory.push(txKbps);
+    if (wifiTxHistory.length > HISTORY_LEN) wifiTxHistory.shift();
 
-    const gPrev = gpu3dHistory[gpu3dHistory.length - 1] ?? 18;
-    gpu3dHistory.push(Math.max(2, Math.min(58, Math.round(gPrev * 0.4 + (6 + Math.random() * 28) * 0.6))));
+    // 5. WOW 自身渲染 / GPU 活跃度（基于 rAF 帧耗时与活跃游戏/画布渲染负载）
+    const activeCanvases =
+      typeof document !== 'undefined' ? document.querySelectorAll('canvas, iframe.w11-win-iframe').length : 0;
+    const renderPressure =
+      frameCountInSec > 0 ? Math.min(100, Math.round((slowFrameMsInSec / 1000) * 100)) : 0;
+    const gpu3dNow =
+      activeCanvases > 0
+        ? Math.min(100, Math.max(renderPressure, activeWorkers > 0 ? 6 + Math.min(30, activeWorkers * 5) : 1))
+        : renderPressure;
+    frameCountInSec = 0;
+    slowFrameMsInSec = 0;
+
+    gpu3dHistory.push(gpu3dNow);
     if (gpu3dHistory.length > HISTORY_LEN) gpu3dHistory.shift();
-
-    gpuCopyHistory.push(Math.max(0, Math.min(25, Math.round(1 + Math.random() * 6))));
+    gpuCopyHistory.push(diskActNext > 0 ? Math.min(25, Math.round(diskActNext * 0.4)) : 0);
     if (gpuCopyHistory.length > HISTORY_LEN) gpuCopyHistory.shift();
-
     gpuEncHistory.push(0);
     if (gpuEncHistory.length > HISTORY_LEN) gpuEncHistory.shift();
-
-    gpuDecHistory.push(Math.max(0, Math.min(30, Math.round(2 + Math.random() * 9))));
+    gpuDecHistory.push(0);
     if (gpuDecHistory.length > HISTORY_LEN) gpuDecHistory.shift();
-
     gpuZeroHistory.push(0);
     if (gpuZeroHistory.length > HISTORY_LEN) gpuZeroHistory.shift();
 
-    const shmPrev = gpuMemHistory[gpuMemHistory.length - 1] ?? 7.4;
-    gpuMemHistory.push(Math.max(4.5, Math.min(11.5, +(shmPrev + (Math.random() - 0.5) * 0.4).toFixed(1))));
+    const gpuMemPct = Math.min(100, +(memPctNow * 0.45).toFixed(1));
+    gpuMemHistory.push(gpuMemPct);
     if (gpuMemHistory.length > HISTORY_LEN) gpuMemHistory.shift();
-
-    const dedPrev = gpuDedicatedMemHistory[gpuDedicatedMemHistory.length - 1] ?? 14.2;
-    gpuDedicatedMemHistory.push(Math.max(10.0, Math.min(22.0, +(dedPrev + (Math.random() - 0.5) * 0.5).toFixed(1))));
+    gpuDedicatedMemHistory.push(gpuMemPct);
     if (gpuDedicatedMemHistory.length > HISTORY_LEN) gpuDedicatedMemHistory.shift();
 
     npuHistory.push(0);
     if (npuHistory.length > HISTORY_LEN) npuHistory.shift();
-
     npuMemHistory.push(0);
     if (npuMemHistory.length > HISTORY_LEN) npuMemHistory.shift();
   }
@@ -646,7 +866,7 @@ export function createVirtualHardwareService(runtimeCounts: () => { threadCount:
     const ceilingClock = Math.max(baseClock, boostClock ?? baseClock);
     const currentClock = floorClock + (ceilingClock - floorClock) * Math.min(1, Math.max(0, cpuNow / 100));
 
-    // Memory
+    // Memory (WOW 运行时实测内存，不模拟宿主机内存)
     const memEst = extractEstimationValue(hp?.memory.browserDeviceMemoryGiB);
     const realDeviceGb =
       report && typeof report.memory.deviceMemoryGiB === 'number'
@@ -655,33 +875,32 @@ export function createVirtualHardwareService(runtimeCounts: () => { threadCount:
           ? memEst.value
           : null;
     const capped = memEst.provenance === 'real' ? Boolean(memEst.capped) : realDeviceGb === 8;
-    const totalGb = realDeviceGb ?? 16;
+    const totalGb = wowMemLimitBytes ? +(wowMemLimitBytes / 1024 ** 3).toFixed(1) : 4.0;
     const usableGb = totalGb;
     const capText = Number.isInteger(totalGb) ? `${totalGb}.0 GB` : `${totalGb} GB`;
-    const capTip = realDeviceGb
-      ? capped
-        ? `navigator.deviceMemory 在 ${capText} 处封顶（实际物理内存可能 ≥ ${capText}，按读数 ${capText} 展示）`
-        : `navigator.deviceMemory 实测容量：${capText}`
-      : undefined;
-    const rawMemPct = memHistory[memHistory.length - 1] ?? 25.0;
-    const usedGb = +((usableGb * rawMemPct) / 100).toFixed(1);
-    const memPct = Math.round((usedGb / Math.max(0.1, usableGb)) * 100);
-    const availGb = +Math.max(0, usableGb - usedGb).toFixed(1);
-    const compressedMb = Math.round(Math.max(24, usedGb * 32 + 12));
-    const cachedGbRaw = Math.min(availGb * 0.55, Math.max(0.4, totalGb * 0.18 + usedGb * 0.12));
-    const cachedText =
-      cachedGbRaw < 1
-        ? `${Math.max(16, Math.round(cachedGbRaw * 1024))} MB`
-        : `${cachedGbRaw.toFixed(1)} GB`;
+    const capTip =
+      wowMemSource === 'ua-specific'
+        ? `WOW 运行时实测内存（measureUserAgentSpecificMemory，含桌面、同源应用与 Worker，配额上限 ${capText}）`
+        : wowMemSource === 'js-heap'
+          ? `WOW 运行时实测内存（JS Heap，配额上限 ${capText}）`
+          : `WOW 运行时配额上限 ${capText}（正在采样中）`;
+    const usedGb = wowMemBytes !== null ? +(wowMemBytes / 1024 ** 3).toFixed(4) : 0;
+    const memPct = Math.min(100, Math.round((usedGb / Math.max(0.1, usableGb)) * 100));
+    const availGb = +Math.max(0, usableGb - usedGb).toFixed(2);
+    const compressedMb = 0;
+    const cachedText = '0 MB';
     const availableMb = Math.round(availGb * 1024);
-    const modifiedMb = Math.min(Math.round(cachedGbRaw * 1024), Math.round(usedGb * 1024 * 0.04));
-    const standbyMb = Math.min(availableMb, Math.max(0, Math.round(cachedGbRaw * 1024) - modifiedMb));
-    const freeMb = availableMb - standbyMb;
-    const standbyPct = Math.max(0, Math.min(100 - memPct, (standbyMb / (usableGb * 1024)) * 100));
-    const commitLimitGb = +(usableGb * 1.15 + 2.4).toFixed(1);
-    const committedGb = Math.min(+(commitLimitGb - 0.3).toFixed(1), +(usedGb * 1.12 + 0.6).toFixed(1));
-    const pagedPoolMb = Math.round(165 + totalGb * 28);
-    const nonPagedPoolMb = Math.round(115 + totalGb * 14);
+    const modifiedMb = 0;
+    const standbyMb = 0;
+    const freeMb = availableMb;
+    const standbyPct = 0;
+    const commitLimitGb = usableGb;
+    const committedGb =
+      wowMemCommittedBytes !== null
+        ? +(Math.max(wowMemBytes ?? 0, wowMemCommittedBytes) / 1024 ** 3).toFixed(4)
+        : usedGb;
+    const pagedPoolMb = 0;
+    const nonPagedPoolMb = 0;
     const memSpecEst = extractEstimationValue(hp?.memory.spec);
 
     // GPU
@@ -940,6 +1159,12 @@ export function createVirtualHardwareService(runtimeCounts: () => { threadCount:
       display: report?.display ?? null,
       battery: report?.battery ?? null,
       peripheralsAndApis: report?.peripheralsAndApis ?? null,
+      processMetrics: {
+        shellMemMb,
+        byAppIdMemMb: { ...byAppIdMemMb },
+        byAppIdNetMbps: { ...byAppIdNetMbps },
+        byPid: { ...(runtimeCounts().byPid ?? {}) },
+      },
     };
   }
 
@@ -952,11 +1177,10 @@ export function createVirtualHardwareService(runtimeCounts: () => { threadCount:
   function ensureTicker() {
     if (tickTimer !== null || subscribers.size === 0) return;
     if (typeof window === 'undefined') return;
+    startLiveProbes();
     tickTimer = window.setInterval(() => {
       sampleTick += 1;
-      if (sampleTick > 3) {
-        advanceSeries();
-      }
+      advanceSeries();
       notifySubscribers();
       if (sampleTick % 4 === 0) {
         void refreshStorage();
@@ -970,6 +1194,7 @@ export function createVirtualHardwareService(runtimeCounts: () => { threadCount:
       window.clearInterval(tickTimer);
     }
     tickTimer = null;
+    stopLiveProbes();
   }
 
   async function refreshProbe(force = false): Promise<VirtualHardwareSnapshot> {
