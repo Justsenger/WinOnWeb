@@ -7,8 +7,9 @@ if (!isBuild) {
 }
 const httpsOptions = isBuild ? undefined : loadDevHttpsOptions();
 const isolationHeaders = {
+  'Cross-Origin-Resource-Policy': 'cross-origin',
   'Cross-Origin-Opener-Policy': 'same-origin',
-  'Cross-Origin-Embedder-Policy': 'require-corp',
+  'Cross-Origin-Embedder-Policy': 'credentialless',
 };
 
 export default defineConfig({

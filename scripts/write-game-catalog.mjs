@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 
 const definitions = JSON.parse(await readFile(new URL('../wow-packages/catalog.json', import.meta.url), 'utf8'));
@@ -7,6 +8,10 @@ export async function writeGameCatalog(directory, publicRelease = false) {
   const games = definitions.filter(game =>
     available.has(game.id + '.wow') && !(publicRelease && game.localOnly)
   );
+  for (const game of games) {
+    const archive = await readFile(new URL(game.id + '.wow', directory));
+    game.sha256 = createHash('sha256').update(archive).digest('hex');
+  }
   await writeFile(new URL('catalog.json', directory), JSON.stringify(games, null, 2) + '\n');
   return games;
 }

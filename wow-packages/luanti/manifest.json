@@ -16,5 +16,6 @@
     "height": 740,
     "minWidth": 620,
     "minHeight": 460
-  }
+  },
+  "requiresIsolation": true
 }

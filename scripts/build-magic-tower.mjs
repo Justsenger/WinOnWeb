@@ -6,7 +6,7 @@ const repoRoot = new URL('..', import.meta.url).pathname.replace(/^\//, '').repl
 const source = join(repoRoot, 'public', 'wow-bundles', 'magic-tower', 'index.html');
 const outDir = join(repoRoot, 'public', 'packages');
 const outFile = join(outDir, 'magic-tower.wow');
-const html = await readFile(source);
+const html = Buffer.from((await readFile(source,'utf8')).replace('<script src="/wow/guest-probe.js"></script>', ''));
 const manifest = JSON.stringify({
   format: 1,
   id: 'magic-tower',

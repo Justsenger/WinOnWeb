@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
-const outDir = path.join(repoRoot, 'src/win11-shell/apps/task-manager/win32-extracted');
+const outDir = path.join(repoRoot, 'src/shells/win11/apps/task-manager/win32-extracted');
 
 const MUN_PATH = 'C:\\Windows\\SystemResources\\Taskmgr.exe.mun';
 const MUI_PATH = 'C:\\Windows\\System32\\zh-CN\\Taskmgr.exe.mui';

@@ -1,9 +1,11 @@
+import { fileURLToPath } from 'node:url';
+import { adaptSurvivalcraftMain } from './adapt-survivalcraft.mjs';
 import { createHash } from 'node:crypto';
 import { readFile, readdir, mkdir, writeFile } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 import { zipSync } from 'fflate';
 
-const repoRoot = new URL('..', import.meta.url).pathname.replace(/^\//, '').replace(/\//g, '\\');
+const repoRoot = fileURLToPath(new URL('../',import.meta.url));
 const bundleRoot = join(repoRoot, 'work', 'SurvivalcraftApi', 'Survivalcraft.Browser', 'bin', 'Release', 'net10.0', 'browser-wasm', 'AppBundle');
 const outputDir = join(repoRoot, 'public', 'packages');
 const outputFile = join(outputDir, 'survivalcraft-api.wow');
@@ -57,9 +59,29 @@ for (const group of Object.values(resources).filter(Array.isArray)) {
 
 const mainPath = 'main.js';
 const mainText = files[mainPath].toString('utf8');
-files[mainPath] = Buffer.from(mainText.replace(/if \("serviceWorker" in globalThis\.navigator\) \{[\s\S]*?\n\}/, '// WinOnWeb owns the WOW service worker for this packaged app.'));
+files[mainPath] = Buffer.from(adaptSurvivalcraftMain(mainText).replace(/if \("serviceWorker" in globalThis\.navigator\) \{[\s\S]*?\n\}/, '// WinOnWeb owns the WOW service worker for this packaged app.'));
+const native = '_framework/dotnet.native.js';
+files[native] = Buffer.from(files[native].toString().replace(
+  /(var wasmfsOPFS(?:FileHandles|Blobs) = )(new HandleAllocator);/g,
+  '$1(globalThis[Symbol.for("wow.guest-probe.v1")]?.watchFileTable($2) ?? $2);'
+));
+const workerModule = '_framework/dotnet.native.worker.mjs';
+if (files[workerModule]) {
+  const probe = await readFile(join(repoRoot,'public','wow','guest-probe.js'),'utf8');
+  files[workerModule] = Buffer.concat([Buffer.from(probe+'\ninstallWowGuestResources();\n'),files[workerModule]]);
+}
+// The boot resource table also authenticates framework modules, independently of the WOW archive.
+let adaptedBoot = boot.toString('utf8');
+for (const name of [native,workerModule]) {
+  if (!files[name]) continue;
+  const original = Buffer.from(scriptHashes[name.slice('_framework/'.length)],'hex').toString('base64');
+  const adapted = createHash('sha256').update(files[name]).digest('base64');
+  adaptedBoot = adaptedBoot.replaceAll('sha256-'+original,'sha256-'+adapted);
+}
+files['_framework/dotnet.boot.js'] = Buffer.from(adaptedBoot);
 files['manifest.json'] = Buffer.from(JSON.stringify({
   format: 1,
+  requiresIsolation: true,
   id: 'survivalcraft-api',
   name: '生存战争 API 网页版',
   version: '1.9.5-aot',
@@ -74,5 +96,6 @@ files['manifest.json'] = Buffer.from(JSON.stringify({
 await mkdir(outputDir, { recursive: true });
 const packed = zipSync(files, { level: 0 });
 await writeFile(outputFile, packed);
+await writeFile(join(outputDir,'survivalcraft-api.sha256'), createHash('sha256').update(packed).digest('hex')+'\n');
 console.log(`Created ${outputFile} (${packed.length} bytes, ${Object.keys(files).length} files)`);
 

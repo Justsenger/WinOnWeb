@@ -1,6 +1,6 @@
 ---
-import '../win11-shell/win11-tokens.css';
-import Win11Desktop from '../win11-shell/Win11Desktop.astro';
+import '../shells/win11/win11-tokens.css';
+import Win11Desktop from '../shells/win11/Win11Desktop.astro';
 ---
 
 <!doctype html>
@@ -13,7 +13,7 @@ import Win11Desktop from '../win11-shell/Win11Desktop.astro';
     <link rel="preload" as="image" href="/win11/wallpapers/bloom-dark.webp" />
   </head>
   <body>
-    <Win11Desktop />
+    <Win11Desktop hostConfig={import.meta.env.PUBLIC_WOW_APP_DOMAIN ? {deployment:{mode:"isolated",appDomain:import.meta.env.PUBLIC_WOW_APP_DOMAIN}} : undefined} />
   </body>
 </html>
 

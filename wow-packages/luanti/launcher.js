@@ -7,12 +7,7 @@ const encode = new TextEncoder();
 const decode = new TextDecoder();
 
 function openSaves() {
-  return new Promise((resolve, reject) => {
-    const req = indexedDB.open('winonweb-luanti-worlds', 1);
-    req.onupgradeneeded = () => req.result.createObjectStore('snapshots');
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
-  });
+  return window.wowStorage.openDatabase('world',['snapshots']);
 }
 function restore() {
   return new Promise((resolve,reject) => {

@@ -15,17 +15,25 @@
     "build:wow:games": "node scripts/build-h5mota-wow.mjs && node scripts/build-tinystrike-wow.mjs && node scripts/build-ouro.mjs && node scripts/build-upstream-arcade.mjs && node scripts/write-game-catalog.mjs",
     "build": "node scripts/write-game-catalog.mjs && astro build",
     "build:pages": "pnpm build && node scripts/stage-pages.mjs",
-    "preview": "node scripts/start.mjs preview"
+    "preview": "node scripts/start.mjs preview",
+    "check": "tsc --noEmit && node scripts/verify-boundaries.mjs"
   },
   "exports": {
-    "./desktop": "./src/win11-shell/Win11Desktop.astro",
-    "./tokens.css": "./src/win11-shell/win11-tokens.css",
-    "./protocol": "./src/win11-shell/app-protocol.ts",
-    "./host-config": "./src/win11-shell/host-config.ts"
+    "./contracts": "./src/wow/contracts/index.ts",
+    "./hal": "./src/wow/hal/index.ts",
+    "./kernel": "./src/wow/kernel/index.ts",
+    "./runtime": "./src/wow/runtime/index.ts",
+    "./protocol": "./src/wow/runtime/protocol.ts",
+    "./desktop": "./src/shells/win11/Win11Desktop.astro",
+    "./tokens.css": "./src/shells/win11/win11-tokens.css",
+    "./host-config": "./src/shells/win11/host-config.ts"
   },
   "dependencies": {
     "astro": "7.4.2",
     "fflate": "^0.8.3",
     "hw-profiler": "file:vendor/hw-profiler-0.1.0.tgz"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
   }
 }

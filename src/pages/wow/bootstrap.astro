@@ -1,0 +1,11 @@
+---
+const shellOrigin = import.meta.env.PUBLIC_WOW_SHELL_ORIGIN ?? '';
+---
+<!doctype html>
+<html><head><meta charset="utf-8" /><title>WOW application bootstrap</title></head>
+<body data-shell-origin={shellOrigin}>
+<script>
+  import { listenForShell } from '../../wow/hal/origin-bridge';
+  listenForShell(document.body.dataset.shellOrigin ?? '');
+</script>
+</body></html>

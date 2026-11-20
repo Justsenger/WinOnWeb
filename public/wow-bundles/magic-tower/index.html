@@ -12,6 +12,7 @@
 </head>
 <body>
 <main id="app"></main>
+<script src="/wow/guest-probe.js"></script>
 <script>
 (() => {
   'use strict';
@@ -29,8 +30,8 @@
   const app=document.querySelector('#app');
   const clone=(v)=>JSON.parse(JSON.stringify(v));
   function newState(){return {floor:0,x:1,y:1,hp:100,maxHp:100,atk:12,def:6,gold:0,keys:0,world:floors.map(rows=>rows.map(row=>row.split(''))),log:['勇士醒来于魔塔第一层。找到钥匙，打开门，向楼梯前进。']};}
-  function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(state))}catch(_){} }
-  function load(){try{const raw=localStorage.getItem(SAVE_KEY);if(!raw)return null;const v=JSON.parse(raw);if(v&&v.world&&Array.isArray(v.world))return v}catch(_){}return null}
+  function save(){try{window.wowStorage.kv.setItem(SAVE_KEY,JSON.stringify(state))}catch(_){} }
+  function load(){try{const raw=window.wowStorage.kv.getItem(SAVE_KEY);if(!raw)return null;const v=JSON.parse(raw);if(v&&v.world&&Array.isArray(v.world))return v}catch(_){}return null}
   function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
   function pushLog(s){state.log.unshift(s);state.log=state.log.slice(0,18)}
   function tileChar(ch){return ({'#':'▦','.':'','K':'🔑','D':'🚪','>':'⇩','+':'✚','S':'⚔','G':'👾','O':'👹'})[ch]||''}

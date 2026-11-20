@@ -1,5 +1,5 @@
 ---
-import '../win11-shell/win11-tokens.css';
+import '../shells/win11/win11-tokens.css';
 ---
 
 <!doctype html>
@@ -119,19 +119,20 @@ import '../win11-shell/win11-tokens.css';
     </div>
 
     <script>
-      import { createWin11AppClient } from '../win11-shell/app-protocol';
+      import { createWowClient } from '../wow/runtime/protocol';
 
       const envEl = document.getElementById('env-line')!;
       const logEl = document.getElementById('log')!;
       const editorEl = document.getElementById('file-editor') as HTMLTextAreaElement;
       const pathEl = document.getElementById('file-path')!;
+      let notepadInstance: string | null = null;
       let currentFilePath: string | null = null;
 
       function log(msg: string) {
         logEl.textContent = `[${new Date().toLocaleTimeString('zh-CN', { hour12: false })}] ${msg}\n` + logEl.textContent;
       }
 
-      const client = createWin11AppClient({
+      const client = createWowClient({
         onInit: (init) => {
           document.documentElement.setAttribute('data-theme', init.theme);
           envEl.textContent = `已连接桌面内核 · 应用标识: ${init.appId} · 进程号: ${init.pid}`;
@@ -214,14 +215,14 @@ import '../win11-shell/win11-tokens.css';
         log(`读取到私有键值：${val ?? '（空）'}`);
       });
 
-      document.getElementById('btn-open-np')?.addEventListener('click', () => {
-        client.openApp('notepad');
+      document.getElementById('btn-open-np')?.addEventListener('click', async () => {
+        try { notepadInstance = await client.openApp('notepad'); } catch (err) { log(String(err)); return; }
         log('已请求系统打开记事本。');
       });
 
       document.getElementById('btn-np-read')?.addEventListener('click', async () => {
         try {
-          const data = await client.callApp<{ fileName: string; text: string }>('notepad', 'notepad.getText');
+          const data = await client.callApp<{ fileName: string; text: string }>(notepadInstance ?? '', 'notepad.getText');
           log(`记事本当前正文 (${data.fileName})：${JSON.stringify(data.text)}`);
         } catch (err) {
           log(`协同调用失败：${err instanceof Error ? err.message : String(err)}`);
@@ -230,7 +231,7 @@ import '../win11-shell/win11-tokens.css';
 
       document.getElementById('btn-np-append')?.addEventListener('click', async () => {
         try {
-          const res = await client.callApp('notepad', 'notepad.appendText', `[来自外部测试台 ${new Date().toLocaleTimeString('zh-CN')}] 协同写入成功！`);
+          const res = await client.callApp(notepadInstance ?? '', 'notepad.appendText', `[来自外部测试台 ${new Date().toLocaleTimeString('zh-CN')}] 协同写入成功！`);
           log(`协同写入完成：${JSON.stringify(res)}`);
         } catch (err) {
           log(`协同写入失败：${err instanceof Error ? err.message : String(err)}`);
