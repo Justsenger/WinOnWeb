@@ -310,6 +310,31 @@ export const CORE_APP_REGISTRY: WinAppManifest[] = [
       estimatedMemMb: 46.0,
     },
   },
+  {
+    id: 'browser',
+    name: 'WOW 浏览器',
+    iconKey: 'browser',
+    description: '多标签页内置浏览器，支持书签持久化、外部网站浏览与一键新标签页直达。',
+    category: 'app',
+    runtime: 'builtin',
+    onDesktop: true,
+    pinnedToStart: true,
+    pinnedToTaskbar: true,
+    singleton: false,
+    window: {
+      defaultWidth: 1040,
+      defaultHeight: 680,
+      minWidth: 520,
+      minHeight: 380,
+      background: '#181c22',
+    },
+    capabilities: ['theme', 'window-control'],
+    systemTrusted: true,
+    telemetry: {
+      publisher: 'WinOnWeb',
+      estimatedMemMb: 92.0,
+    },
+  },
 ];
 
 export const APP_REGISTRY = CORE_APP_REGISTRY;

@@ -1,6 +1,7 @@
 import { mountBuiltin } from '../../../wow/runtime/builtin-runtime';
 import { runCommand } from '../../../wow/runtime/command-runtime';
 import { appStoreApp } from './app-store-app';
+import { browserApp } from './browser-app';
 import { APP_COMMANDS } from './commands';
 import { explorerApp } from './explorer';
 import { mountIframeApp } from '../../../wow/runtime/iframe-runtime';
@@ -26,6 +27,7 @@ const BUILTIN_APP_MODULES: Record<string, WinAppModule> = {
   'storage-lab': storageLabApp,
   notepad: notepadApp,
   'app-store': appStoreApp,
+  browser: browserApp,
 };
 
 export function executeCommandApp(appId: string, shell: WinAppShellApi, args?: WinAppLaunchArgs): boolean {

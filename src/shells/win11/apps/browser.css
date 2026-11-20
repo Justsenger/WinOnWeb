@@ -1,0 +1,423 @@
+.w11-br-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #1c1c1c;
+  color: #f3f3f3;
+  font-family: 'Segoe UI Variable Text', 'Segoe UI', 'Microsoft YaHei UI', sans-serif;
+  user-select: none;
+}
+
+.w11-br-root.is-light {
+  background: #f3f3f3;
+  color: #1a1a1a;
+}
+
+.w11-br-tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 6px 8px 0;
+  background: #141414;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.w11-br-root.is-light .w11-br-tabs {
+  background: #e5e7eb;
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.w11-br-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 110px;
+  max-width: 210px;
+  height: 32px;
+  padding: 0 8px 0 11px;
+  border: none;
+  border-radius: 7px 7px 0 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.12s ease;
+}
+
+.w11-br-root.is-light .w11-br-tab {
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.w11-br-tab:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.w11-br-root.is-light .w11-br-tab:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.w11-br-tab.is-active {
+  background: #242424;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.w11-br-root.is-light .w11-br-tab.is-active {
+  background: #ffffff;
+  color: #111111;
+}
+
+.w11-br-tab__title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.w11-br-tab__close {
+  width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  font-size: 11px;
+  opacity: 0.65;
+}
+
+.w11-br-tab__close:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.w11-br-root.is-light .w11-br-tab__close:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.w11-br-newtab-btn {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 2px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.w11-br-newtab-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.w11-br-root.is-light .w11-br-newtab-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.w11-br-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background: #242424;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.w11-br-root.is-light .w11-br-toolbar {
+  background: #ffffff;
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.w11-br-btn {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.w11-br-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.w11-br-root.is-light .w11-br-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.w11-br-btn:disabled {
+  opacity: 0.34;
+  cursor: default;
+}
+
+.w11-br-btn.is-starred {
+  color: #f5b942;
+}
+
+.w11-br-omnibox {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 16px;
+  background: #171717;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.w11-br-root.is-light .w11-br-omnibox {
+  background: #f1f3f5;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.w11-br-omnibox:focus-within {
+  border-color: #4cc2ff;
+  box-shadow: 0 0 0 1px rgba(76, 194, 255, 0.35);
+}
+
+.w11-br-url-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font-size: 13px;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.w11-br-bookmarks {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #202020;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.w11-br-root.is-light .w11-br-bookmarks {
+  background: #fafafa;
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.w11-br-bm-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  padding: 0 9px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.w11-br-bm-item:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.w11-br-root.is-light .w11-br-bm-item:hover {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.w11-br-viewport {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: #181818;
+}
+
+.w11-br-root.is-light .w11-br-viewport {
+  background: #ffffff;
+}
+
+.w11-br-pane {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+}
+
+.w11-br-pane.is-active {
+  display: flex;
+}
+
+.w11-br-frame {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+}
+
+.w11-br-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 12px;
+  background: #252b34;
+  color: #cfe3fa;
+  font-size: 11.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.w11-br-root.is-light .w11-br-banner {
+  background: #eaf3ff;
+  color: #1e4268;
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.w11-br-banner-btn {
+  padding: 3px 9px;
+  border: 1px solid rgba(76, 194, 255, 0.45);
+  border-radius: 4px;
+  background: rgba(76, 194, 255, 0.14);
+  color: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.w11-br-banner-btn:hover {
+  background: rgba(76, 194, 255, 0.26);
+}
+
+.w11-br-ntp {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px;
+  gap: 22px;
+  overflow-y: auto;
+  background: radial-gradient(circle at 50% 18%, rgba(56, 189, 248, 0.14), transparent 55%), #181c22;
+}
+
+.w11-br-root.is-light .w11-br-ntp {
+  background: radial-gradient(circle at 50% 18%, rgba(14, 165, 233, 0.12), transparent 55%), #f5f7fb;
+}
+
+.w11-br-ntp__brand {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.w11-br-ntp__search {
+  width: min(560px, 100%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 16px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.w11-br-root.is-light .w11-br-ntp__search {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+}
+
+.w11-br-ntp__search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font-size: 14px;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.w11-br-ntp__go {
+  padding: 7px 16px;
+  border: none;
+  border-radius: 18px;
+  background: #0078d4;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.w11-br-ntp__go:hover {
+  background: #1084dc;
+}
+
+.w11-br-ntp__grid {
+  width: min(640px, 100%);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(126px, 1fr));
+  gap: 12px;
+}
+
+.w11-br-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.w11-br-root.is-light .w11-br-tile {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.w11-br-tile:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.w11-br-root.is-light .w11-br-tile:hover {
+  background: #eef4fc;
+}
+
+.w11-br-tile__icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.w11-br-tile__name {
+  font-size: 12.5px;
+  font-weight: 500;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w11-br-ntp__hint {
+  max-width: 560px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.6;
+  opacity: 0.72;
+}

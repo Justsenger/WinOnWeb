@@ -116,6 +116,24 @@ export function getAppIconSvg(key: string, size = 32): string {
     </svg>`;
   }
 
+  if (key === 'browser') {
+    const gradId = `w11BrBg-${++fsGradSeq}`;
+    return `<svg width="${size}" height="${size}" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="${gradId}" x1="6" y1="6" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#38BDF8"/>
+          <stop offset="55%" stop-color="#0EA5E9"/>
+          <stop offset="100%" stop-color="#10B981"/>
+        </linearGradient>
+      </defs>
+      <circle cx="24" cy="24" r="19" fill="url(#${gradId})"/>
+      <circle cx="24" cy="24" r="18.2" stroke="white" stroke-opacity="0.28" stroke-width="1.4"/>
+      <ellipse cx="24" cy="24" rx="9" ry="18.5" stroke="white" stroke-opacity="0.72" stroke-width="1.8"/>
+      <path d="M6.5 24H41.5M9.5 16.5H38.5M9.5 31.5H38.5" stroke="white" stroke-opacity="0.72" stroke-width="1.7" stroke-linecap="round"/>
+      <circle cx="24" cy="24" r="4.2" fill="white"/>
+    </svg>`;
+  }
+
   return `<svg width="${size}" height="${size}" viewBox="0 0 48 48" fill="none" aria-hidden="true">
     <rect x="6" y="6" width="36" height="36" rx="8" fill="#0078D4"/>
     <rect x="14" y="14" width="20" height="20" rx="3" fill="#60CDFF" fill-opacity="0.88"/>
