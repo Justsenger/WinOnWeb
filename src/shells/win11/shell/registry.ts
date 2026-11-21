@@ -335,6 +335,40 @@ export const CORE_APP_REGISTRY: WinAppManifest[] = [
       estimatedMemMb: 92.0,
     },
   },
+  {
+    id: 'touch-keyboard',
+    name: '屏幕键盘',
+    iconKey: 'touch-keyboard',
+    description: 'Windows 11 Fluent 虚拟触控键盘，自适应桌面与手机端，内置拼音候选、表情与剪贴板历史。',
+    category: 'utility',
+    runtime: 'command',
+    onDesktop: false,
+    pinnedToStart: true,
+    pinnedToTaskbar: false,
+    capabilities: ['shell-control'],
+    systemTrusted: true,
+    telemetry: {
+      publisher: 'Microsoft Windows',
+      estimatedMemMb: 24.0,
+    },
+  },
+  {
+    id: 'magnifier',
+    name: '放大镜',
+    iconKey: 'magnifier',
+    description: '系统级屏幕缩放工具，支持 100%-400% 缩放、指针跟随、触控平移、颜色反转与朗读。',
+    category: 'utility',
+    runtime: 'command',
+    onDesktop: false,
+    pinnedToStart: true,
+    pinnedToTaskbar: false,
+    capabilities: ['shell-control'],
+    systemTrusted: true,
+    telemetry: {
+      publisher: 'Microsoft Windows',
+      estimatedMemMb: 22.0,
+    },
+  },
 ];
 
 export const APP_REGISTRY = CORE_APP_REGISTRY;

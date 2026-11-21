@@ -1,0 +1,278 @@
+/* Windows 11 放大镜（独立系统应用，1:1 对照真机浮窗并适配桌面与移动端） */
+.w11-mag {
+  position: fixed;
+  z-index: 9800;
+  width: 368px;
+  max-width: calc(100vw - 16px);
+  border-radius: 6px;
+  background: rgba(247, 247, 247, 0.94);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  box-shadow:
+    0 12px 32px rgba(15, 23, 42, 0.18),
+    0 2px 6px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(22px) saturate(130%);
+  -webkit-backdrop-filter: blur(22px) saturate(130%);
+  color: #1b1b1b;
+  font-family: 'Segoe UI Variable Text', 'Segoe UI', 'Microsoft YaHei UI', sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  box-sizing: border-box;
+}
+
+.w11-mag-titlebar {
+  height: 28px;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: move;
+  touch-action: none;
+}
+
+.w11-mag-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: #1b1b1b;
+}
+
+.w11-mag-winbtns {
+  display: flex;
+  height: 100%;
+}
+
+.w11-mag-winbtn {
+  width: 34px;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: #323130;
+  font-size: 11px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.w11-mag-winbtn:hover {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.w11-mag-winbtn.is-disabled {
+  color: #b4b4b4;
+  cursor: default;
+}
+
+.w11-mag-winbtn.is-disabled:hover {
+  background: transparent;
+}
+
+.w11-mag-winbtn.is-close {
+  border-top-right-radius: 5px;
+}
+
+.w11-mag-winbtn.is-close:hover {
+  background: #c42b1c;
+  color: #ffffff;
+}
+
+.w11-mag-toolbar {
+  height: 42px;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+}
+
+.w11-mag-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: #1b1b1b;
+  font-family: inherit;
+  font-size: 14px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.1s ease, border-color 0.1s ease;
+}
+
+.w11-mag-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.w11-mag-btn:active:not(:disabled) {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.w11-mag-btn:disabled {
+  color: #a6a6a6;
+  cursor: default;
+}
+
+.w11-mag-btn.is-active {
+  background: rgba(0, 103, 192, 0.14);
+  border-color: rgba(0, 103, 192, 0.28);
+  color: #005ba1;
+}
+
+.w11-mag-zoom-readout {
+  min-width: 44px;
+  height: 26px;
+  padding: 0 4px;
+  border: none;
+  border-bottom: 1.5px solid #8a8886;
+  border-radius: 3px 3px 0 0;
+  background: transparent;
+  color: #1b1b1b;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.w11-mag-zoom-readout:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-bottom-color: #0067c0;
+}
+
+.w11-mag-sep {
+  width: 1px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.12);
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+/* 缩放平移控制条（缩放 > 100% 且移动端或手动浏览时显示） */
+.w11-mag-panbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 4px 8px 6px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 11.5px;
+  color: #5c5c5c;
+}
+
+.w11-mag-panbtns {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.w11-mag-panbtn {
+  height: 24px;
+  min-width: 26px;
+  padding: 0 6px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #1b1b1b;
+  font-family: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+}
+
+.w11-mag-panbtn:hover {
+  background: #ffffff;
+  border-color: #0067c0;
+}
+
+/* 设置下拉菜单 */
+.w11-mag-settings {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 8px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.w11-mag-set-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.w11-mag-set-chips {
+  display: flex;
+  gap: 4px;
+}
+
+.w11-mag-chip {
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #1b1b1b;
+  padding: 3px 8px;
+  font-family: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+}
+
+.w11-mag-chip.is-active {
+  background: #0067c0;
+  border-color: #0067c0;
+  color: #ffffff;
+}
+
+.w11-mag-hint {
+  font-size: 11px;
+  color: #605e5c;
+}
+
+/* 最小化后的角标悬浮球 */
+.w11-mag-pill {
+  position: fixed;
+  z-index: 9800;
+  right: 16px;
+  top: 16px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(248, 248, 248, 0.92);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+  backdrop-filter: blur(18px);
+  color: #1b1b1b;
+  font-family: 'Segoe UI Variable Text', 'Segoe UI', 'Microsoft YaHei UI', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.w11-mag-pill:hover {
+  background: #ffffff;
+}
+
+body.w11-mag-pick-mode,
+body.w11-mag-pick-mode * {
+  cursor: crosshair !important;
+}
+
+@media (max-width: 420px) {
+  .w11-mag-toolbar {
+    padding: 0 4px;
+  }
+  .w11-mag-btn {
+    width: 26px;
+    height: 28px;
+  }
+  .w11-mag-zoom-readout {
+    min-width: 38px;
+    font-size: 11.5px;
+  }
+}

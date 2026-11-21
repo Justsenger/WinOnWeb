@@ -4,3 +4,4 @@ export * from './bus';
 export * from './vfs';
 export * from './telemetry';
 export * from './package-security';
+export * from './account';

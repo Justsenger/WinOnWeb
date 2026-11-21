@@ -543,6 +543,7 @@ export function createDesktopContext(root: HTMLElement) {
     renderWallpaper,
     renderOverlays,
     createBoundShellApi,
+    showDesktopToast,
     launchShellItem,
     syncAppBroadcasts,
     root,

@@ -1,0 +1,500 @@
+.w11-oobe-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(ellipse 42% 38% at 56% 18%, rgba(122, 179, 255, 0.56), transparent 72%),
+    radial-gradient(ellipse 44% 40% at 32% 84%, rgba(139, 173, 255, 0.58), transparent 70%),
+    radial-gradient(ellipse 36% 34% at 72% 82%, rgba(173, 189, 255, 0.44), transparent 72%),
+    linear-gradient(135deg, #e5eef9 0%, #eef3fb 50%, #e1ebf8 100%);
+  font-family: 'Segoe UI Variable Text', 'Segoe UI', 'Microsoft YaHei UI', sans-serif;
+  color: #1b1b1b;
+  transition: opacity 0.28s ease;
+}
+
+.w11-oobe-backdrop.is-closing {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.w11-oobe-stage {
+  width: min(864px, 72vw);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@media (max-width: 780px) {
+  .w11-oobe-stage {
+    width: 100%;
+  }
+}
+
+.w11-oobe-card {
+  position: relative;
+  width: 100%;
+  min-height: 512px;
+  max-height: calc(100vh - 96px);
+  display: grid;
+  grid-template-columns: 47% 53%;
+  background: linear-gradient(155deg, #ffffff 0%, #fbfcfe 62%, #f4f7fc 100%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  box-shadow:
+    0 24px 60px rgba(32, 62, 118, 0.16),
+    0 4px 14px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+@media (max-width: 780px) {
+  .w11-oobe-card {
+    grid-template-columns: 1fr;
+    min-height: 440px;
+  }
+  .w11-oobe-art {
+    display: none;
+  }
+}
+
+.w11-oobe-back {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #323130;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.w11-oobe-back:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.w11-oobe-art {
+  display: grid;
+  place-items: center;
+  padding: 24px 16px 24px 36px;
+  background: transparent;
+}
+
+.w11-oobe-main {
+  display: flex;
+  flex-direction: column;
+  padding: 46px 44px 28px 20px;
+  overflow-y: auto;
+}
+
+@media (max-width: 780px) {
+  .w11-oobe-main {
+    padding: 50px 24px 24px;
+  }
+}
+
+.w11-oobe-title {
+  margin: 0 0 8px;
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+}
+
+.w11-oobe-sub {
+  margin: 0 0 26px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #605e5c;
+}
+
+.w11-oobe-sub.is-empty {
+  margin: 0 0 18px;
+}
+
+.w11-oobe-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.w11-oobe-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12.5px;
+  color: #323130;
+}
+
+.w11-oobe-field {
+  position: relative;
+  width: min(256px, 100%);
+  margin-bottom: 12px;
+}
+
+.w11-oobe-input,
+.w11-oobe-select {
+  width: 100%;
+  height: 32px;
+  padding: 0 30px 0 10px;
+  border: 1px solid #d6d6d6;
+  border-bottom: 1.5px solid #8a8886;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #1b1b1b;
+  font-family: inherit;
+  font-size: 12.5px;
+  outline: none;
+  box-sizing: border-box;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.w11-oobe-select {
+  padding-right: 10px;
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.w11-oobe-input:focus {
+  border-color: #d6d6d6;
+  border-bottom: 2px solid #0067c0;
+}
+
+.w11-oobe-select:focus {
+  border-color: #8a8886;
+}
+
+.w11-oobe-clear,
+.w11-oobe-eye {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 3px;
+  background: transparent;
+  color: #605e5c;
+  font-size: 12px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.w11-oobe-clear:hover,
+.w11-oobe-eye:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: #1b1b1b;
+}
+
+.w11-oobe-qa-group {
+  width: min(256px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.w11-oobe-error {
+  min-height: 18px;
+  margin-top: 2px;
+  font-size: 12px;
+  color: #c42b1c;
+}
+
+.w11-oobe-actions {
+  margin-top: auto;
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.w11-oobe-btn {
+  min-width: 96px;
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.w11-oobe-link {
+  border: none;
+  background: transparent;
+  padding: 6px 8px;
+  color: #0067c0;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.w11-oobe-link:hover {
+  color: #004e8c;
+  text-decoration: underline;
+}
+
+.w11-oobe-btn--primary {
+  border: 1px solid #005ba1;
+  background: #0067c0;
+  color: #ffffff;
+}
+
+.w11-oobe-btn--primary:hover {
+  background: #005aa6;
+}
+
+.w11-oobe-footer-icons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 8px 6px 0 0;
+  color: #374151;
+  user-select: none;
+}
+
+.w11-oobe-a11y-anchor {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.w11-oobe-footer-btn {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.w11-oobe-footer-btn:hover {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+.w11-oobe-popover {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 14px);
+  transform: translateX(calc(-50% + var(--popover-shift-x, 0px)));
+  z-index: 20;
+  width: 276px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  background: rgba(252, 252, 252, 0.98);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.14), 0 2px 6px rgba(15, 23, 42, 0.05);
+  backdrop-filter: blur(20px);
+  color: #1b1b1b;
+}
+
+.w11-oobe-a11y-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.w11-oobe-a11y-item:hover {
+  background: rgba(0, 0, 0, 0.045);
+}
+
+.w11-oobe-a11y-ico {
+  width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  color: #323130;
+  flex-shrink: 0;
+}
+
+.w11-oobe-a11y-label {
+  flex: 1;
+}
+
+.w11-oobe-a11y-state {
+  font-size: 12px;
+  color: #484644;
+  margin-right: 4px;
+}
+
+.w11-oobe-switch {
+  width: 36px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1.4px solid #484644;
+  background: transparent;
+  position: relative;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  transition: background 0.14s ease, border-color 0.14s ease;
+}
+
+.w11-oobe-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2.5px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #484644;
+  transition: transform 0.14s ease, background 0.14s ease;
+}
+
+.w11-oobe-a11y-item[aria-checked='true'] .w11-oobe-switch {
+  background: #0067c0;
+  border-color: #0067c0;
+}
+
+.w11-oobe-a11y-item[aria-checked='true'] .w11-oobe-switch::after {
+  transform: translateX(17px);
+  background: #ffffff;
+}
+
+/* Windows 高对比度模式 */
+.w11-oobe-backdrop.is-high-contrast {
+  background: #000000;
+  color: #ffffff;
+}
+
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-card {
+  background: #000000;
+  border: 2px solid #ffffff;
+  box-shadow: none;
+}
+
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-title,
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-sub,
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-label,
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-back,
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-footer-icons {
+  color: #ffffff;
+}
+
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-input,
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-select,
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-popover {
+  background: #000000;
+  color: #ffffff;
+  border: 1.5px solid #ffffff;
+}
+
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-input:focus,
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-select:focus {
+  border-color: #ffff00;
+}
+
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-link {
+  color: #ffff00;
+}
+
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-btn--primary {
+  background: #1aebff;
+  border-color: #1aebff;
+  color: #000000;
+  font-weight: 600;
+}
+
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-a11y-ico,
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-a11y-state {
+  color: #ffffff;
+}
+
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-a11y-item:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-switch {
+  border-color: #ffffff;
+}
+
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-switch::after {
+  background: #ffffff;
+}
+
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-a11y-item[aria-checked='true'] .w11-oobe-switch {
+  background: #1aebff;
+  border-color: #1aebff;
+}
+
+.w11-oobe-backdrop.is-high-contrast .w11-oobe-a11y-item[aria-checked='true'] .w11-oobe-switch::after {
+  background: #000000;
+}
+
+/* 语音访问顶部状态栏 */
+.w11-oobe-voice-bar {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: rgba(32, 32, 32, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  color: #ffffff;
+  font-size: 12.5px;
+  backdrop-filter: blur(16px);
+}
+
+.w11-oobe-voice-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4cc2ff;
+  flex-shrink: 0;
+}
+
+.w11-oobe-voice-dot.is-listening {
+  background: #6ccb5f;
+  box-shadow: 0 0 0 3px rgba(108, 203, 95, 0.28);
+}
+
+.w11-oobe-voice-close {
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.w11-oobe-voice-close:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}

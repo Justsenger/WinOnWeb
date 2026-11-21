@@ -134,6 +134,44 @@ export function getAppIconSvg(key: string, size = 32): string {
     </svg>`;
   }
 
+  if (key === 'touch-keyboard') {
+    const gradId = `w11TkbBg-${++fsGradSeq}`;
+    return `<svg width="${size}" height="${size}" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="${gradId}" x1="6" y1="10" x2="42" y2="38" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#38BDF8"/>
+          <stop offset="100%" stop-color="#0067C0"/>
+        </linearGradient>
+      </defs>
+      <rect x="4" y="10" width="40" height="28" rx="6" fill="url(#${gradId})" stroke="white" stroke-opacity="0.24"/>
+      <rect x="9" y="16" width="5" height="4.5" rx="1" fill="white" fill-opacity="0.92"/>
+      <rect x="16" y="16" width="5" height="4.5" rx="1" fill="white" fill-opacity="0.92"/>
+      <rect x="23" y="16" width="5" height="4.5" rx="1" fill="white" fill-opacity="0.92"/>
+      <rect x="30" y="16" width="9" height="4.5" rx="1" fill="white" fill-opacity="0.72"/>
+      <rect x="9" y="23" width="6.5" height="4.5" rx="1" fill="white" fill-opacity="0.82"/>
+      <rect x="17.5" y="23" width="5" height="4.5" rx="1" fill="white" fill-opacity="0.92"/>
+      <rect x="24.5" y="23" width="5" height="4.5" rx="1" fill="white" fill-opacity="0.92"/>
+      <rect x="31.5" y="23" width="7.5" height="4.5" rx="1" fill="white" fill-opacity="0.82"/>
+      <rect x="15" y="30" width="18" height="4" rx="1.2" fill="white" fill-opacity="0.95"/>
+    </svg>`;
+  }
+
+  if (key === 'magnifier') {
+    const gradId = `w11MagBg-${++fsGradSeq}`;
+    return `<svg width="${size}" height="${size}" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="${gradId}" x1="6" y1="8" x2="36" y2="32" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#60CDFF"/>
+          <stop offset="100%" stop-color="#005FB8"/>
+        </linearGradient>
+      </defs>
+      <rect x="5" y="8" width="32" height="24" rx="4.5" fill="url(#${gradId})" stroke="white" stroke-opacity="0.25"/>
+      <circle cx="29" cy="27" r="10.5" fill="#E0F2FE" stroke="#005BA1" stroke-width="3"/>
+      <path d="M25.5 27H32.5M29 23.5V30.5" stroke="#005BA1" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M36.8 34.8L43 41" stroke="#005BA1" stroke-width="3.8" stroke-linecap="round"/>
+    </svg>`;
+  }
+
   return `<svg width="${size}" height="${size}" viewBox="0 0 48 48" fill="none" aria-hidden="true">
     <rect x="6" y="6" width="36" height="36" rx="8" fill="#0078D4"/>
     <rect x="14" y="14" width="20" height="20" rx="3" fill="#60CDFF" fill-opacity="0.88"/>

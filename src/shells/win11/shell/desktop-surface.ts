@@ -1,5 +1,5 @@
 import { getAppIconSvg, UI_ICONS } from './icons';
-import { getAppDisplayName, getAppRegistry, getManifestById } from './registry';
+import { getAppDisplayName, getAppRegistry, getManifestById, uninstallUserApp } from './registry';
 import { type DesktopIconSize } from '../types';
 import type { createContextMenu } from './context-menu';
 import type { DesktopContext } from './desktop-context';
@@ -11,9 +11,9 @@ interface GridMetrics {
 }
 
 const GRID_METRICS: Record<DesktopIconSize, GridMetrics> = {
-  large: { colW: 126, rowH: 136, iconPx: 96, pad: 12 },
-  medium: { colW: 90, rowH: 94, iconPx: 48, pad: 10 },
-  small: { colW: 76, rowH: 78, iconPx: 32, pad: 10 },
+  large: { colW: 126, rowH: 152, iconPx: 96, pad: 12 },
+  medium: { colW: 92, rowH: 104, iconPx: 48, pad: 10 },
+  small: { colW: 78, rowH: 86, iconPx: 32, pad: 10 },
 };
 
 export function createDesktopLayout(root: HTMLElement) {
@@ -200,7 +200,7 @@ export function createDesktopSurface(
       btn.style.left = `${m.pad + pos.col * m.colW}px`;
       btn.style.top = `${m.pad + pos.row * m.rowH}px`;
       btn.style.width = `${m.colW - 6}px`;
-      btn.style.height = `${m.rowH - 4}px`;
+      btn.style.minHeight = `${m.rowH - 6}px`;
       const label = escapeHtml(getAppDisplayName(app, { isFullscreen }));
       btn.innerHTML = `
         <span class="w11-desktop-icon__glyph">${getAppIconSvg(app.iconKey, m.iconPx)}</span>
@@ -405,6 +405,9 @@ export function createDesktopSurface(
       const origTop = parseFloat(iconBtn.style.top);
       let moved = false;
       let longPressed = false;
+      let ghostEl: HTMLElement | null = null;
+      let hoveredRecycleEl: HTMLElement | null = null;
+      let hoveredWinEl: HTMLElement | null = null;
       const longPressTimer =
         e.pointerType === 'touch'
           ? window.setTimeout(() => {
@@ -416,21 +419,58 @@ export function createDesktopSurface(
             }, 550)
           : 0;
 
+      const clearHoverStates = () => {
+        hoveredRecycleEl?.classList.remove('is-drop-target');
+        hoveredRecycleEl = null;
+        hoveredWinEl?.classList.remove('is-drop-hover');
+        hoveredWinEl = null;
+      };
+
+      const hitTestTarget = (clientX: number, clientY: number) => {
+        const hit = document.elementFromPoint(clientX, clientY) as HTMLElement | null;
+        const winEl = hit?.closest<HTMLElement>('.w11-window:not(.is-minimized)') ?? null;
+        const recycleEl =
+          !winEl && appId !== 'recycle-bin'
+            ? hit?.closest<HTMLElement>('.w11-desktop-icon[data-app-id="recycle-bin"]') ?? null
+            : null;
+        return { winEl, recycleEl };
+      };
+
       const onMove = (me: PointerEvent) => {
         if (me.pointerId !== e.pointerId || longPressed) return;
-        const { scaleX, scaleY } = getShellMetrics();
-        const dx = (me.clientX - startX) / scaleX;
-        const dy = (me.clientY - startY) / scaleY;
         if (!moved && Math.hypot(me.clientX - startX, me.clientY - startY) < 6) return;
-        moved = true;
-        if (longPressTimer) window.clearTimeout(longPressTimer);
-        iconBtn.classList.add('is-dragging');
-        iconBtn.style.left = `${origLeft + dx}px`;
-        iconBtn.style.top = `${origTop + dy}px`;
+        if (!moved) {
+          moved = true;
+          if (longPressTimer) window.clearTimeout(longPressTimer);
+          iconBtn.classList.add('is-dragging');
+          ghostEl = document.createElement('div');
+          ghostEl.className = 'w11-icon-drag-ghost';
+          ghostEl.style.width = iconBtn.style.width;
+          ghostEl.innerHTML = iconBtn.innerHTML;
+          context.root.appendChild(ghostEl);
+        }
+        if (ghostEl) {
+          ghostEl.style.left = `${me.clientX}px`;
+          ghostEl.style.top = `${me.clientY}px`;
+        }
+        const { winEl, recycleEl } = hitTestTarget(me.clientX, me.clientY);
+        if (hoveredRecycleEl !== recycleEl) {
+          hoveredRecycleEl?.classList.remove('is-drop-target');
+          hoveredRecycleEl = recycleEl;
+          hoveredRecycleEl?.classList.add('is-drop-target');
+        }
+        if (hoveredWinEl !== winEl) {
+          hoveredWinEl?.classList.remove('is-drop-hover');
+          hoveredWinEl = winEl;
+          hoveredWinEl?.classList.add('is-drop-hover');
+        }
       };
 
       const cleanup = () => {
         if (longPressTimer) window.clearTimeout(longPressTimer);
+        ghostEl?.remove();
+        ghostEl = null;
+        clearHoverStates();
         window.removeEventListener('pointermove', onMove);
         window.removeEventListener('pointerup', onUp);
         window.removeEventListener('pointercancel', onCancel);
@@ -441,13 +481,12 @@ export function createDesktopSurface(
         cleanup();
         if (moved) {
           iconBtn.classList.remove('is-dragging');
-          iconBtn.style.left = `${origLeft}px`;
-          iconBtn.style.top = `${origTop}px`;
         }
       };
 
       const onUp = (ue: PointerEvent) => {
         if (ue.pointerId !== e.pointerId) return;
+        const { winEl, recycleEl } = moved ? hitTestTarget(ue.clientX, ue.clientY) : { winEl: null, recycleEl: null };
         cleanup();
         if (longPressed) return;
         if (!moved) {
@@ -463,6 +502,40 @@ export function createDesktopSurface(
           return;
         }
         iconBtn.classList.remove('is-dragging');
+
+        // 1. 拖入回收站
+        if (recycleEl && appId !== 'recycle-bin') {
+          const manifest = getManifestById(appId);
+          if (manifest?.source === 'user') {
+            void uninstallUserApp(appId).then(() => {
+              context.showDesktopToast('回收站', `已移除应用“${manifest.name}”`, '应用及其本地包文件已清理。');
+            });
+          } else {
+            context.showDesktopToast(
+              '回收站',
+              `无法删除系统图标“${manifest?.name ?? appId}”`,
+              '系统内置图标不可移入回收站。',
+            );
+          }
+          return;
+        }
+
+        // 2. 落在前台窗口上：激活该窗口并通知其收到图标拖放，不把图标塞到窗口背后
+        if (winEl) {
+          const wid = Number(winEl.dataset.wid);
+          if (Number.isFinite(wid)) {
+            store.focusWindow(wid);
+          }
+          winEl.dispatchEvent(
+            new CustomEvent('w11-desktop-icon-drop', {
+              bubbles: true,
+              detail: { appId, manifest: getManifestById(appId) },
+            }),
+          );
+          return;
+        }
+
+        // 3. 落在桌面空白区域：正常移动到目标网格
         const m = GRID_METRICS[store.state.iconSize];
         const { scaleX, scaleY } = getShellMetrics();
         const targetLeft = origLeft + (ue.clientX - startX) / scaleX;
