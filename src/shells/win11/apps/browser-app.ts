@@ -289,6 +289,11 @@ export const browserApp: WinAppModule = {
 
       const frame = document.createElement('iframe');
       frame.className = 'w11-br-frame';
+      try {
+        if (new URL(url, window.location.origin).origin !== window.location.origin) {
+          frame.setAttribute('credentialless', '');
+        }
+      } catch {}
       frame.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
       frame.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-read; clipboard-write');
       frame.src = url;
