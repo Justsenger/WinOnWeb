@@ -35,6 +35,9 @@ export function mountIframeApp(options: FrameOptions) {
   frame.className = options.className ?? '';
   frame.title = options.title;
   frame.allow = options.allow ?? '';
+  if (!options.packageVersion && origin !== location.origin) {
+    frame.setAttribute('credentialless', '');
+  }
   if (options.sandbox !== undefined) frame.setAttribute('sandbox', options.sandbox);
   let peer: Peer | undefined,
     generation = '',
