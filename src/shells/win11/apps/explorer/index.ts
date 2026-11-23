@@ -944,7 +944,7 @@ export function mountExplorer(ctx: WinAppHostContext): WinAppLifecycle {
                             <div class="w11-exp-drive-title">${esc(dNode.name)}</div>
                             ${
                               dState.status === 'needs-auth'
-                                ? `<div class="w11-exp-drive-sub" style="color:#f6b94d;margin-top:4px;">上次挂载：${esc(dState.volumeName ?? '')} · 双击点击授权恢复</div>`
+                                ? `<div class="w11-exp-drive-sub" style="color:#f6b94d;margin-top:4px;">上次挂载：${esc(dState.volumeName ?? '')}，双击点击授权恢复</div>`
                                 : `<div class="w11-exp-drive-bar"><div class="w11-exp-drive-bar-fill" style="width:100%;background:#60cdff;"></div></div>
                                    <div class="w11-exp-drive-sub">本机挂载目录：${esc(dState.volumeName ?? '')}</div>`
                             }

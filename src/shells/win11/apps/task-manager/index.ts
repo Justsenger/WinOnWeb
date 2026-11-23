@@ -1845,10 +1845,10 @@ export function mountTaskManager(ctx: WinAppHostContext): WinAppLifecycle {
                   width: 560,
                   bodyHtml: `
                     <div class="w11-tm-resmon">
-                      <div><strong>CPU:</strong> ${hw.cpu.usagePct}% · 当前频率 ${formatClock(hw.cpu.currentClockGhz)} · ${hw.cpu.threadCount} 线程</div>
-                      <div><strong>内存:</strong> 使用中 ${Math.round(hw.memory.usedGb * 1024)} MB · 备用 ${(hw.memory.standbyMb / 1024).toFixed(1)} GB</div>
-                      <div><strong>磁盘:</strong> 读取 ${hw.storage.readKb} KB/秒 · 写入 ${hw.storage.writeKb} KB/秒</div>
-                      <div><strong>网络:</strong> 发送 ${hw.network.sendKbps} Kbps · 接收 ${hw.network.recvKbps} Kbps</div>
+                      <div><strong>CPU:</strong> ${hw.cpu.usagePct}%，当前频率 ${formatClock(hw.cpu.currentClockGhz)}，${hw.cpu.threadCount} 线程</div>
+                      <div><strong>内存:</strong> 使用中 ${Math.round(hw.memory.usedGb * 1024)} MB / 备用 ${(hw.memory.standbyMb / 1024).toFixed(1)} GB</div>
+                      <div><strong>磁盘:</strong> 读取 ${hw.storage.readKb} KB/秒 / 写入 ${hw.storage.writeKb} KB/秒</div>
+                      <div><strong>网络:</strong> 发送 ${hw.network.sendKbps} Kbps / 接收 ${hw.network.recvKbps} Kbps</div>
                     </div>
                   `,
                   footerButtons: [{ label: '关闭', primary: true, onClick: (_, close) => close() }],

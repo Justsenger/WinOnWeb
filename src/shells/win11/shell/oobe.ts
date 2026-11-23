@@ -240,18 +240,18 @@ export function showWin11Oobe(
       rec.lang = 'zh-CN';
       rec.continuous = true;
       rec.interimResults = false;
-      rec.onstart = () => updateBar('语音访问 · 正在侦听（说“下一页”“以后再说”或直接口述）', true);
-      rec.onerror = () => updateBar('语音访问 · 未获取到麦克风权限', false);
+      rec.onstart = () => updateBar('语音访问：正在侦听（说“下一页”“以后再说”或直接口述）', true);
+      rec.onerror = () => updateBar('语音访问：未获取到麦克风权限', false);
       rec.onend = () => {
         if (a11y.voiceAccess && open) {
-          updateBar('语音访问 · 已暂停', false);
+          updateBar('语音访问：已暂停', false);
         }
       };
       rec.onresult = (ev) => {
         const last = ev.results[ev.results.length - 1];
         const transcript = last?.[0]?.transcript?.trim() ?? '';
         if (!transcript) return;
-        updateBar(`语音访问 · 已识别：“${transcript}”`, true);
+        updateBar(`语音访问：已识别“${transcript}”`, true);
         if (transcript.includes('下一页') || transcript.includes('下一步')) {
           mainEl.querySelector<HTMLFormElement>('form')?.requestSubmit();
           return;
@@ -276,10 +276,10 @@ export function showWin11Oobe(
         }
       };
       voiceRecognition = rec;
-      updateBar('语音访问 · 正在启动麦克风...', false);
+      updateBar('语音访问：正在启动麦克风...', false);
       rec.start();
     } catch {
-      updateBar('语音访问 · 启动失败', false);
+      updateBar('语音访问：启动失败', false);
     }
   }
 

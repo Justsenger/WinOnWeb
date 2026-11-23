@@ -133,7 +133,7 @@ export const appStoreApp: WinAppModule = {
       if (total > 0) {
         bar.max = total;
         bar.value = loaded;
-        label.textContent = `${Math.floor(loaded / total * 100)}% · ${mib(loaded)} / ${mib(total)} MiB`;
+        label.textContent = `${Math.floor(loaded / total * 100)}% (${mib(loaded)} / ${mib(total)} MiB)`;
       } else {
         bar.removeAttribute('value');
         label.textContent = loaded ? `已接收 ${mib(loaded)} MiB` : '正在连接…';
@@ -223,7 +223,7 @@ export const appStoreApp: WinAppModule = {
         };
         bodyHtml = `
           <article class="as-feature">
-            <div><small>沙盒生存 · 67.97 MiB</small><h1>生存战争</h1>
+            <div><small>沙盒生存 (67.97 MiB)</small><h1>生存战争</h1>
             <p>在荒野中采集资源、搭建庇护所，活过第一个夜晚。</p>
             ${action('survivalcraft-api', '生存战争')}</div>
           </article>

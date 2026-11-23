@@ -266,10 +266,10 @@ function pickConsensusCache(
       _internalSource: 'legacy_unverified_backfill',
     };
   }
-  const baseTip = prov?.label ? `静态硬件指纹库推理 · ${prov.label}` : '静态硬件指纹库推理';
+  const baseTip = prov?.label ? `静态硬件指纹库推理（${prov.label}）` : '静态硬件指纹库推理';
   const fmtFieldTip = (f?: { tier: string; label: string }, extra?: string) => {
     if (!f) return baseTip;
-    return `${f.tier} · ${f.label}${extra ? `（${extra}）` : ''}`;
+    return `${f.tier}：${f.label}${extra ? `（${extra}）` : ''}`;
   };
   const slcNote =
     typeof prov?.slcKB === 'number' && prov.slcKB > 0
@@ -924,7 +924,7 @@ export function createVirtualHardwareService(
       gpuName = rawGpuName;
       gpuProvenance = 'real';
       if (gpuPciEst.value && gpuPciEst.provenance === 'real') {
-        gpuTooltip = `PCI ID: ${gpuPciEst.value}${gpuArchEst.value ? ` · ${gpuArchEst.value}` : ''}`;
+        gpuTooltip = `PCI ID: ${gpuPciEst.value}${gpuArchEst.value ? ` (${gpuArchEst.value})` : ''}`;
       }
     } else if (gpuNameEst.value) {
       gpuName = gpuNameEst.value;
@@ -984,7 +984,7 @@ export function createVirtualHardwareService(
     const webnnEst = extractEstimationValue(hp?.npu.webnnNpuSupported);
     const webnnNote =
       webnnEst.provenance === 'real' && webnnEst.value !== null
-        ? ` · WebNN NPU: ${webnnEst.value ? '已就绪' : '未就绪'}`
+        ? `，WebNN NPU: ${webnnEst.value ? '已就绪' : '未就绪'}`
         : '';
 
     let npu: VirtualHardwareNpuInfo | null = null;

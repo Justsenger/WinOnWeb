@@ -43,7 +43,7 @@ export const notepadApp: WinAppModule = {
           <textarea data-np-editor spellcheck="false" placeholder="在此输入文本内容，可保存至临时系统盘 C: 或真实挂载的 D: 盘..." style="flex:1;width:100%;resize:none;border:none;outline:none;padding:14px 16px;background:#191919;color:#f3f3f3;font-family:'Cascadia Mono','Consolas','Microsoft YaHei UI',monospace;font-size:13.5px;line-height:1.6;box-sizing:border-box;user-select:text;-webkit-user-select:text;"></textarea>
           <footer style="display:flex;align-items:center;justify-content:space-between;padding:4px 12px;background:#222222;border-top:1px solid rgba(255,255,255,0.07);font-size:11.5px;color:#aaaaaa;">
             <span>${esc(statusMsg)}</span>
-            <span>行 ${lineNum}，列 ${colNum} · ${charCount} 字符 · UTF-8</span>
+            <span>行 ${lineNum}，列 ${colNum}，${charCount} 字符，UTF-8</span>
           </footer>
         </div>
       `;
@@ -70,7 +70,7 @@ export const notepadApp: WinAppModule = {
       const lines = before.split('\n');
       const footerSpan = container.querySelectorAll('footer span')[1];
       if (footerSpan) {
-        footerSpan.textContent = `行 ${lines.length}，列 ${(lines[lines.length - 1]?.length ?? 0) + 1} · ${text.length} 字符 · UTF-8`;
+        footerSpan.textContent = `行 ${lines.length}，列 ${(lines[lines.length - 1]?.length ?? 0) + 1}，${text.length} 字符，UTF-8`;
       }
     }
 

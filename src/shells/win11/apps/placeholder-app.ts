@@ -7,14 +7,14 @@ function escapeHtml(text: string): string {
 export const placeholderApp: WinAppModule = {
   mount(ctx: WinAppHostContext): WinAppLifecycle {
     const { container, manifest, pid, shell } = ctx;
-    const publisher = manifest.telemetry?.publisher ? ` · ${escapeHtml(manifest.telemetry.publisher)}` : '';
+    const publisher = manifest.telemetry?.publisher ? ` (${escapeHtml(manifest.telemetry.publisher)})` : '';
 
     container.innerHTML = `
       <div class="w11-stub">
         <div class="w11-stub-icon">${shell.renderAppIcon(manifest.iconKey, 56)}</div>
         <h2>${escapeHtml(manifest.name)}</h2>
         <p>${escapeHtml(manifest.description)}</p>
-        <span class="w11-stub-badge">PID ${pid}${publisher} · 窗口壳已就绪</span>
+        <span class="w11-stub-badge">PID ${pid}${publisher}，窗口壳已就绪</span>
       </div>
     `;
 

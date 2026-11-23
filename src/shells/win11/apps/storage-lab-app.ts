@@ -105,7 +105,7 @@ export const storageLabApp: WinAppModule = {
                   <h3 style="margin:0 0 4px;font-size:15px;color:#ffffff;">路线 1：为什么 <code>navigator.storage.persist()</code> 点了没弹窗？</h3>
                   <p style="margin:0;color:#bbbbbb;font-size:12px;">
                     • <strong>Firefox</strong>：会直接弹出权限框让你点“允许”。<br/>
-                    • <strong>Edge / Chrome (Chromium)</strong>：<strong>故意取消了独立弹窗</strong>，改为由浏览器后台自动判定！只有满足以下任一条件时才会批准 <code>true</code>：① 用户将该网页<strong>加入书签 (Ctrl+D)</strong>；② 用户授权了<strong>通知权限 (Notifications: 当前为 <code>${esc(notifPerm)}</code>)</strong>；③ 安装为 PWA。<br/>
+                    • <strong>Edge / Chrome (Chromium)</strong>：<strong>故意取消了独立弹窗</strong>，改为由浏览器后台自动判定！只有满足以下任一条件时才会批准 <code>true</code>：① 用户将该网页<strong>加入书签 (Ctrl+D)</strong>、② 用户授权了<strong>通知权限 (Notifications: 当前为 <code>${esc(notifPerm)}</code>)</strong>、③ 安装为 PWA。<br/>
                     • 注意：在自签名 HTTPS 证书（地址栏显示“不安全”）或无痕窗口下，Chromium 也会直接拒绝持久化申请。
                   </p>
                 </div>
@@ -155,7 +155,7 @@ export const storageLabApp: WinAppModule = {
                   <h3 style="margin:0 0 4px;font-size:15px;color:#ffffff;">路线 3：挂载宿主机目录当 D 盘 — 能看到什么？（内置微型资源管理器）</h3>
                   <p style="margin:0;color:#bbbbbb;font-size:12px;">
                     • <strong>能看到的内容</strong>：所选目录及其所有子文件夹下的<strong>文件名、精确字节大小、修改时间、以及任意文件的完整内容（文本/二进制）</strong>，并可统计整个挂载目录已占用的总大小。<br/>
-                    • <strong>看不到的内容</strong>：标准出于隐私保护，<strong>不提供整个物理分区（如整个 D: 盘）的剩余可用容量 API</strong>；且系统保护目录（如 <code>C:\\Windows</code>、<code>AppData</code>）会被浏览器拦截禁止选择。
+                    • <strong>看不到的内容</strong>：标准出于隐私保护，<strong>不提供整个物理分区（如整个 D: 盘）的剩余可用容量 API</strong>，且系统保护目录（如 <code>C:\\Windows</code>、<code>AppData</code>）会被浏览器拦截禁止选择。
                   </p>
                 </div>
                 <button type="button" data-slab-action="mount-host" ${busy || !fsAccessSupported ? 'disabled' : ''} style="padding:7px 14px;border-radius:4px;border:1px solid #c084fc;background:rgba(192,132,252,0.16);color:#d8b4fe;cursor:pointer;font-size:12.5px;font-weight:600;flex-shrink:0;">
@@ -171,7 +171,7 @@ export const storageLabApp: WinAppModule = {
                           <code>D:\\ (${esc(hostDir.rootName)})${hostDir.currentPath.length ? '\\' + hostDir.currentPath.map(esc).join('\\') : ''}</code>
                         </div>
                         <div style="display:flex;align-items:center;gap:10px;">
-                          <span style="color:#8ce980;">递归统计：${hostDir.recursiveFileCount} 个文件 / ${hostDir.recursiveDirCount} 个子目录 · 共占用 <strong>${esc(formatBytes(hostDir.recursiveTotalBytes))}</strong></span>
+                          <span style="color:#8ce980;">递归统计：${hostDir.recursiveFileCount} 个文件 / ${hostDir.recursiveDirCount} 个子目录，共占用 <strong>${esc(formatBytes(hostDir.recursiveTotalBytes))}</strong></span>
                           ${
                             hostDir.dirStack.length > 1
                               ? `<button type="button" data-slab-action="host-up" style="padding:3px 9px;border-radius:4px;border:1px solid rgba(255,255,255,0.2);background:#2d2d2d;color:#fff;cursor:pointer;font-size:11.5px;">↑ 返回上级目录</button>`
@@ -212,7 +212,7 @@ export const storageLabApp: WinAppModule = {
                           hostDir.selectedFilePreview
                             ? `<div style="padding:8px 10px;border-radius:4px;background:#222;border:1px solid rgba(255,255,255,0.1);overflow:hidden;">
                                 <div style="font-weight:600;color:#fff;margin-bottom:4px;">📄 文件内容实测读取：${esc(hostDir.selectedFilePreview.name)}</div>
-                                <div style="color:#999;font-size:11px;margin-bottom:6px;">大小：${esc(formatBytes(hostDir.selectedFilePreview.sizeBytes))} · 修改于：${esc(hostDir.selectedFilePreview.lastModified)}</div>
+                                <div style="color:#999;font-size:11px;margin-bottom:6px;">大小：${esc(formatBytes(hostDir.selectedFilePreview.sizeBytes))}，修改于：${esc(hostDir.selectedFilePreview.lastModified)}</div>
                                 <div style="font-size:11px;color:#aaa;margin-bottom:2px;">前 64 字节 Hex 头部：</div>
                                 <pre style="margin:0 0 6px;padding:6px;background:#141414;border-radius:3px;color:#8ce980;font-size:11px;overflow-x:auto;white-space:pre-wrap;word-break:break-all;">${esc(hostDir.selectedFilePreview.hexPreview)}</pre>
                                 <div style="font-size:11px;color:#aaa;margin-bottom:2px;">UTF-8 文本预览（前 500 字符）：</div>
