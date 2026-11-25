@@ -1,0 +1,6708 @@
+{
+  "socs": {
+    "qcom-sm8550": {
+      "id": "qcom-sm8550",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 8 Gen 2",
+      "winBrandString": "Qualcomm Snapdragon 8 Gen 2 @ 3.19 GHz",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.67,
+      "boostClockGHz": 3.19,
+      "cache": {
+        "l1KB": 576,
+        "l2KB": 2944,
+        "l3KB": 8192,
+        "evidenceTier": "T1_real_device",
+        "evidenceSource": "User-verified Task Manager capture (576 KB L1 / 2.9 MB L2 / 8.0 MB L3)"
+      },
+      "gpuKeys": [
+        "adreno:740"
+      ],
+      "integratedGpu": "Qualcomm Adreno 740",
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon NPU"
+      },
+      "memorySpec": {
+        "generations": [
+          "LPDDR5X"
+        ],
+        "maxSpeedMTs": 8400
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 7800"
+    },
+    "qcom-sm8650": {
+      "id": "qcom-sm8650",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 8 Gen 3",
+      "winBrandString": "Qualcomm Snapdragon 8 Gen 3 @ 3.30 GHz",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.9,
+      "boostClockGHz": 3.3,
+      "cache": {
+        "l3KB": 12288,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Qualcomm Snapdragon Summit 2023 architecture slide (12MB L3 CACHE)"
+      },
+      "gpuKeys": [
+        "adreno:750"
+      ],
+      "integratedGpu": "Qualcomm Adreno 750",
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon NPU"
+      },
+      "memorySpec": {
+        "generations": [
+          "LPDDR5X"
+        ],
+        "maxSpeedMTs": 9600
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 7800"
+    },
+    "qcom-sm8750": {
+      "id": "qcom-sm8750",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 8 Elite",
+      "winBrandString": "Qualcomm Snapdragon 8 Elite @ 4.32 GHz",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 3.73,
+      "boostClockGHz": 4.32,
+      "cache": {
+        "l2KB": 24576
+      },
+      "gpuKeys": [
+        "adreno:830"
+      ],
+      "integratedGpu": "Qualcomm Adreno 830",
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon NPU"
+      },
+      "memorySpec": {
+        "generations": [
+          "LPDDR5X"
+        ],
+        "maxSpeedMTs": 10667
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 7900"
+    },
+    "mtk-dimensity-9400": {
+      "id": "mtk-dimensity-9400",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 9400 (MT6991)",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.89,
+      "cache": {
+        "l2KB": 7168,
+        "l3KB": 12288,
+        "slcKB": 10240,
+        "topologyNote": "1x X925 (2 MiB L2) + 3x X4 (1 MiB L2) + 4x A720 (512 KiB L2) = 7 MiB L2; 12 MB L3 + 10 MB SLC; L1 unconfirmed",
+        "evidenceTier": "T1_official",
+        "evidenceSource": "MediaTek Dimensity 9400 official product specification"
+      },
+      "gpuKeys": [
+        "immortalis:g925"
+      ],
+      "integratedGpu": "ARM Immortalis-G925 MC12",
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek NPU 890"
+      },
+      "memorySpec": {
+        "generations": [
+          "LPDDR5X",
+          "LPDDR5T"
+        ],
+        "maxSpeedMTs": 10667
+      },
+      "winBrandString": "MediaTek Dimensity 9400 (MT6991) @ 3.62 GHz",
+      "boostClockGHz": 3.62,
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 7 (Tri-band MLO)"
+    },
+    "mtk-dimensity-9300": {
+      "id": "mtk-dimensity-9300",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 9300 (MT6989)",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.48,
+      "cache": {
+        "l3KB": 8192,
+        "slcKB": 10240,
+        "topologyNote": "8 MiB CPU L3 + 10 MiB SLC (18 MiB combined); MT6989 block diagram L1=768 KiB / L2=3584 KiB pending manual/device cross-check",
+        "evidenceTier": "T1_official",
+        "evidenceSource": "MediaTek Dimensity 9300 launch architecture diagram (2023-11-06)"
+      },
+      "gpuKeys": [
+        "immortalis:g720",
+        "mali:g720mp12"
+      ],
+      "integratedGpu": "ARM Immortalis-G720 MC12",
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek NPU 790"
+      },
+      "memorySpec": {
+        "generations": [
+          "LPDDR5T",
+          "LPDDR5X"
+        ],
+        "maxSpeedMTs": 9600
+      },
+      "winBrandString": "MediaTek Dimensity 9300 (MT6989) @ 3.25 GHz",
+      "boostClockGHz": 3.25,
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 7 / Bluetooth 5.4"
+    },
+    "ndd-1": {
+      "id": "ndd-1",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6582M",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "MediaTek MT6582M @ 1.30 GHz"
+    },
+    "ndd-2": {
+      "id": "ndd-2",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6592",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.35,
+      "gpuKeys": [
+        "mali-450 mp4"
+      ],
+      "integratedGpu": "ARM Mali-450 MP4",
+      "winBrandString": "MediaTek MT6592 @ 1.50 GHz",
+      "boostClockGHz": 1.5
+    },
+    "ndd-3": {
+      "id": "ndd-3",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 620",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "mali-450 mp4"
+      ],
+      "integratedGpu": "ARM Mali-450 MP4",
+      "winBrandString": "HiSilicon Kirin 620 @ 1.20 GHz"
+    },
+    "ndd-4": {
+      "id": "ndd-4",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6580A",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "MediaTek MT6580A @ 1.30 GHz"
+    },
+    "ndd-6": {
+      "id": "ndd-6",
+      "vendor": "UNISOC",
+      "model": "Spreadtrum SC7731",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Spreadtrum SC7731 @ 1.30 GHz"
+    },
+    "ndd-10": {
+      "id": "ndd-10",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 210",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.1,
+      "gpuKeys": [
+        "adreno:304"
+      ],
+      "integratedGpu": "Qualcomm Adreno 304",
+      "winBrandString": "Qualcomm Snapdragon 210 @ 1.10 GHz"
+    },
+    "ndd-11": {
+      "id": "ndd-11",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 212",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "adreno:304"
+      ],
+      "integratedGpu": "Qualcomm Adreno 304",
+      "winBrandString": "Qualcomm Snapdragon 212 @ 1.30 GHz"
+    },
+    "ndd-13": {
+      "id": "ndd-13",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 3110",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "sgx540"
+      ],
+      "integratedGpu": "PowerVR SGX540",
+      "winBrandString": "Samsung Exynos 3110 @ 1.00 GHz"
+    },
+    "ndd-14": {
+      "id": "ndd-14",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S4 Plus",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "adreno:225"
+      ],
+      "integratedGpu": "Qualcomm Adreno 225",
+      "winBrandString": "Qualcomm Snapdragon S4 Plus @ 1.50 GHz"
+    },
+    "ndd-15": {
+      "id": "ndd-15",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S4 Pro",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.7,
+      "gpuKeys": [
+        "adreno:320"
+      ],
+      "integratedGpu": "Qualcomm Adreno 320",
+      "winBrandString": "Qualcomm Snapdragon S4 Pro @ 1.70 GHz"
+    },
+    "ndd-16": {
+      "id": "ndd-16",
+      "vendor": "Other",
+      "model": "Intel Atom Z3560",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.83,
+      "gpuKeys": [
+        "g6430"
+      ],
+      "integratedGpu": "PowerVR G6430",
+      "winBrandString": "Intel Atom Z3560 @ 1.83 GHz",
+      "cache": {
+        "l1KB": 224,
+        "l2KB": 2048,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom Z3560 Silvermont (32I+24D per core)"
+      }
+    },
+    "ndd-17": {
+      "id": "ndd-17",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 410",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "adreno:306"
+      ],
+      "integratedGpu": "Qualcomm Adreno 306",
+      "winBrandString": "Qualcomm Snapdragon 410 @ 1.20 GHz"
+    },
+    "ndd-18": {
+      "id": "ndd-18",
+      "vendor": "Other",
+      "model": "Intel Atom Z2560",
+      "architecture": "arm",
+      "baseClockGHz": 1.6,
+      "gpuKeys": [
+        "sgx544mp2"
+      ],
+      "integratedGpu": "PowerVR SGX544MP2",
+      "winBrandString": "Intel Atom Z2560 @ 1.60 GHz",
+      "physicalCores": 2,
+      "logicalCores": 4,
+      "cache": {
+        "l1KB": 112,
+        "l2KB": 1024,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom Z2560 Saltwell (32I+24D per core)"
+      }
+    },
+    "ndd-19": {
+      "id": "ndd-19",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 630",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "adreno:508"
+      ],
+      "integratedGpu": "Qualcomm Adreno 508",
+      "winBrandString": "Qualcomm Snapdragon 630 @ 2.20 GHz",
+      "boostClockGHz": 2.2
+    },
+    "ndd-20": {
+      "id": "ndd-20",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 425",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.4,
+      "gpuKeys": [
+        "adreno:308"
+      ],
+      "integratedGpu": "Qualcomm Adreno 308",
+      "winBrandString": "Qualcomm Snapdragon 425 @ 1.40 GHz"
+    },
+    "ndd-21": {
+      "id": "ndd-21",
+      "vendor": "UNISOC",
+      "model": "Spreadtrum SC9832",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Spreadtrum SC9832 @ 1.30 GHz"
+    },
+    "ndd-22": {
+      "id": "ndd-22",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 615",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.25,
+      "gpuKeys": [
+        "adreno:405"
+      ],
+      "integratedGpu": "Qualcomm Adreno 405",
+      "winBrandString": "Qualcomm Snapdragon 615 @ 1.50 GHz",
+      "boostClockGHz": 1.5
+    },
+    "ndd-23": {
+      "id": "ndd-23",
+      "vendor": "Other",
+      "model": "Amlogic S805",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Amlogic S805 @ 1.50 GHz"
+    },
+    "ndd-25": {
+      "id": "ndd-25",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 835",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.17,
+      "gpuKeys": [
+        "adreno:540"
+      ],
+      "integratedGpu": "Qualcomm Adreno 540",
+      "winBrandString": "Qualcomm Snapdragon 835 @ 2.45 GHz",
+      "boostClockGHz": 2.45
+    },
+    "ndd-28": {
+      "id": "ndd-28",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 710",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.95,
+      "gpuKeys": [
+        "mali:g51mp4"
+      ],
+      "integratedGpu": "ARM Mali-G51 MP4",
+      "winBrandString": "HiSilicon Kirin 710 @ 2.20 GHz",
+      "boostClockGHz": 2.2
+    },
+    "ndd-29": {
+      "id": "ndd-29",
+      "vendor": "Other",
+      "model": "Texas Instruments OMAP 4460",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "sgx540"
+      ],
+      "integratedGpu": "PowerVR SGX540",
+      "winBrandString": "Texas Instruments OMAP 4460 @ 1.20 GHz"
+    },
+    "ndd-30": {
+      "id": "ndd-30",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 920",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali:t628mp4"
+      ],
+      "integratedGpu": "ARM Mali-T628 MP4",
+      "winBrandString": "HiSilicon Kirin 920 @ 1.70 GHz",
+      "boostClockGHz": 1.7
+    },
+    "ndd-31": {
+      "id": "ndd-31",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S1",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "adreno:200"
+      ],
+      "integratedGpu": "Qualcomm Adreno 200",
+      "winBrandString": "Qualcomm Snapdragon S1 @ 1.00 GHz"
+    },
+    "ndd-33": {
+      "id": "ndd-33",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 200",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "adreno:302"
+      ],
+      "integratedGpu": "Qualcomm Adreno 302",
+      "winBrandString": "Qualcomm Snapdragon 200 @ 1.20 GHz"
+    },
+    "ndd-34": {
+      "id": "ndd-34",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 910T",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.8,
+      "gpuKeys": [
+        "mali-450 mp4"
+      ],
+      "integratedGpu": "ARM Mali-450 MP4",
+      "winBrandString": "HiSilicon Kirin 910T @ 1.80 GHz"
+    },
+    "ndd-35": {
+      "id": "ndd-35",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 435",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.25,
+      "gpuKeys": [
+        "adreno:505"
+      ],
+      "integratedGpu": "Qualcomm Adreno 505",
+      "winBrandString": "Qualcomm Snapdragon 435 @ 1.40 GHz",
+      "boostClockGHz": 1.4
+    },
+    "ndd-36": {
+      "id": "ndd-36",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6572M",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "MediaTek MT6572M @ 1.20 GHz"
+    },
+    "ndd-37": {
+      "id": "ndd-37",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 710F",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.95,
+      "gpuKeys": [
+        "mali:g51mp4"
+      ],
+      "integratedGpu": "ARM Mali-G51 MP4",
+      "winBrandString": "HiSilicon Kirin 710F @ 2.20 GHz",
+      "boostClockGHz": 2.2
+    },
+    "ndd-38": {
+      "id": "ndd-38",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P35",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.05,
+      "gpuKeys": [
+        "ge8320"
+      ],
+      "integratedGpu": "PowerVR GE8320",
+      "winBrandString": "MediaTek Helio P35 @ 2.30 GHz",
+      "boostClockGHz": 2.3
+    },
+    "ndd-39": {
+      "id": "ndd-39",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6753T",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali:t720"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP",
+      "winBrandString": "MediaTek MT6753T @ 1.50 GHz"
+    },
+    "ndd-41": {
+      "id": "ndd-41",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 439",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.73,
+      "gpuKeys": [
+        "adreno:505"
+      ],
+      "integratedGpu": "Qualcomm Adreno 505",
+      "winBrandString": "Qualcomm Snapdragon 439 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-42": {
+      "id": "ndd-42",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 659",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.03,
+      "gpuKeys": [
+        "mali:t830mp2"
+      ],
+      "integratedGpu": "ARM Mali-T830 MP2",
+      "winBrandString": "HiSilicon Kirin 659 @ 2.36 GHz",
+      "boostClockGHz": 2.36
+    },
+    "ndd-43": {
+      "id": "ndd-43",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 430",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.25,
+      "gpuKeys": [
+        "adreno:505"
+      ],
+      "integratedGpu": "Qualcomm Adreno 505",
+      "winBrandString": "Qualcomm Snapdragon 430 @ 1.40 GHz",
+      "boostClockGHz": 1.4
+    },
+    "ndd-44": {
+      "id": "ndd-44",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio A22",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "ge8320"
+      ],
+      "integratedGpu": "PowerVR GE8320",
+      "winBrandString": "MediaTek Helio A22 @ 2.00 GHz"
+    },
+    "ndd-45": {
+      "id": "ndd-45",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 800",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "mali:g57mp5"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP5",
+      "winBrandString": "MediaTek Dimensity 800 @ 2.00 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 3.0",
+        "topsPeak": 2.4
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 5 / Bluetooth 5.0"
+    },
+    "ndd-47": {
+      "id": "ndd-47",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P22",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "ge8320"
+      ],
+      "integratedGpu": "PowerVR GE8320",
+      "winBrandString": "MediaTek Helio P22 @ 2.00 GHz"
+    },
+    "ndd-48": {
+      "id": "ndd-48",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 655",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.9,
+      "gpuKeys": [
+        "mali:t830mp2"
+      ],
+      "integratedGpu": "ARM Mali-T830 MP2",
+      "winBrandString": "HiSilicon Kirin 655 @ 2.10 GHz",
+      "boostClockGHz": 2.1
+    },
+    "ndd-49": {
+      "id": "ndd-49",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S2",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "adreno:205"
+      ],
+      "integratedGpu": "Qualcomm Adreno 205",
+      "winBrandString": "Qualcomm Snapdragon S2 @ 1.50 GHz"
+    },
+    "ndd-50": {
+      "id": "ndd-50",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 970",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.08,
+      "gpuKeys": [
+        "mali:g72mp12"
+      ],
+      "integratedGpu": "ARM Mali-G72 MP12",
+      "winBrandString": "HiSilicon Kirin 970 @ 2.36 GHz",
+      "boostClockGHz": 2.36
+    },
+    "ndd-51": {
+      "id": "ndd-51",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon K3V2",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "vivante gc4000"
+      ],
+      "integratedGpu": "Vivante GC4000",
+      "winBrandString": "HiSilicon K3V2 @ 1.50 GHz"
+    },
+    "ndd-52": {
+      "id": "ndd-52",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 980",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.03,
+      "gpuKeys": [
+        "mali:g76mp10"
+      ],
+      "integratedGpu": "ARM Mali-G76 MP10",
+      "winBrandString": "HiSilicon Kirin 980 @ 2.60 GHz",
+      "boostClockGHz": 2.6
+    },
+    "ndd-53": {
+      "id": "ndd-53",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 985 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.14,
+      "gpuKeys": [
+        "mali:g77mp8"
+      ],
+      "integratedGpu": "ARM Mali-G77 MP8",
+      "winBrandString": "HiSilicon Kirin 985 5G @ 2.58 GHz",
+      "boostClockGHz": 2.58
+    },
+    "ndd-54": {
+      "id": "ndd-54",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 990 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.28,
+      "gpuKeys": [
+        "mali:g76mp16"
+      ],
+      "integratedGpu": "ARM Mali-G76 MP16",
+      "winBrandString": "HiSilicon Kirin 990 5G @ 2.86 GHz",
+      "boostClockGHz": 2.86
+    },
+    "ndd-55": {
+      "id": "ndd-55",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 820 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.05,
+      "gpuKeys": [
+        "mali:g57mp6"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP6",
+      "winBrandString": "HiSilicon Kirin 820 5G @ 2.36 GHz",
+      "boostClockGHz": 2.36
+    },
+    "ndd-56": {
+      "id": "ndd-56",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6735P",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "mali:t720"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP",
+      "winBrandString": "MediaTek MT6735P @ 1.00 GHz"
+    },
+    "ndd-57": {
+      "id": "ndd-57",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 810",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.98,
+      "gpuKeys": [
+        "mali:g52mp6"
+      ],
+      "integratedGpu": "ARM Mali-G52 MP6",
+      "winBrandString": "HiSilicon Kirin 810 @ 2.27 GHz",
+      "boostClockGHz": 2.27
+    },
+    "ndd-58": {
+      "id": "ndd-58",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6580M",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "MediaTek MT6580M @ 1.30 GHz"
+    },
+    "ndd-60": {
+      "id": "ndd-60",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6752M",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali:t760mp2"
+      ],
+      "integratedGpu": "ARM Mali-T760 MP2",
+      "winBrandString": "MediaTek MT6752M @ 1.50 GHz"
+    },
+    "ndd-61": {
+      "id": "ndd-61",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 660",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.02,
+      "gpuKeys": [
+        "adreno:512"
+      ],
+      "integratedGpu": "Qualcomm Adreno 512",
+      "winBrandString": "Qualcomm Snapdragon 660 @ 2.20 GHz",
+      "boostClockGHz": 2.2
+    },
+    "ndd-62": {
+      "id": "ndd-62",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 710",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.83,
+      "gpuKeys": [
+        "adreno:616"
+      ],
+      "integratedGpu": "Qualcomm Adreno 616",
+      "winBrandString": "Qualcomm Snapdragon 710 @ 2.20 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 685 DSP"
+      },
+      "boostClockGHz": 2.2
+    },
+    "ndd-63": {
+      "id": "ndd-63",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P23 MT6763",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.98,
+      "gpuKeys": [
+        "mali:g71mp2"
+      ],
+      "integratedGpu": "ARM Mali-G71 MP2",
+      "winBrandString": "MediaTek Helio P23 MT6763 @ 2.30 GHz",
+      "boostClockGHz": 2.3
+    },
+    "ndd-64": {
+      "id": "ndd-64",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 632",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.8,
+      "gpuKeys": [
+        "adreno:506"
+      ],
+      "integratedGpu": "Qualcomm Adreno 506",
+      "winBrandString": "Qualcomm Snapdragon 632 @ 1.80 GHz"
+    },
+    "ndd-65": {
+      "id": "ndd-65",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 617",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.35,
+      "gpuKeys": [
+        "adreno:405"
+      ],
+      "integratedGpu": "Qualcomm Adreno 405",
+      "winBrandString": "Qualcomm Snapdragon 617 @ 1.50 GHz",
+      "boostClockGHz": 1.5
+    },
+    "ndd-66": {
+      "id": "ndd-66",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 650",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.85,
+      "gpuKeys": [
+        "mali:t830mp2"
+      ],
+      "integratedGpu": "ARM Mali-T830 MP2",
+      "winBrandString": "HiSilicon Kirin 650 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-67": {
+      "id": "ndd-67",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 9825",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.26,
+      "gpuKeys": [
+        "mali:g76mp12"
+      ],
+      "integratedGpu": "ARM Mali-G76 MP12",
+      "winBrandString": "Samsung Exynos 9825 @ 2.73 GHz",
+      "boostClockGHz": 2.73
+    },
+    "ndd-68": {
+      "id": "ndd-68",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 616",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.45,
+      "gpuKeys": [
+        "adreno:405"
+      ],
+      "integratedGpu": "Qualcomm Adreno 405",
+      "winBrandString": "Qualcomm Snapdragon 616 @ 1.70 GHz",
+      "boostClockGHz": 1.7
+    },
+    "ndd-69": {
+      "id": "ndd-69",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6737T",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali:t720mp2"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP2",
+      "winBrandString": "MediaTek MT6737T @ 1.50 GHz"
+    },
+    "ndd-70": {
+      "id": "ndd-70",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 925",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.55,
+      "gpuKeys": [
+        "mali:t628mp6"
+      ],
+      "integratedGpu": "ARM Mali-T628 MP6",
+      "winBrandString": "HiSilicon Kirin 925 @ 1.80 GHz",
+      "boostClockGHz": 1.8
+    },
+    "ndd-71": {
+      "id": "ndd-71",
+      "vendor": "Other",
+      "model": "Allwinner A33",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Allwinner A33 @ 1.50 GHz"
+    },
+    "ndd-72": {
+      "id": "ndd-72",
+      "vendor": "Other",
+      "model": "Rockchip RK3168",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "sgx540"
+      ],
+      "integratedGpu": "PowerVR SGX540",
+      "winBrandString": "Rockchip RK3168 @ 1.20 GHz"
+    },
+    "ndd-73": {
+      "id": "ndd-73",
+      "vendor": "Other",
+      "model": "Rockchip RK3066",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali-400 mp4"
+      ],
+      "integratedGpu": "ARM Mali-400 MP4",
+      "winBrandString": "Rockchip RK3066 @ 1.50 GHz"
+    },
+    "ndd-76": {
+      "id": "ndd-76",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6739W",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "ge8100"
+      ],
+      "integratedGpu": "PowerVR GE8100",
+      "winBrandString": "MediaTek MT6739W @ 1.50 GHz"
+    },
+    "ndd-78": {
+      "id": "ndd-78",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 400",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.19,
+      "gpuKeys": [
+        "adreno:305"
+      ],
+      "integratedGpu": "Qualcomm Adreno 305",
+      "winBrandString": "Qualcomm Snapdragon 400 @ 1.19 GHz"
+    },
+    "ndd-85": {
+      "id": "ndd-85",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio X10",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.2,
+      "gpuKeys": [
+        "g6200"
+      ],
+      "integratedGpu": "PowerVR G6200",
+      "winBrandString": "MediaTek Helio X10 @ 2.20 GHz"
+    },
+    "ndd-86": {
+      "id": "ndd-86",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6737M",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.25,
+      "gpuKeys": [
+        "mali:t720mp2"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP2",
+      "winBrandString": "MediaTek MT6737M @ 1.25 GHz"
+    },
+    "ndd-92": {
+      "id": "ndd-92",
+      "vendor": "Other",
+      "model": "AMD A8-6410",
+      "architecture": "arm",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "amd radeon r5"
+      ],
+      "integratedGpu": "AMD Radeon R5",
+      "winBrandString": "AMD A8-6410 @ 2.40 GHz",
+      "boostClockGHz": 2.4,
+      "cache": {
+        "l1KB": 256,
+        "l2KB": 2048,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "AMD A8-6410 official specification (Beema Puma+)"
+      }
+    },
+    "ndd-93": {
+      "id": "ndd-93",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT8321M",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "MediaTek MT8321M @ 1.30 GHz"
+    },
+    "ndd-94": {
+      "id": "ndd-94",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 800",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2.26,
+      "gpuKeys": [
+        "adreno:330"
+      ],
+      "integratedGpu": "Qualcomm Adreno 330",
+      "winBrandString": "Qualcomm Snapdragon 800 @ 2.26 GHz"
+    },
+    "ndd-95": {
+      "id": "ndd-95",
+      "vendor": "Other",
+      "model": "Texas Instruments OMAP 4470",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "sgx540"
+      ],
+      "integratedGpu": "PowerVR SGX540",
+      "winBrandString": "Texas Instruments OMAP 4470 @ 1.50 GHz"
+    },
+    "ndd-96": {
+      "id": "ndd-96",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 810",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.76,
+      "gpuKeys": [
+        "adreno:430"
+      ],
+      "integratedGpu": "Qualcomm Adreno 430",
+      "winBrandString": "Qualcomm Snapdragon 810 @ 1.96 GHz",
+      "boostClockGHz": 1.96
+    },
+    "ndd-97": {
+      "id": "ndd-97",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P60T",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "mali:g72mp3"
+      ],
+      "integratedGpu": "ARM Mali-G72 MP3",
+      "winBrandString": "MediaTek Helio P60T @ 2.00 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3600
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek Multi-Core APU"
+      }
+    },
+    "ndd-102": {
+      "id": "ndd-102",
+      "vendor": "Other",
+      "model": "Rockchip RK3188T",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.4,
+      "gpuKeys": [
+        "mali-400 mp4"
+      ],
+      "integratedGpu": "ARM Mali-400 MP4",
+      "winBrandString": "Rockchip RK3188T @ 1.40 GHz"
+    },
+    "ndd-106": {
+      "id": "ndd-106",
+      "vendor": "Apple",
+      "model": "Apple A8X",
+      "architecture": "arm64",
+      "physicalCores": 3,
+      "logicalCores": 3,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "gx6650"
+      ],
+      "integratedGpu": "PowerVR GX6650",
+      "winBrandString": "Apple A8X @ 1.50 GHz"
+    },
+    "ndd-108": {
+      "id": "ndd-108",
+      "vendor": "Apple",
+      "model": "Apple A7",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.4,
+      "gpuKeys": [
+        "g6430"
+      ],
+      "integratedGpu": "PowerVR G6430",
+      "winBrandString": "Apple A7 @ 1.40 GHz"
+    },
+    "ndd-109": {
+      "id": "ndd-109",
+      "vendor": "UNISOC",
+      "model": "Unisoc SC9863A",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.6,
+      "gpuKeys": [
+        "ge8322"
+      ],
+      "integratedGpu": "PowerVR GE8322",
+      "winBrandString": "Unisoc SC9863A @ 1.60 GHz"
+    },
+    "ndd-110": {
+      "id": "ndd-110",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S4 Play MSM8225Q",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "adreno:203"
+      ],
+      "integratedGpu": "Qualcomm Adreno 203",
+      "winBrandString": "Qualcomm Snapdragon S4 Play MSM8225Q @ 1.20 GHz"
+    },
+    "ndd-111": {
+      "id": "ndd-111",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 400 MSM8926",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.19,
+      "gpuKeys": [
+        "adreno:305"
+      ],
+      "integratedGpu": "Qualcomm Adreno 305",
+      "winBrandString": "Qualcomm Snapdragon 400 MSM8926 @ 1.19 GHz"
+    },
+    "ndd-112": {
+      "id": "ndd-112",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6589T",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "sgx544"
+      ],
+      "integratedGpu": "PowerVR SGX544",
+      "winBrandString": "MediaTek MT6589T @ 1.50 GHz"
+    },
+    "ndd-113": {
+      "id": "ndd-113",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6737VWT",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali:t720mp2"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP2",
+      "winBrandString": "MediaTek MT6737VWT @ 1.50 GHz"
+    },
+    "ndd-114": {
+      "id": "ndd-114",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P70",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.05,
+      "gpuKeys": [
+        "mali:g72mp3"
+      ],
+      "integratedGpu": "ARM Mali-G72 MP3",
+      "winBrandString": "MediaTek Helio P70 @ 2.10 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3600
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek Multi-Core APU"
+      },
+      "boostClockGHz": 2.1
+    },
+    "ndd-115": {
+      "id": "ndd-115",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 652 MSM8976",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.6,
+      "gpuKeys": [
+        "adreno:510"
+      ],
+      "integratedGpu": "Qualcomm Adreno 510",
+      "winBrandString": "Qualcomm Snapdragon 652 MSM8976 @ 1.80 GHz",
+      "boostClockGHz": 1.8
+    },
+    "ndd-116": {
+      "id": "ndd-116",
+      "vendor": "Other",
+      "model": "Rockchip RK3399",
+      "architecture": "arm64",
+      "physicalCores": 6,
+      "logicalCores": 6,
+      "baseClockGHz": 1.67,
+      "gpuKeys": [
+        "mali:t860mp4"
+      ],
+      "integratedGpu": "ARM Mali-T860 MP4",
+      "winBrandString": "Rockchip RK3399 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-117": {
+      "id": "ndd-117",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P10",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali:t860mp2"
+      ],
+      "integratedGpu": "ARM Mali-T860 MP2",
+      "winBrandString": "MediaTek Helio P10 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-119": {
+      "id": "ndd-119",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 200 8210",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "adreno:302"
+      ],
+      "integratedGpu": "Qualcomm Adreno 302",
+      "winBrandString": "Qualcomm Snapdragon 200 8210 @ 1.20 GHz"
+    },
+    "ndd-121": {
+      "id": "ndd-121",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT8735B",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali:t720"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP",
+      "winBrandString": "MediaTek MT8735B @ 1.30 GHz"
+    },
+    "ndd-125": {
+      "id": "ndd-125",
+      "vendor": "Apple",
+      "model": "Apple A8",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.4,
+      "gpuKeys": [
+        "gx6450"
+      ],
+      "integratedGpu": "PowerVR GX6450",
+      "winBrandString": "Apple A8 @ 1.40 GHz"
+    },
+    "ndd-131": {
+      "id": "ndd-131",
+      "vendor": "Other",
+      "model": "Intel Atom Z2580",
+      "architecture": "arm",
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "sgx544mp2"
+      ],
+      "integratedGpu": "PowerVR SGX544MP2",
+      "winBrandString": "Intel Atom Z2580 @ 2.00 GHz",
+      "physicalCores": 2,
+      "logicalCores": 4,
+      "cache": {
+        "l1KB": 112,
+        "l2KB": 1024,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom Z2580 Saltwell (32I+24D per core)"
+      }
+    },
+    "ndd-132": {
+      "id": "ndd-132",
+      "vendor": "Other",
+      "model": "Intel Atom Z2420",
+      "architecture": "arm",
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "sgx540"
+      ],
+      "integratedGpu": "PowerVR SGX540",
+      "winBrandString": "Intel Atom Z2420 @ 1.20 GHz",
+      "physicalCores": 1,
+      "logicalCores": 2,
+      "cache": {
+        "l1KB": 56,
+        "l2KB": 512,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom Z2420 Saltwell (32I+24D per core)"
+      }
+    },
+    "ndd-133": {
+      "id": "ndd-133",
+      "vendor": "Other",
+      "model": "WonderMedia PRIZM WM8950",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "mali-400 mp"
+      ],
+      "integratedGpu": "ARM Mali-400 MP",
+      "winBrandString": "WonderMedia PRIZM WM8950 @ 1.00 GHz"
+    },
+    "ndd-134": {
+      "id": "ndd-134",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S4 Pro APQ8064A",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.7,
+      "gpuKeys": [
+        "adreno:320"
+      ],
+      "integratedGpu": "Qualcomm Adreno 320",
+      "winBrandString": "Qualcomm Snapdragon S4 Pro APQ8064A @ 1.70 GHz"
+    },
+    "ndd-135": {
+      "id": "ndd-135",
+      "vendor": "Other",
+      "model": "Intel Atom Z3745",
+      "architecture": "arm",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.33,
+      "gpuKeys": [
+        "intel hd (bay trail)"
+      ],
+      "integratedGpu": "Intel HD Graphics (Bay Trail)",
+      "winBrandString": "Intel Atom Z3745 @ 1.86 GHz",
+      "boostClockGHz": 1.86,
+      "cache": {
+        "l1KB": 224,
+        "l2KB": 2048,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom Z3745 Silvermont (32I+24D per core)"
+      }
+    },
+    "ndd-136": {
+      "id": "ndd-136",
+      "vendor": "Other",
+      "model": "Intel Atom Z3580",
+      "architecture": "arm",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2.33,
+      "gpuKeys": [
+        "g6430"
+      ],
+      "integratedGpu": "PowerVR G6430",
+      "winBrandString": "Intel Atom Z3580 @ 2.33 GHz",
+      "cache": {
+        "l1KB": 224,
+        "l2KB": 2048,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom Z3580 Silvermont (32I+24D per core)"
+      }
+    },
+    "ndd-138": {
+      "id": "ndd-138",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 600 APQ8064T",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.7,
+      "gpuKeys": [
+        "adreno:320"
+      ],
+      "integratedGpu": "Qualcomm Adreno 320",
+      "winBrandString": "Qualcomm Snapdragon 600 APQ8064T @ 1.70 GHz"
+    },
+    "ndd-139": {
+      "id": "ndd-139",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 801 MSM8974AB",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2.36,
+      "gpuKeys": [
+        "adreno:330"
+      ],
+      "integratedGpu": "Qualcomm Adreno 330",
+      "winBrandString": "Qualcomm Snapdragon 801 MSM8974AB @ 2.36 GHz"
+    },
+    "ndd-140": {
+      "id": "ndd-140",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S4 Plus MSM8260A",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "adreno:225"
+      ],
+      "integratedGpu": "Qualcomm Adreno 225",
+      "winBrandString": "Qualcomm Snapdragon S4 Plus MSM8260A @ 1.50 GHz"
+    },
+    "ndd-141": {
+      "id": "ndd-141",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 865+ 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.2,
+      "gpuKeys": [
+        "adreno:650"
+      ],
+      "integratedGpu": "Qualcomm Adreno 650",
+      "winBrandString": "Qualcomm Snapdragon 865+ 5G @ 3.10 GHz",
+      "boostClockGHz": 3.1,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5",
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 5500
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 698",
+        "topsPeak": 15
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6800"
+    },
+    "ndd-142": {
+      "id": "ndd-142",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6739WM",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.1,
+      "gpuKeys": [
+        "ge8100"
+      ],
+      "integratedGpu": "PowerVR GE8100",
+      "winBrandString": "MediaTek MT6739WM @ 1.10 GHz"
+    },
+    "ndd-145": {
+      "id": "ndd-145",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S1 MSM7227",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 0.6,
+      "gpuKeys": [
+        "adreno:200"
+      ],
+      "integratedGpu": "Qualcomm Adreno 200",
+      "winBrandString": "Qualcomm Snapdragon S1 MSM7227 @ 0.60 GHz"
+    },
+    "ndd-149": {
+      "id": "ndd-149",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm MSM7227 Turbo",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 0.83,
+      "gpuKeys": [
+        "adreno:200"
+      ],
+      "integratedGpu": "Qualcomm Adreno 200",
+      "winBrandString": "Qualcomm MSM7227 Turbo @ 0.83 GHz"
+    },
+    "ndd-150": {
+      "id": "ndd-150",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S1 QSD8250",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "adreno:200"
+      ],
+      "integratedGpu": "Qualcomm Adreno 200",
+      "winBrandString": "Qualcomm Snapdragon S1 QSD8250 @ 1.00 GHz"
+    },
+    "ndd-152": {
+      "id": "ndd-152",
+      "vendor": "Other",
+      "model": "Intel Atom Z2760",
+      "architecture": "arm",
+      "baseClockGHz": 1.8,
+      "gpuKeys": [
+        "sgx545"
+      ],
+      "integratedGpu": "PowerVR SGX545",
+      "winBrandString": "Intel Atom Z2760 @ 1.80 GHz",
+      "physicalCores": 2,
+      "logicalCores": 4,
+      "cache": {
+        "l1KB": 112,
+        "l2KB": 1024,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom Z2760 Saltwell (32I+24D per core)"
+      }
+    },
+    "ndd-153": {
+      "id": "ndd-153",
+      "vendor": "Other",
+      "model": "Intel Core i5-3317U",
+      "architecture": "arm",
+      "baseClockGHz": 1.7,
+      "gpuKeys": [
+        "intel hd 4000"
+      ],
+      "integratedGpu": "Intel HD Graphics 4000",
+      "winBrandString": "Intel Core i5-3317U @ 2.60 GHz",
+      "physicalCores": 2,
+      "logicalCores": 4,
+      "boostClockGHz": 2.6,
+      "cache": {
+        "l1KB": 128,
+        "l1IKB": 64,
+        "l1DKB": 64,
+        "l2KB": 512,
+        "l3KB": 3072,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK i5-3317U Ivy Bridge specification"
+      }
+    },
+    "ndd-155": {
+      "id": "ndd-155",
+      "vendor": "Other",
+      "model": "Intel Atom Z3735G",
+      "architecture": "arm",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.33,
+      "gpuKeys": [
+        "intel hd (bay trail)"
+      ],
+      "integratedGpu": "Intel HD Graphics (Bay Trail)",
+      "winBrandString": "Intel Atom Z3735G @ 1.83 GHz",
+      "boostClockGHz": 1.83,
+      "cache": {
+        "l1KB": 224,
+        "l2KB": 2048,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom Z3735G Silvermont (32I+24D per core)"
+      }
+    },
+    "ndd-156": {
+      "id": "ndd-156",
+      "vendor": "Other",
+      "model": "Intel Atom Z3740",
+      "architecture": "arm",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.33,
+      "gpuKeys": [
+        "intel hd (bay trail)"
+      ],
+      "integratedGpu": "Intel HD Graphics (Bay Trail)",
+      "winBrandString": "Intel Atom Z3740 @ 1.86 GHz",
+      "boostClockGHz": 1.86,
+      "cache": {
+        "l1KB": 224,
+        "l2KB": 2048,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom Z3740 Silvermont (32I+24D per core)"
+      }
+    },
+    "ndd-157": {
+      "id": "ndd-157",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 808 MSM8992",
+      "architecture": "arm64",
+      "physicalCores": 6,
+      "logicalCores": 6,
+      "baseClockGHz": 1.57,
+      "gpuKeys": [
+        "adreno:418"
+      ],
+      "integratedGpu": "Qualcomm Adreno 418",
+      "winBrandString": "Qualcomm Snapdragon 808 MSM8992 @ 1.82 GHz",
+      "boostClockGHz": 1.82
+    },
+    "ndd-158": {
+      "id": "ndd-158",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S2 MSM7230",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 0.8,
+      "gpuKeys": [
+        "adreno:205"
+      ],
+      "integratedGpu": "Qualcomm Adreno 205",
+      "winBrandString": "Qualcomm Snapdragon S2 MSM7230 @ 0.80 GHz"
+    },
+    "ndd-159": {
+      "id": "ndd-159",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6732M",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali:t760mp2"
+      ],
+      "integratedGpu": "ARM Mali-T760 MP2",
+      "winBrandString": "MediaTek MT6732M @ 1.30 GHz"
+    },
+    "ndd-160": {
+      "id": "ndd-160",
+      "vendor": "Other",
+      "model": "Intel Atom x7 Z8700",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.6,
+      "gpuKeys": [
+        "intel hd (cherry trail)"
+      ],
+      "integratedGpu": "Intel HD Graphics (Cherry Trail)",
+      "winBrandString": "Intel Atom x7 Z8700 @ 2.40 GHz",
+      "boostClockGHz": 2.4,
+      "cache": {
+        "l1KB": 224,
+        "l2KB": 2048,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom x7-Z8700 Airmont (32I+24D per core)"
+      }
+    },
+    "ndd-162": {
+      "id": "ndd-162",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6750T",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.25,
+      "gpuKeys": [
+        "mali:t860mp2"
+      ],
+      "integratedGpu": "ARM Mali-T860 MP2",
+      "winBrandString": "MediaTek MT6750T @ 1.50 GHz",
+      "boostClockGHz": 1.5
+    },
+    "ndd-165": {
+      "id": "ndd-165",
+      "vendor": "UNISOC",
+      "model": "Spreadtrum SC7731E",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Spreadtrum SC7731E @ 1.30 GHz"
+    },
+    "ndd-168": {
+      "id": "ndd-168",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT8765A",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali:t720"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP",
+      "winBrandString": "MediaTek MT8765A @ 1.50 GHz"
+    },
+    "ndd-169": {
+      "id": "ndd-169",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P23 MT6763V",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.75,
+      "gpuKeys": [
+        "mali:g71mp2"
+      ],
+      "integratedGpu": "ARM Mali-G71 MP2",
+      "winBrandString": "MediaTek Helio P23 MT6763V @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-172": {
+      "id": "ndd-172",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 429 SDM429",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "adreno:504"
+      ],
+      "integratedGpu": "Qualcomm Adreno 504",
+      "winBrandString": "Qualcomm Snapdragon 429 SDM429 @ 2.00 GHz"
+    },
+    "ndd-173": {
+      "id": "ndd-173",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 820",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.87,
+      "gpuKeys": [
+        "adreno:530"
+      ],
+      "integratedGpu": "Qualcomm Adreno 530",
+      "winBrandString": "Qualcomm Snapdragon 820 @ 2.15 GHz",
+      "boostClockGHz": 2.15
+    },
+    "ndd-174": {
+      "id": "ndd-174",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P20 MT6757",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.3,
+      "gpuKeys": [
+        "mali:t880mp2"
+      ],
+      "integratedGpu": "ARM Mali-T880 MP2",
+      "winBrandString": "MediaTek Helio P20 MT6757 @ 2.30 GHz"
+    },
+    "ndd-175": {
+      "id": "ndd-175",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT8766B",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "ge8300"
+      ],
+      "integratedGpu": "PowerVR GE8300",
+      "winBrandString": "MediaTek MT8766B @ 2.00 GHz"
+    },
+    "ndd-176": {
+      "id": "ndd-176",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT8165A",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali:t760mp2"
+      ],
+      "integratedGpu": "ARM Mali-T760 MP2",
+      "winBrandString": "MediaTek MT8165A @ 1.50 GHz"
+    },
+    "ndd-177": {
+      "id": "ndd-177",
+      "vendor": "Other",
+      "model": "Rockchip RK2918",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "vivante gc800"
+      ],
+      "integratedGpu": "Vivante GC800",
+      "winBrandString": "Rockchip RK2918 @ 1.00 GHz"
+    },
+    "ndd-181": {
+      "id": "ndd-181",
+      "vendor": "Apple",
+      "model": "Apple A5X",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "sgx543mp4"
+      ],
+      "integratedGpu": "PowerVR SGX543MP4",
+      "winBrandString": "Apple A5X @ 1.00 GHz"
+    },
+    "ndd-185": {
+      "id": "ndd-185",
+      "vendor": "Other",
+      "model": "Rockchip RK2928",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "mali-400 mp"
+      ],
+      "integratedGpu": "ARM Mali-400 MP",
+      "winBrandString": "Rockchip RK2928 @ 1.00 GHz"
+    },
+    "ndd-189": {
+      "id": "ndd-189",
+      "vendor": "Other",
+      "model": "Intel Atom x5 Z8350",
+      "architecture": "arm",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.44,
+      "gpuKeys": [
+        "intel hd (cherry trail)"
+      ],
+      "integratedGpu": "Intel HD Graphics (Cherry Trail)",
+      "winBrandString": "Intel Atom x5 Z8350 @ 1.92 GHz",
+      "boostClockGHz": 1.92,
+      "cache": {
+        "l1KB": 224,
+        "l2KB": 2048,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom x5-Z8350 Airmont (32I+24D per core)"
+      }
+    },
+    "ndd-191": {
+      "id": "ndd-191",
+      "vendor": "Apple",
+      "model": "Apple A5 S5L8940X",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "sgx543mp2"
+      ],
+      "integratedGpu": "PowerVR SGX543MP2",
+      "winBrandString": "Apple A5 S5L8940X @ 1.00 GHz"
+    },
+    "ndd-194": {
+      "id": "ndd-194",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio X20 MT6797M",
+      "architecture": "arm64",
+      "physicalCores": 10,
+      "logicalCores": 10,
+      "baseClockGHz": 1.7,
+      "gpuKeys": [
+        "mali:t880mp4"
+      ],
+      "integratedGpu": "ARM Mali-T880 MP4",
+      "winBrandString": "MediaTek Helio X20 MT6797M @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-195": {
+      "id": "ndd-195",
+      "vendor": "Other",
+      "model": "AllWinner A13",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "mali-400 mp"
+      ],
+      "integratedGpu": "ARM Mali-400 MP",
+      "winBrandString": "AllWinner A13 @ 1.00 GHz"
+    },
+    "ndd-196": {
+      "id": "ndd-196",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 653 MSM8976 Pro",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.68,
+      "gpuKeys": [
+        "adreno:510"
+      ],
+      "integratedGpu": "Qualcomm Adreno 510",
+      "winBrandString": "Qualcomm Snapdragon 653 MSM8976 Pro @ 1.95 GHz",
+      "boostClockGHz": 1.95
+    },
+    "ndd-197": {
+      "id": "ndd-197",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 855 Plus",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.18,
+      "gpuKeys": [
+        "adreno:640"
+      ],
+      "integratedGpu": "Qualcomm Adreno 640",
+      "cache": {
+        "l1KB": 768,
+        "l2KB": 1792,
+        "l3KB": 2048,
+        "topologyNote": "SM8150 family: 1x Prime (512K L2) + 3x Gold (256K L2) + 4x Silver (128K L2) = 1.75 MiB (1.8 MB in TaskMgr)",
+        "evidenceTier": "T1_real_device",
+        "evidenceSource": "User-verified Windows Task Manager capture on SM8150 (768 KB L1 / 1.8 MB L2 / 2.0 MB L3)"
+      },
+      "winBrandString": "Qualcomm Snapdragon 855 Plus @ 2.96 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 690 DSP"
+      },
+      "boostClockGHz": 2.96
+    },
+    "ndd-198": {
+      "id": "ndd-198",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 845",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.65,
+      "gpuKeys": [
+        "adreno:630"
+      ],
+      "integratedGpu": "Qualcomm Adreno 630",
+      "winBrandString": "Qualcomm Snapdragon 845 @ 2.80 GHz",
+      "boostClockGHz": 2.8,
+      "cache": {
+        "l1KB": 768,
+        "l2KB": 1536,
+        "l3KB": 2048,
+        "evidenceTier": "T1_real_device",
+        "evidenceSource": "User-verified Windows Task Manager capture (768 KB L1 / 1.5 MB L2 / 2.0 MB L3)"
+      },
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 685 DSP"
+      }
+    },
+    "ndd-199": {
+      "id": "ndd-199",
+      "vendor": "UNISOC",
+      "model": "Unisoc Tiger T618",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "mali:g52mc2"
+      ],
+      "integratedGpu": "ARM Mali-G52 MC2",
+      "winBrandString": "Unisoc Tiger T618 @ 2.00 GHz"
+    },
+    "ndd-200": {
+      "id": "ndd-200",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm MSM8225Q",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "adreno:203"
+      ],
+      "integratedGpu": "Qualcomm Adreno 203",
+      "winBrandString": "Qualcomm MSM8225Q @ 1.20 GHz"
+    },
+    "ndd-201": {
+      "id": "ndd-201",
+      "vendor": "Other",
+      "model": "Action ATM7029",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "vivante gc1000"
+      ],
+      "integratedGpu": "Vivante GC1000",
+      "winBrandString": "Action ATM7029 @ 1.20 GHz"
+    },
+    "ndd-202": {
+      "id": "ndd-202",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S3 MSM8260",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "adreno:220"
+      ],
+      "integratedGpu": "Qualcomm Adreno 220",
+      "winBrandString": "Qualcomm Snapdragon S3 MSM8260 @ 1.50 GHz"
+    },
+    "ndd-203": {
+      "id": "ndd-203",
+      "vendor": "Other",
+      "model": "Intel Core M3-6Y30",
+      "architecture": "arm",
+      "baseClockGHz": 0.9,
+      "gpuKeys": [
+        "intel hd 515"
+      ],
+      "integratedGpu": "Intel HD Graphics 515",
+      "winBrandString": "Intel Core M3-6Y30 @ 2.20 GHz",
+      "physicalCores": 2,
+      "logicalCores": 4,
+      "boostClockGHz": 2.2,
+      "cache": {
+        "l1KB": 128,
+        "l1IKB": 64,
+        "l1DKB": 64,
+        "l2KB": 512,
+        "l3KB": 4096,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Core m3-6Y30 Skylake specification"
+      }
+    },
+    "ndd-204": {
+      "id": "ndd-204",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 625 MSM8953",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "adreno:506"
+      ],
+      "integratedGpu": "Qualcomm Adreno 506",
+      "winBrandString": "Qualcomm Snapdragon 625 MSM8953 @ 2.00 GHz"
+    },
+    "ndd-205": {
+      "id": "ndd-205",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 636",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.7,
+      "gpuKeys": [
+        "adreno:509"
+      ],
+      "integratedGpu": "Qualcomm Adreno 509",
+      "winBrandString": "Qualcomm Snapdragon 636 @ 1.80 GHz",
+      "boostClockGHz": 1.8
+    },
+    "ndd-206": {
+      "id": "ndd-206",
+      "vendor": "Other",
+      "model": "Intel Atom Z2520",
+      "architecture": "arm64",
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "sgx544mp2"
+      ],
+      "integratedGpu": "PowerVR SGX544MP2",
+      "winBrandString": "Intel Atom Z2520 @ 1.20 GHz",
+      "physicalCores": 2,
+      "logicalCores": 4,
+      "cache": {
+        "l1KB": 112,
+        "l2KB": 1024,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom Z2520 Saltwell (32I+24D per core)"
+      }
+    },
+    "ndd-207": {
+      "id": "ndd-207",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 865",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.16,
+      "gpuKeys": [
+        "adreno:650"
+      ],
+      "integratedGpu": "Qualcomm Adreno 650",
+      "cache": {
+        "l1KB": 768,
+        "l1IKB": 384,
+        "l1DKB": 384,
+        "l2KB": 1792,
+        "l3KB": 4096,
+        "topologyNote": "1x Kryo 585 Prime (64I+64D, 512K L2) + 3x Gold (64I+64D, 256K L2) + 4x Silver (32I+32D, 128K L2)",
+        "evidenceTier": "T2_paper_table",
+        "evidenceSource": "Luthier (ACM TECS 2025-09, ETRI PDF p.11 Table 4)"
+      },
+      "winBrandString": "Qualcomm Snapdragon 865 @ 2.84 GHz",
+      "boostClockGHz": 2.84,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5",
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 5500
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 698",
+        "topsPeak": 15
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6800"
+    },
+    "ndd-208": {
+      "id": "ndd-208",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 821 MSM8996 Pro",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2.27,
+      "gpuKeys": [
+        "adreno:530"
+      ],
+      "integratedGpu": "Qualcomm Adreno 530",
+      "winBrandString": "Qualcomm Snapdragon 821 MSM8996 Pro @ 2.35 GHz",
+      "boostClockGHz": 2.35
+    },
+    "ndd-209": {
+      "id": "ndd-209",
+      "vendor": "Other",
+      "model": "Intel Atom Z3590",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2.5,
+      "gpuKeys": [
+        "g6430"
+      ],
+      "integratedGpu": "PowerVR G6430",
+      "winBrandString": "Intel Atom Z3590 @ 2.50 GHz",
+      "cache": {
+        "l1KB": 224,
+        "l2KB": 2048,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom Z3590 Silvermont (32I+24D per core)"
+      }
+    },
+    "ndd-210": {
+      "id": "ndd-210",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6572A",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "mali-400 mp"
+      ],
+      "integratedGpu": "ARM Mali-400 MP",
+      "winBrandString": "MediaTek MT6572A @ 1.20 GHz"
+    },
+    "ndd-211": {
+      "id": "ndd-211",
+      "vendor": "Other",
+      "model": "Intel Atom x3 C3230",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "mali-450 mp4"
+      ],
+      "integratedGpu": "ARM Mali-450 MP4",
+      "winBrandString": "Intel Atom x3 C3230 @ 1.20 GHz",
+      "boostClockGHz": 1.2,
+      "cache": {
+        "l1KB": 224,
+        "l2KB": 1024,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom x3-C3230 Silvermont (32I+24D per core)"
+      }
+    },
+    "ndd-212": {
+      "id": "ndd-212",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S4 Plus MSM8230",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "adreno:305"
+      ],
+      "integratedGpu": "Qualcomm Adreno 305",
+      "winBrandString": "Qualcomm Snapdragon S4 Plus MSM8230 @ 1.20 GHz"
+    },
+    "ndd-213": {
+      "id": "ndd-213",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 710A",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.85,
+      "gpuKeys": [
+        "mali:g51mp4"
+      ],
+      "integratedGpu": "ARM Mali-G51 MP4",
+      "winBrandString": "HiSilicon Kirin 710A @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-214": {
+      "id": "ndd-214",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 450",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.8,
+      "gpuKeys": [
+        "adreno:506"
+      ],
+      "integratedGpu": "Qualcomm Adreno 506",
+      "winBrandString": "Qualcomm Snapdragon 450 @ 1.80 GHz"
+    },
+    "ndd-215": {
+      "id": "ndd-215",
+      "vendor": "UNISOC",
+      "model": "Spreadtrum SC9830",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Spreadtrum SC9830 @ 1.50 GHz"
+    },
+    "ndd-216": {
+      "id": "ndd-216",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 950",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.05,
+      "gpuKeys": [
+        "mali:t880mp4"
+      ],
+      "integratedGpu": "ARM Mali-T880 MP4",
+      "winBrandString": "HiSilicon Kirin 950 @ 2.30 GHz",
+      "boostClockGHz": 2.3
+    },
+    "ndd-217": {
+      "id": "ndd-217",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S1 MSM7625",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 0.6,
+      "gpuKeys": [
+        "adreno:200"
+      ],
+      "integratedGpu": "Qualcomm Adreno 200",
+      "winBrandString": "Qualcomm Snapdragon S1 MSM7625 @ 0.60 GHz"
+    },
+    "ndd-218": {
+      "id": "ndd-218",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S1 MSM7627A",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 0.6,
+      "gpuKeys": [
+        "adreno:200"
+      ],
+      "integratedGpu": "Qualcomm Adreno 200",
+      "winBrandString": "Qualcomm Snapdragon S1 MSM7627A @ 0.60 GHz"
+    },
+    "ndd-219": {
+      "id": "ndd-219",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S4 Play",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "adreno:203"
+      ],
+      "integratedGpu": "Qualcomm Adreno 203",
+      "winBrandString": "Qualcomm Snapdragon S4 Play @ 1.00 GHz"
+    },
+    "ndd-220": {
+      "id": "ndd-220",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S4 Play MSM8625Q",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "adreno:203"
+      ],
+      "integratedGpu": "Qualcomm Adreno 203",
+      "winBrandString": "Qualcomm Snapdragon S4 Play MSM8625Q @ 1.20 GHz"
+    },
+    "ndd-221": {
+      "id": "ndd-221",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 960",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.1,
+      "gpuKeys": [
+        "mali:g71mp8"
+      ],
+      "integratedGpu": "ARM Mali-G71 MP8",
+      "winBrandString": "HiSilicon Kirin 960 @ 2.36 GHz",
+      "boostClockGHz": 2.36
+    },
+    "ndd-222": {
+      "id": "ndd-222",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 960s",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.95,
+      "gpuKeys": [
+        "mali:g71mp8"
+      ],
+      "integratedGpu": "ARM Mali-G71 MP8",
+      "winBrandString": "HiSilicon Kirin 960s @ 2.10 GHz",
+      "boostClockGHz": 2.1
+    },
+    "ndd-223": {
+      "id": "ndd-223",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 935",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.85,
+      "gpuKeys": [
+        "mali:t628mp4"
+      ],
+      "integratedGpu": "ARM Mali-T628 MP4",
+      "winBrandString": "HiSilicon Kirin 935 @ 2.20 GHz",
+      "boostClockGHz": 2.2
+    },
+    "ndd-225": {
+      "id": "ndd-225",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 955",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.15,
+      "gpuKeys": [
+        "mali:t880mp4"
+      ],
+      "integratedGpu": "ARM Mali-T880 MP4",
+      "winBrandString": "HiSilicon Kirin 955 @ 2.50 GHz",
+      "boostClockGHz": 2.5
+    },
+    "ndd-226": {
+      "id": "ndd-226",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G80",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.85,
+      "gpuKeys": [
+        "mali:g52mc2"
+      ],
+      "integratedGpu": "ARM Mali-G52 MC2",
+      "winBrandString": "MediaTek Helio G80 @ 2.00 GHz",
+      "boostClockGHz": 2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3600
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 5"
+    },
+    "ndd-227": {
+      "id": "ndd-227",
+      "vendor": "HiSilicon",
+      "model": "HiSilicon Kirin 930",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.75,
+      "gpuKeys": [
+        "mali:t628mp4"
+      ],
+      "integratedGpu": "ARM Mali-T628 MP4",
+      "winBrandString": "HiSilicon Kirin 930 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-228": {
+      "id": "ndd-228",
+      "vendor": "HiSilicon",
+      "model": "Hisilicon Hi3798MV200",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.6,
+      "gpuKeys": [
+        "mali-450 mp4"
+      ],
+      "integratedGpu": "ARM Mali-450 MP4",
+      "winBrandString": "Hisilicon Hi3798MV200 @ 1.60 GHz"
+    },
+    "ndd-229": {
+      "id": "ndd-229",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 215",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "adreno:308"
+      ],
+      "integratedGpu": "Qualcomm Adreno 308",
+      "winBrandString": "Qualcomm Snapdragon 215 @ 1.30 GHz"
+    },
+    "ndd-230": {
+      "id": "ndd-230",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT8765B",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali:t720"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP",
+      "winBrandString": "MediaTek MT8765B @ 1.50 GHz"
+    },
+    "ndd-232": {
+      "id": "ndd-232",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P25",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.1,
+      "gpuKeys": [
+        "mali:t880mp2"
+      ],
+      "integratedGpu": "ARM Mali-T880 MP2",
+      "winBrandString": "MediaTek Helio P25 @ 2.60 GHz",
+      "boostClockGHz": 2.6
+    },
+    "ndd-233": {
+      "id": "ndd-233",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 4412 Quad",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.4,
+      "gpuKeys": [
+        "mali-400 mp4"
+      ],
+      "integratedGpu": "ARM Mali-400 MP4",
+      "winBrandString": "Samsung Exynos 4412 Quad @ 1.40 GHz"
+    },
+    "ndd-234": {
+      "id": "ndd-234",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 855",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.16,
+      "gpuKeys": [
+        "adreno:640"
+      ],
+      "integratedGpu": "Qualcomm Adreno 640",
+      "cache": {
+        "l1KB": 768,
+        "l2KB": 1792,
+        "l3KB": 2048,
+        "topologyNote": "SM8150 family: 1x Prime (512K L2) + 3x Gold (256K L2) + 4x Silver (128K L2) = 1.75 MiB (1.8 MB in TaskMgr)",
+        "evidenceTier": "T1_real_device",
+        "evidenceSource": "User-verified Windows Task Manager capture on SM8150 (768 KB L1 / 1.8 MB L2 / 2.0 MB L3)"
+      },
+      "winBrandString": "Qualcomm Snapdragon 855 @ 2.84 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 690 DSP"
+      },
+      "boostClockGHz": 2.84
+    },
+    "ndd-237": {
+      "id": "ndd-237",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 7904",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.65,
+      "gpuKeys": [
+        "mali:g71mp2"
+      ],
+      "integratedGpu": "ARM Mali-G71 MP2",
+      "winBrandString": "Samsung Exynos 7904 @ 1.80 GHz",
+      "boostClockGHz": 1.8
+    },
+    "ndd-238": {
+      "id": "ndd-238",
+      "vendor": "UNISOC",
+      "model": "Spreadtrum SC7730",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Spreadtrum SC7730 @ 1.30 GHz"
+    },
+    "ndd-239": {
+      "id": "ndd-239",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 4415",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Samsung Exynos 4415 @ 1.50 GHz"
+    },
+    "ndd-240": {
+      "id": "ndd-240",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 4210",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "mali-400 mp"
+      ],
+      "integratedGpu": "ARM Mali-400 MP",
+      "winBrandString": "Samsung Exynos 4210 @ 1.20 GHz"
+    },
+    "ndd-241": {
+      "id": "ndd-241",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 9810",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.4,
+      "gpuKeys": [
+        "mali:g72mp18"
+      ],
+      "integratedGpu": "ARM Mali-G72 MP18",
+      "winBrandString": "Samsung Exynos 9810 @ 2.90 GHz",
+      "boostClockGHz": 2.9
+    },
+    "ndd-242": {
+      "id": "ndd-242",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 765G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.93,
+      "gpuKeys": [
+        "adreno:620"
+      ],
+      "integratedGpu": "Qualcomm Adreno 620",
+      "cache": {
+        "l3KB": 2048,
+        "topologyNote": "L3=2 MiB confirmed; L2 conflict pending (OPPO spec 896 KiB vs Linux SM7250 DTS 1536 KiB); L1 unconfirmed",
+        "evidenceTier": "T2_oem_spec",
+        "evidenceSource": "OPPO Reno5 5G (CPH2145) official parameter list (KB1004077)"
+      },
+      "winBrandString": "Qualcomm Snapdragon 765G @ 2.40 GHz",
+      "boostClockGHz": 2.4,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 696"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6200"
+    },
+    "ndd-243": {
+      "id": "ndd-243",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 801 MSM8974AC",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2.45,
+      "gpuKeys": [
+        "adreno:330"
+      ],
+      "integratedGpu": "Qualcomm Adreno 330",
+      "winBrandString": "Qualcomm Snapdragon 801 MSM8974AC @ 2.45 GHz"
+    },
+    "ndd-244": {
+      "id": "ndd-244",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 460",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.7,
+      "gpuKeys": [
+        "adreno:610"
+      ],
+      "integratedGpu": "Qualcomm Adreno 610",
+      "winBrandString": "Qualcomm Snapdragon 460 @ 1.80 GHz",
+      "boostClockGHz": 1.8,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 683 DSP"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6100"
+    },
+    "ndd-245": {
+      "id": "ndd-245",
+      "vendor": "Other",
+      "model": "AllWinner A10",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "mali-400 mp"
+      ],
+      "integratedGpu": "ARM Mali-400 MP",
+      "winBrandString": "AllWinner A10 @ 1.20 GHz"
+    },
+    "ndd-247": {
+      "id": "ndd-247",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6737W",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali:t720"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP",
+      "winBrandString": "MediaTek MT6737W @ 1.30 GHz"
+    },
+    "ndd-248": {
+      "id": "ndd-248",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 7884",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.4,
+      "gpuKeys": [
+        "mali:g71mp2"
+      ],
+      "integratedGpu": "ARM Mali-G71 MP2",
+      "winBrandString": "Samsung Exynos 7884 @ 1.56 GHz",
+      "boostClockGHz": 1.56
+    },
+    "ndd-249": {
+      "id": "ndd-249",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 990",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.31,
+      "gpuKeys": [
+        "mali:g77mp11"
+      ],
+      "integratedGpu": "ARM Mali-G77 MP11",
+      "cache": {
+        "l2KB": 2816,
+        "l3KB": 4096,
+        "slcKB": 2048,
+        "topologyNote": "Two L3 domains: 3 MiB (2x M5) + 1 MiB (2x A76 + 4x A55); separate 2 MiB SLC",
+        "evidenceTier": "T2_arch_diagram",
+        "evidenceSource": "AnandTech Exynos 990 architecture analysis"
+      },
+      "winBrandString": "Samsung Exynos 990 @ 2.73 GHz",
+      "boostClockGHz": 2.73,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5"
+        ],
+        "maxSpeedMTs": 5500
+      },
+      "npu": {
+        "vendor": "Samsung",
+        "name": "Samsung Dual-Core NPU",
+        "topsPeak": 15
+      }
+    },
+    "ndd-250": {
+      "id": "ndd-250",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 850",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "mali:g52mp1"
+      ],
+      "integratedGpu": "ARM Mali-G52 MP1",
+      "winBrandString": "Samsung Exynos 850 @ 2.00 GHz"
+    },
+    "ndd-251": {
+      "id": "ndd-251",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 7578",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali:t720mp2"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP2",
+      "winBrandString": "Samsung Exynos 7578 @ 1.50 GHz"
+    },
+    "ndd-252": {
+      "id": "ndd-252",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 7870 Octa",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.6,
+      "gpuKeys": [
+        "mali:t830mp2"
+      ],
+      "integratedGpu": "ARM Mali-T830 MP2",
+      "winBrandString": "Samsung Exynos 7870 Octa @ 1.60 GHz"
+    },
+    "ndd-253": {
+      "id": "ndd-253",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P65 MT6768",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.78,
+      "gpuKeys": [
+        "mali:g52mc2"
+      ],
+      "integratedGpu": "ARM Mali-G52 MC2",
+      "winBrandString": "MediaTek Helio P65 MT6768 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-254": {
+      "id": "ndd-254",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 7580 Octa",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.6,
+      "gpuKeys": [
+        "mali:t720mp2"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP2",
+      "winBrandString": "Samsung Exynos 7580 Octa @ 1.60 GHz"
+    },
+    "ndd-255": {
+      "id": "ndd-255",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 7880",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.9,
+      "gpuKeys": [
+        "mali:t830mp3"
+      ],
+      "integratedGpu": "ARM Mali-T830 MP3",
+      "winBrandString": "Samsung Exynos 7880 @ 1.90 GHz"
+    },
+    "ndd-256": {
+      "id": "ndd-256",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 9610",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.95,
+      "gpuKeys": [
+        "mali:g72mp3"
+      ],
+      "integratedGpu": "ARM Mali-G72 MP3",
+      "winBrandString": "Samsung Exynos 9610 @ 2.30 GHz",
+      "boostClockGHz": 2.3
+    },
+    "ndd-257": {
+      "id": "ndd-257",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 9611",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "mali:g72mp3"
+      ],
+      "integratedGpu": "ARM Mali-G72 MP3",
+      "winBrandString": "Samsung Exynos 9611 @ 2.30 GHz",
+      "boostClockGHz": 2.3
+    },
+    "ndd-258": {
+      "id": "ndd-258",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 675",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.78,
+      "gpuKeys": [
+        "adreno:612"
+      ],
+      "integratedGpu": "Qualcomm Adreno 612",
+      "winBrandString": "Qualcomm Snapdragon 675 @ 2.00 GHz",
+      "boostClockGHz": 2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 685 DSP"
+      }
+    },
+    "ndd-259": {
+      "id": "ndd-259",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 7885",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.75,
+      "gpuKeys": [
+        "mali:g71"
+      ],
+      "integratedGpu": "ARM Mali-G71",
+      "winBrandString": "Samsung Exynos 7885 @ 2.20 GHz",
+      "boostClockGHz": 2.2,
+      "gpuEvidenceSource": "https://semiconductor.samsung.com/processor/mobile-processor/exynos-7-series-7885/"
+    },
+    "ndd-260": {
+      "id": "ndd-260",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 730G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.9,
+      "gpuKeys": [
+        "adreno:618"
+      ],
+      "integratedGpu": "Qualcomm Adreno 618",
+      "winBrandString": "Qualcomm Snapdragon 730G @ 2.20 GHz",
+      "boostClockGHz": 2.2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 688 DSP"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6200"
+    },
+    "ndd-261": {
+      "id": "ndd-261",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 730",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.9,
+      "gpuKeys": [
+        "adreno:618"
+      ],
+      "integratedGpu": "Qualcomm Adreno 618",
+      "winBrandString": "Qualcomm Snapdragon 730 @ 2.20 GHz",
+      "boostClockGHz": 2.2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 688 DSP"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6200"
+    },
+    "ndd-262": {
+      "id": "ndd-262",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 980",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.9,
+      "gpuKeys": [
+        "mali:g76mp5"
+      ],
+      "integratedGpu": "ARM Mali-G76 MP5",
+      "winBrandString": "Samsung Exynos 980 @ 2.20 GHz",
+      "boostClockGHz": 2.2
+    },
+    "ndd-263": {
+      "id": "ndd-263",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 5430",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.55,
+      "gpuKeys": [
+        "mali:t628mp6"
+      ],
+      "integratedGpu": "ARM Mali-T628 MP6",
+      "winBrandString": "Samsung Exynos 5430 @ 1.80 GHz",
+      "boostClockGHz": 1.8
+    },
+    "ndd-264": {
+      "id": "ndd-264",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 7420",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.8,
+      "gpuKeys": [
+        "mali:t760mp8"
+      ],
+      "integratedGpu": "ARM Mali-T760 MP8",
+      "winBrandString": "Samsung Exynos 7420 @ 2.10 GHz",
+      "boostClockGHz": 2.1
+    },
+    "ndd-266": {
+      "id": "ndd-266",
+      "vendor": "Other",
+      "model": "ST-Ericsson NovaThor U8500",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "mali-400 mp"
+      ],
+      "integratedGpu": "ARM Mali-400 MP",
+      "winBrandString": "ST-Ericsson NovaThor U8500 @ 1.00 GHz"
+    },
+    "ndd-267": {
+      "id": "ndd-267",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 2100 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.52,
+      "gpuKeys": [
+        "mali:g78mp14"
+      ],
+      "integratedGpu": "ARM Mali-G78 MP14",
+      "winBrandString": "Samsung Exynos 2100 5G @ 2.91 GHz",
+      "boostClockGHz": 2.91,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "Samsung",
+        "name": "Samsung Triple-Core NPU",
+        "topsPeak": 26
+      }
+    },
+    "ndd-269": {
+      "id": "ndd-269",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 9820",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.24,
+      "gpuKeys": [
+        "mali:g76mp12"
+      ],
+      "integratedGpu": "ARM Mali-G76 MP12",
+      "winBrandString": "Samsung Exynos 9820 @ 2.73 GHz",
+      "boostClockGHz": 2.73
+    },
+    "ndd-270": {
+      "id": "ndd-270",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 8890",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.95,
+      "gpuKeys": [
+        "mali:t880mp12"
+      ],
+      "integratedGpu": "ARM Mali-T880 MP12",
+      "winBrandString": "Samsung Exynos 8890 @ 2.30 GHz",
+      "boostClockGHz": 2.3
+    },
+    "ndd-271": {
+      "id": "ndd-271",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 8895",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "mali:g71mp20"
+      ],
+      "integratedGpu": "ARM Mali-G71 MP20",
+      "winBrandString": "Samsung Exynos 8895 @ 2.30 GHz",
+      "boostClockGHz": 2.3
+    },
+    "ndd-272": {
+      "id": "ndd-272",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 626 MSM8953 Pro",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.2,
+      "gpuKeys": [
+        "adreno:506"
+      ],
+      "integratedGpu": "Qualcomm Adreno 506",
+      "winBrandString": "Qualcomm Snapdragon 626 MSM8953 Pro @ 2.20 GHz"
+    },
+    "ndd-273": {
+      "id": "ndd-273",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 720G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.93,
+      "gpuKeys": [
+        "adreno:618"
+      ],
+      "integratedGpu": "Qualcomm Adreno 618",
+      "winBrandString": "Qualcomm Snapdragon 720G @ 2.30 GHz",
+      "boostClockGHz": 2.3,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 692 DSP"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6200"
+    },
+    "ndd-274": {
+      "id": "ndd-274",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 720",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "mali:g57mp3"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP3",
+      "cache": {
+        "l2KB": 1280,
+        "l3KB": 1024,
+        "topologyNote": "2x A76 (256K L2) + 6x A55 (128K L2) + 1 MiB L3; L1 unconfirmed",
+        "evidenceTier": "T2_oem_spec",
+        "evidenceSource": "OPPO A73 5G (CPH2161/MT6853V) official parameter list (KB1003874)"
+      },
+      "winBrandString": "MediaTek Dimensity 720 @ 2.00 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek Integrated APU"
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 5"
+    },
+    "ndd-275": {
+      "id": "ndd-275",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 750 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.9,
+      "gpuKeys": [
+        "adreno:619"
+      ],
+      "integratedGpu": "Qualcomm Adreno 619",
+      "winBrandString": "Qualcomm Snapdragon 750 5G @ 2.20 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon Tensor Accelerator",
+        "topsPeak": 4
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6200",
+      "boostClockGHz": 2.2
+    },
+    "ndd-276": {
+      "id": "ndd-276",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 805 APQ8084",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2.7,
+      "gpuKeys": [
+        "adreno:420"
+      ],
+      "integratedGpu": "Qualcomm Adreno 420",
+      "winBrandString": "Qualcomm Snapdragon 805 APQ8084 @ 2.70 GHz"
+    },
+    "ndd-277": {
+      "id": "ndd-277",
+      "vendor": "UNISOC",
+      "model": "Spreadtrum SC7715",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "mali-400 mp"
+      ],
+      "integratedGpu": "ARM Mali-400 MP",
+      "winBrandString": "Spreadtrum SC7715 @ 1.20 GHz"
+    },
+    "ndd-278": {
+      "id": "ndd-278",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 3475",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali:t720"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP",
+      "winBrandString": "Samsung Exynos 3475 @ 1.30 GHz"
+    },
+    "ndd-279": {
+      "id": "ndd-279",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 7570",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.4,
+      "gpuKeys": [
+        "mali:t720mp2"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP2",
+      "winBrandString": "Samsung Exynos 7570 @ 1.40 GHz"
+    },
+    "ndd-280": {
+      "id": "ndd-280",
+      "vendor": "UNISOC",
+      "model": "Spreadtrum SC6815A",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "mali-400 mp"
+      ],
+      "integratedGpu": "ARM Mali-400 MP",
+      "winBrandString": "Spreadtrum SC6815A @ 1.00 GHz"
+    },
+    "ndd-281": {
+      "id": "ndd-281",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 427",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.4,
+      "gpuKeys": [
+        "adreno:308"
+      ],
+      "integratedGpu": "Qualcomm Adreno 308",
+      "winBrandString": "Qualcomm Snapdragon 427 @ 1.40 GHz"
+    },
+    "ndd-283": {
+      "id": "ndd-283",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 665",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.9,
+      "gpuKeys": [
+        "adreno:610"
+      ],
+      "integratedGpu": "Qualcomm Adreno 610",
+      "winBrandString": "Qualcomm Snapdragon 665 @ 2.00 GHz",
+      "boostClockGHz": 2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 686 DSP"
+      }
+    },
+    "ndd-284": {
+      "id": "ndd-284",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G25",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.75,
+      "gpuKeys": [
+        "ge8320"
+      ],
+      "integratedGpu": "PowerVR GE8320",
+      "winBrandString": "MediaTek Helio G25 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-285": {
+      "id": "ndd-285",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 662",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.9,
+      "gpuKeys": [
+        "adreno:610"
+      ],
+      "integratedGpu": "Qualcomm Adreno 610",
+      "winBrandString": "Qualcomm Snapdragon 662 @ 2.00 GHz",
+      "boostClockGHz": 2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 683 DSP"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6100"
+    },
+    "ndd-286": {
+      "id": "ndd-286",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S2 MSM8255",
+      "architecture": "arm64",
+      "physicalCores": 1,
+      "logicalCores": 1,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "adreno:205"
+      ],
+      "integratedGpu": "Qualcomm Adreno 205",
+      "winBrandString": "Qualcomm Snapdragon S2 MSM8255 @ 1.50 GHz"
+    },
+    "ndd-287": {
+      "id": "ndd-287",
+      "vendor": "UNISOC",
+      "model": "Spreadtrum SC7731G",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Spreadtrum SC7731G @ 1.30 GHz"
+    },
+    "ndd-289": {
+      "id": "ndd-289",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 712",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.85,
+      "gpuKeys": [
+        "adreno:616"
+      ],
+      "integratedGpu": "Qualcomm Adreno 616",
+      "winBrandString": "Qualcomm Snapdragon 712 @ 2.30 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 685 DSP"
+      },
+      "boostClockGHz": 2.3
+    },
+    "ndd-290": {
+      "id": "ndd-290",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P60",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "mali:g72mp3"
+      ],
+      "integratedGpu": "ARM Mali-G72 MP3",
+      "winBrandString": "MediaTek Helio P60 @ 2.00 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3600
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek Multi-Core APU"
+      }
+    },
+    "ndd-291": {
+      "id": "ndd-291",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio X20 MT6797",
+      "architecture": "arm64",
+      "physicalCores": 10,
+      "logicalCores": 10,
+      "baseClockGHz": 1.76,
+      "gpuKeys": [
+        "mali:t880mp4"
+      ],
+      "integratedGpu": "ARM Mali-T880 MP4",
+      "winBrandString": "MediaTek Helio X20 MT6797 @ 2.30 GHz",
+      "boostClockGHz": 2.3
+    },
+    "ndd-293": {
+      "id": "ndd-293",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6739WA",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "ge8100"
+      ],
+      "integratedGpu": "PowerVR GE8100",
+      "winBrandString": "MediaTek MT6739WA @ 1.30 GHz"
+    },
+    "ndd-294": {
+      "id": "ndd-294",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 400 MSM8928",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.19,
+      "gpuKeys": [
+        "adreno:305"
+      ],
+      "integratedGpu": "Qualcomm Adreno 305",
+      "winBrandString": "Qualcomm Snapdragon 400 MSM8928 @ 1.19 GHz"
+    },
+    "ndd-295": {
+      "id": "ndd-295",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon S4 Plus MSM8227",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "adreno:305"
+      ],
+      "integratedGpu": "Qualcomm Adreno 305",
+      "winBrandString": "Qualcomm Snapdragon S4 Plus MSM8227 @ 1.00 GHz"
+    },
+    "ndd-296": {
+      "id": "ndd-296",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 1000+",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.3,
+      "gpuKeys": [
+        "mali:g77mp9"
+      ],
+      "integratedGpu": "ARM Mali-G77 MP9",
+      "cache": {
+        "l2KB": 1536,
+        "l3KB": 2048,
+        "topologyNote": "4x A77 (256K L2) + 4x A55 (128K L2) + 2 MiB L3; L1 unconfirmed (not extrapolated to 1000L/1100)",
+        "evidenceTier": "T2_oem_spec",
+        "evidenceSource": "OPPO Reno5 Pro 5G (CPH2201/MT6889) official parameter list (#2025916)"
+      },
+      "winBrandString": "MediaTek Dimensity 1000+ @ 2.60 GHz",
+      "boostClockGHz": 2.6,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 3.0"
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 6 / Bluetooth 5.1"
+    },
+    "ndd-297": {
+      "id": "ndd-297",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 820 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.3,
+      "gpuKeys": [
+        "mali:g57mc5"
+      ],
+      "integratedGpu": "ARM Mali-G57 MC5",
+      "winBrandString": "MediaTek Dimensity 820 5G @ 2.60 GHz",
+      "boostClockGHz": 2.6,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 3.0",
+        "topsPeak": 2.4
+      }
+    },
+    "ndd-298": {
+      "id": "ndd-298",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 670",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.78,
+      "gpuKeys": [
+        "adreno:615"
+      ],
+      "integratedGpu": "Qualcomm Adreno 615",
+      "winBrandString": "Qualcomm Snapdragon 670 @ 2.00 GHz",
+      "boostClockGHz": 2,
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/sargo.yml"
+    },
+    "ndd-299": {
+      "id": "ndd-299",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 880",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.85,
+      "gpuKeys": [
+        "mali:g76mp5"
+      ],
+      "integratedGpu": "ARM Mali-G76 MP5",
+      "winBrandString": "Samsung Exynos 880 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-300": {
+      "id": "ndd-300",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 800U",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.1,
+      "gpuKeys": [
+        "mali:g57mp3"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP3",
+      "cache": {
+        "l2KB": 1280,
+        "l3KB": 1024,
+        "topologyNote": "2x A76 (256K L2) + 6x A55 (128K L2) + 1 MiB L3; L1 unconfirmed",
+        "evidenceTier": "T2_oem_spec",
+        "evidenceSource": "OPPO A94 5G/Reno5 Z (CPH2211/CPH2213) official parameter list (KB1004375)"
+      },
+      "winBrandString": "MediaTek Dimensity 800U @ 2.40 GHz",
+      "boostClockGHz": 2.4,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 3.0",
+        "topsPeak": 2.4
+      }
+    },
+    "ndd-301": {
+      "id": "ndd-301",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 1080",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.33,
+      "gpuKeys": [
+        "mali:g78mp10"
+      ],
+      "integratedGpu": "ARM Mali-G78 MP10",
+      "winBrandString": "Samsung Exynos 1080 @ 2.80 GHz",
+      "boostClockGHz": 2.8
+    },
+    "ndd-302": {
+      "id": "ndd-302",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 700",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.05,
+      "gpuKeys": [
+        "mali:g57mp2"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP2",
+      "cache": {
+        "l2KB": 1280,
+        "l3KB": 1024,
+        "topologyNote": "2x A76 (256K L2) + 6x A55 (128K L2) + 1 MiB L3; L1I/L1D unconfirmed",
+        "evidenceTier": "T2_oem_spec",
+        "evidenceSource": "Dorland EXTRA_5G PRO / EXTRA_5G PDF p.3 OEM spec"
+      },
+      "winBrandString": "MediaTek Dimensity 700 @ 2.20 GHz",
+      "boostClockGHz": 2.2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek AI Accelerator",
+        "topsPeak": 3
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 5 / Bluetooth 5.1"
+    },
+    "ndd-303": {
+      "id": "ndd-303",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 768G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "adreno:620"
+      ],
+      "integratedGpu": "Qualcomm Adreno 620",
+      "winBrandString": "Qualcomm Snapdragon 768G @ 2.80 GHz",
+      "boostClockGHz": 2.8,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 696"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6200"
+    },
+    "ndd-304": {
+      "id": "ndd-304",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 870 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.21,
+      "gpuKeys": [
+        "adreno:650"
+      ],
+      "integratedGpu": "Qualcomm Adreno 650",
+      "winBrandString": "Qualcomm Snapdragon 870 5G @ 3.20 GHz",
+      "boostClockGHz": 3.2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5",
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 5500
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 698",
+        "topsPeak": 15
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6800"
+    },
+    "ndd-305": {
+      "id": "ndd-305",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 888 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.42,
+      "gpuKeys": [
+        "adreno:660"
+      ],
+      "integratedGpu": "Qualcomm Adreno 660",
+      "winBrandString": "Qualcomm Snapdragon 888 5G @ 2.84 GHz",
+      "boostClockGHz": 2.84,
+      "cache": {
+        "l1KB": 576,
+        "l1IKB": 288,
+        "l1DKB": 288,
+        "l2KB": 3072,
+        "l3KB": 4096,
+        "topologyNote": "1x X1 (64I+64D, 1M L2) + 3x A78 (32I+32D, 512K L2) + 4x A55 (32I+32D, 128K L2)",
+        "evidenceTier": "T1_real_device",
+        "evidenceSource": "Real-device CPU-Z 1.02.arm64 + Windows Task Manager capture"
+      },
+      "memorySpec": {
+        "generations": [
+          "LPDDR5"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 780",
+        "topsPeak": 26
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6900"
+    },
+    "ndd-306": {
+      "id": "ndd-306",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 1100",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.3,
+      "gpuKeys": [
+        "mali:g77mc9"
+      ],
+      "integratedGpu": "ARM Mali-G77 MC9",
+      "winBrandString": "MediaTek Dimensity 1100 @ 2.60 GHz",
+      "boostClockGHz": 2.6,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 3.0"
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 6 / Bluetooth 5.2"
+    },
+    "ndd-307": {
+      "id": "ndd-307",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 480 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.85,
+      "gpuKeys": [
+        "adreno:619"
+      ],
+      "integratedGpu": "Qualcomm Adreno 619",
+      "cache": {
+        "l2KB": 896,
+        "l3KB": 1024,
+        "topologyNote": "2x Big (256K L2) + 6x Little (64K L2) + 1 MiB L3; L1 unconfirmed",
+        "evidenceTier": "T2_oem_spec",
+        "evidenceSource": "OPPO A74 5G (CPH2197/CPH2263) official parameter list (#2026104)"
+      },
+      "winBrandString": "Qualcomm Snapdragon 480 5G @ 2.00 GHz",
+      "boostClockGHz": 2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 686"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6200"
+    },
+    "ndd-309": {
+      "id": "ndd-309",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P25 MT6757CH",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.1,
+      "gpuKeys": [
+        "mali:t880mp2"
+      ],
+      "integratedGpu": "ARM Mali-T880 MP2",
+      "winBrandString": "MediaTek Helio P25 MT6757CH @ 2.60 GHz",
+      "boostClockGHz": 2.6
+    },
+    "ndd-310": {
+      "id": "ndd-310",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6735M",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "mali:t720"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP",
+      "winBrandString": "MediaTek MT6735M @ 1.00 GHz"
+    },
+    "ndd-311": {
+      "id": "ndd-311",
+      "vendor": "Other",
+      "model": "Intel Atom x3-C3130",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Intel Atom x3-C3130 @ 1.00 GHz",
+      "cache": {
+        "l1KB": 112,
+        "l2KB": 512,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom x3-C3130 Silvermont (32I+24D per core)"
+      }
+    },
+    "ndd-312": {
+      "id": "ndd-312",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6750S",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.25,
+      "gpuKeys": [
+        "mali:t860mp2"
+      ],
+      "integratedGpu": "ARM Mali-T860 MP2",
+      "winBrandString": "MediaTek MT6750S @ 1.50 GHz",
+      "boostClockGHz": 1.5
+    },
+    "ndd-313": {
+      "id": "ndd-313",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6592M",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.4,
+      "gpuKeys": [
+        "mali-450 mp4"
+      ],
+      "integratedGpu": "ARM Mali-450 MP4",
+      "winBrandString": "MediaTek MT6592M @ 1.40 GHz"
+    },
+    "ndd-314": {
+      "id": "ndd-314",
+      "vendor": "Other",
+      "model": "Amlogic S905W",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali-450 mp"
+      ],
+      "integratedGpu": "ARM Mali-450 MP",
+      "winBrandString": "Amlogic S905W @ 1.50 GHz"
+    },
+    "ndd-315": {
+      "id": "ndd-315",
+      "vendor": "Other",
+      "model": "Intel Atom x5 Z8300",
+      "architecture": "arm",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.44,
+      "gpuKeys": [
+        "intel hd (cherry trail)"
+      ],
+      "integratedGpu": "Intel HD Graphics (Cherry Trail)",
+      "winBrandString": "Intel Atom x5 Z8300 @ 1.84 GHz",
+      "boostClockGHz": 1.84,
+      "cache": {
+        "l1KB": 224,
+        "l2KB": 2048,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom x5-Z8300 Airmont (32I+24D per core)"
+      }
+    },
+    "ndd-316": {
+      "id": "ndd-316",
+      "vendor": "Other",
+      "model": "Allwinner A31S",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "gpuKeys": [
+        "sgx544mp2"
+      ],
+      "integratedGpu": "PowerVR SGX544MP2",
+      "baseClockGHz": 1,
+      "winBrandString": "Allwinner A31S @ 1.00 GHz"
+    },
+    "ndd-318": {
+      "id": "ndd-318",
+      "vendor": "UNISOC",
+      "model": "Unisoc T610",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.8,
+      "gpuKeys": [
+        "mali:g52mc2"
+      ],
+      "integratedGpu": "ARM Mali-G52 MC2",
+      "winBrandString": "Unisoc T610 @ 1.80 GHz"
+    },
+    "ndd-319": {
+      "id": "ndd-319",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G70",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.78,
+      "gpuKeys": [
+        "mali:g52mc2"
+      ],
+      "integratedGpu": "ARM Mali-G52 MC2",
+      "winBrandString": "MediaTek Helio G70 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-321": {
+      "id": "ndd-321",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G95",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.01,
+      "gpuKeys": [
+        "mali:g76mp4"
+      ],
+      "integratedGpu": "ARM Mali-G76 MP4",
+      "winBrandString": "MediaTek Helio G95 @ 2.05 GHz",
+      "boostClockGHz": 2.05,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 5"
+    },
+    "ndd-322": {
+      "id": "ndd-322",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G85",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.85,
+      "gpuKeys": [
+        "mali:g52mc2"
+      ],
+      "integratedGpu": "ARM Mali-G52 MC2",
+      "winBrandString": "MediaTek Helio G85 @ 2.00 GHz",
+      "boostClockGHz": 2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3600
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 5"
+    },
+    "ndd-323": {
+      "id": "ndd-323",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G35",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.05,
+      "gpuKeys": [
+        "ge8320"
+      ],
+      "integratedGpu": "PowerVR GE8320",
+      "winBrandString": "MediaTek Helio G35 @ 2.30 GHz",
+      "boostClockGHz": 2.3
+    },
+    "ndd-324": {
+      "id": "ndd-324",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 1200 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.35,
+      "gpuKeys": [
+        "mali:g77mc9"
+      ],
+      "integratedGpu": "ARM Mali-G77 MC9",
+      "cache": {
+        "l3KB": 2048,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "MediaTek Dimensity 9300 Whitepaper Table 3.1 (2024-02-19)"
+      },
+      "winBrandString": "MediaTek Dimensity 1200 5G @ 3.00 GHz",
+      "boostClockGHz": 3,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 3.0"
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 6 / Bluetooth 5.2"
+    },
+    "ndd-325": {
+      "id": "ndd-325",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G90T",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.01,
+      "gpuKeys": [
+        "mali:g76mp4"
+      ],
+      "integratedGpu": "ARM Mali-G76 MP4",
+      "winBrandString": "MediaTek Helio G90T @ 2.05 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X",
+          "LPDDR3"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 5",
+      "boostClockGHz": 2.05
+    },
+    "ndd-328": {
+      "id": "ndd-328",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 650",
+      "architecture": "arm64",
+      "physicalCores": 6,
+      "logicalCores": 6,
+      "baseClockGHz": 1.53,
+      "gpuKeys": [
+        "adreno:510"
+      ],
+      "integratedGpu": "Qualcomm Adreno 510",
+      "winBrandString": "Qualcomm Snapdragon 650 @ 1.80 GHz",
+      "boostClockGHz": 1.8
+    },
+    "ndd-329": {
+      "id": "ndd-329",
+      "vendor": "Other",
+      "model": "Intel Atom x3 C3200",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.1,
+      "gpuKeys": [
+        "mali-450 mp4"
+      ],
+      "integratedGpu": "ARM Mali-450 MP4",
+      "winBrandString": "Intel Atom x3 C3200 @ 1.20 GHz",
+      "boostClockGHz": 1.2,
+      "cache": {
+        "l1KB": 224,
+        "l2KB": 1024,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Intel ARK Atom x3-C3200RK Silvermont (32I+24D per core)"
+      }
+    },
+    "ndd-330": {
+      "id": "ndd-330",
+      "vendor": "UNISOC",
+      "model": "Spreadtrum SC7731C",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Spreadtrum SC7731C @ 1.30 GHz"
+    },
+    "ndd-331": {
+      "id": "ndd-331",
+      "vendor": "Other",
+      "model": "Rockchip RK3128",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Rockchip RK3128 @ 1.20 GHz"
+    },
+    "ndd-333": {
+      "id": "ndd-333",
+      "vendor": "Other",
+      "model": "Amlogic S905",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "mali-450 mp"
+      ],
+      "integratedGpu": "ARM Mali-450 MP",
+      "winBrandString": "Amlogic S905 @ 2.00 GHz"
+    },
+    "ndd-335": {
+      "id": "ndd-335",
+      "vendor": "UNISOC",
+      "model": "Spreadtrum SC9830A",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Spreadtrum SC9830A @ 1.50 GHz"
+    },
+    "ndd-336": {
+      "id": "ndd-336",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6580W",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "MediaTek MT6580W @ 1.30 GHz"
+    },
+    "ndd-337": {
+      "id": "ndd-337",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio A20",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.8,
+      "gpuKeys": [
+        "ge8300"
+      ],
+      "integratedGpu": "PowerVR GE8300",
+      "winBrandString": "MediaTek Helio A20 @ 1.80 GHz"
+    },
+    "ndd-338": {
+      "id": "ndd-338",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6580P",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "MediaTek MT6580P @ 1.30 GHz"
+    },
+    "ndd-339": {
+      "id": "ndd-339",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT8753P",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "mali:t720"
+      ],
+      "integratedGpu": "ARM Mali-T720 MP",
+      "winBrandString": "MediaTek MT8753P @ 1.00 GHz"
+    },
+    "ndd-340": {
+      "id": "ndd-340",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio A25",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.65,
+      "gpuKeys": [
+        "ge8320"
+      ],
+      "integratedGpu": "PowerVR GE8320",
+      "winBrandString": "MediaTek Helio A25 @ 1.80 GHz",
+      "boostClockGHz": 1.8
+    },
+    "ndd-341": {
+      "id": "ndd-341",
+      "vendor": "UNISOC",
+      "model": "Spreadtrum SC7721E",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Spreadtrum SC7721E @ 1.30 GHz"
+    },
+    "ndd-345": {
+      "id": "ndd-345",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P95",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.05,
+      "gpuKeys": [
+        "gm9446"
+      ],
+      "integratedGpu": "PowerVR GM9446",
+      "winBrandString": "MediaTek Helio P95 @ 2.20 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 2.0"
+      },
+      "boostClockGHz": 2.2
+    },
+    "ndd-346": {
+      "id": "ndd-346",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio P90",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.05,
+      "gpuKeys": [
+        "gm9446"
+      ],
+      "integratedGpu": "PowerVR GM9446",
+      "winBrandString": "MediaTek Helio P90 @ 2.20 GHz",
+      "boostClockGHz": 2.2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 2.0"
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 5"
+    },
+    "ndd-347": {
+      "id": "ndd-347",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 1000L",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.1,
+      "gpuKeys": [
+        "mali:g77mc9"
+      ],
+      "integratedGpu": "ARM Mali-G77 MC9",
+      "winBrandString": "MediaTek Dimensity 1000L @ 2.20 GHz",
+      "boostClockGHz": 2.2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 3.0"
+      }
+    },
+    "ndd-349": {
+      "id": "ndd-349",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G88",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.85,
+      "gpuKeys": [
+        "mali:g52mc2"
+      ],
+      "integratedGpu": "ARM Mali-G52 MC2",
+      "winBrandString": "MediaTek Helio G88 @ 2.00 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3600
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 5",
+      "boostClockGHz": 2
+    },
+    "ndd-350": {
+      "id": "ndd-350",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G96",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.01,
+      "gpuKeys": [
+        "mali:g57mc2"
+      ],
+      "integratedGpu": "ARM Mali-G57 MC2",
+      "winBrandString": "MediaTek Helio G96 @ 2.05 GHz",
+      "boostClockGHz": 2.05,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 5"
+    },
+    "ndd-351": {
+      "id": "ndd-351",
+      "vendor": "Other",
+      "model": "Allwinner A31",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.2,
+      "gpuKeys": [
+        "sgx544"
+      ],
+      "integratedGpu": "PowerVR SGX544",
+      "winBrandString": "Allwinner A31 @ 1.20 GHz"
+    },
+    "ndd-352": {
+      "id": "ndd-352",
+      "vendor": "Other",
+      "model": "Amlogic AML8726-M6",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1.5,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Amlogic AML8726-M6 @ 1.50 GHz"
+    },
+    "ndd-354": {
+      "id": "ndd-354",
+      "vendor": "UNISOC",
+      "model": "Unisoc Tiger T606",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.6,
+      "gpuKeys": [
+        "mali:g57mp1"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP1",
+      "winBrandString": "Unisoc Tiger T606 @ 1.60 GHz"
+    },
+    "ndd-355": {
+      "id": "ndd-355",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio A25",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.65,
+      "gpuKeys": [
+        "ge8320"
+      ],
+      "integratedGpu": "PowerVR GE8320",
+      "winBrandString": "MediaTek Helio A25 @ 1.80 GHz",
+      "boostClockGHz": 1.8
+    },
+    "ndd-356": {
+      "id": "ndd-356",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 810",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.1,
+      "gpuKeys": [
+        "mali:g57mp2"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP2",
+      "winBrandString": "MediaTek Dimensity 810 @ 2.40 GHz",
+      "boostClockGHz": 2.4,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek NPU 3.0"
+      }
+    },
+    "ndd-357": {
+      "id": "ndd-357",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 8 Gen 1",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.21,
+      "gpuKeys": [
+        "adreno:730"
+      ],
+      "integratedGpu": "Qualcomm Adreno 730",
+      "winBrandString": "Qualcomm Snapdragon 8 Gen 1 @ 3.00 GHz",
+      "boostClockGHz": 3,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon NPU"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6900"
+    },
+    "ndd-358": {
+      "id": "ndd-358",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 695 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.83,
+      "gpuKeys": [
+        "adreno:619"
+      ],
+      "integratedGpu": "Qualcomm Adreno 619",
+      "winBrandString": "Qualcomm Snapdragon 695 5G @ 2.20 GHz",
+      "boostClockGHz": 2.2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 686"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6200"
+    },
+    "ndd-359": {
+      "id": "ndd-359",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 778G 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.08,
+      "gpuKeys": [
+        "adreno:642l"
+      ],
+      "integratedGpu": "Qualcomm Adreno 642L",
+      "winBrandString": "Qualcomm Snapdragon 778G 5G @ 2.40 GHz",
+      "boostClockGHz": 2.4,
+      "cache": {
+        "l1KB": 512,
+        "l2KB": 1536,
+        "l3KB": 2048,
+        "evidenceTier": "T1_real_device",
+        "evidenceSource": "User-verified Windows Task Manager capture (512 KB L1 / 1.5 MB L2 / 2.0 MB L3)"
+      },
+      "memorySpec": {
+        "generations": [
+          "LPDDR5"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 770",
+        "topsPeak": 12
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6700",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/m52xq.yml"
+    },
+    "ndd-361": {
+      "id": "ndd-361",
+      "vendor": "UNISOC",
+      "model": "Spreadtrum SC9832A",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "Spreadtrum SC9832A @ 1.30 GHz"
+    },
+    "ndd-362": {
+      "id": "ndd-362",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 9000",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.35,
+      "gpuKeys": [
+        "mali:g710mp10"
+      ],
+      "integratedGpu": "ARM Mali-G710 MP10",
+      "cache": {
+        "l2KB": 3584,
+        "l3KB": 8192,
+        "slcKB": 6144,
+        "topologyNote": "1x X2 (1M L2) + 3x A710 (512K L2) + 2x dual-A510 (512K L2/pair) + 8 MiB L3 + 6 MiB SLC; L1 unconfirmed",
+        "evidenceTier": "T1_official",
+        "evidenceSource": "MediaTek Hot Chips 34 presentation PDF p.8 (HC2022)"
+      },
+      "winBrandString": "MediaTek Dimensity 9000 @ 3.05 GHz",
+      "boostClockGHz": 3.05,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5X",
+          "LPDDR5"
+        ],
+        "maxSpeedMTs": 7500
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 590"
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 6E / Bluetooth 5.3"
+    },
+    "ndd-363": {
+      "id": "ndd-363",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 680 4G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.15,
+      "gpuKeys": [
+        "adreno:610"
+      ],
+      "integratedGpu": "Qualcomm Adreno 610",
+      "winBrandString": "Qualcomm Snapdragon 680 4G @ 2.40 GHz",
+      "boostClockGHz": 2.4,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 686 DSP"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6100"
+    },
+    "ndd-364": {
+      "id": "ndd-364",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 732G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.93,
+      "gpuKeys": [
+        "adreno:618"
+      ],
+      "integratedGpu": "Qualcomm Adreno 618",
+      "winBrandString": "Qualcomm Snapdragon 732G @ 2.30 GHz",
+      "boostClockGHz": 2.3,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 3733
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon 688 DSP"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6200"
+    },
+    "ndd-366": {
+      "id": "ndd-366",
+      "vendor": "UNISOC",
+      "model": "Unisoc Tiger T612",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.8,
+      "gpuKeys": [
+        "mali:g57mp1"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP1",
+      "winBrandString": "Unisoc Tiger T612 @ 1.80 GHz"
+    },
+    "ndd-367": {
+      "id": "ndd-367",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G36",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.9,
+      "gpuKeys": [
+        "ge8320"
+      ],
+      "integratedGpu": "PowerVR GE8320",
+      "winBrandString": "MediaTek Helio G36 @ 2.20 GHz",
+      "boostClockGHz": 2.2
+    },
+    "ndd-368": {
+      "id": "ndd-368",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 7050",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.15,
+      "gpuKeys": [
+        "mali:g68mp4"
+      ],
+      "integratedGpu": "ARM Mali-G68 MP4",
+      "winBrandString": "MediaTek Dimensity 7050 @ 2.60 GHz",
+      "boostClockGHz": 2.6,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5",
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 550"
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 6 / Bluetooth 5.2"
+    },
+    "ndd-369": {
+      "id": "ndd-369",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 1300",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.35,
+      "gpuKeys": [
+        "mali:g77mc9"
+      ],
+      "integratedGpu": "ARM Mali-G77 MC9",
+      "winBrandString": "MediaTek Dimensity 1300 @ 3.00 GHz",
+      "boostClockGHz": 3,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 3.0"
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 6 / Bluetooth 5.2"
+    },
+    "ndd-370": {
+      "id": "ndd-370",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 7 Gen 1",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.09,
+      "gpuKeys": [
+        "adreno:644"
+      ],
+      "integratedGpu": "Qualcomm Adreno 644",
+      "winBrandString": "Qualcomm Snapdragon 7 Gen 1 @ 2.40 GHz",
+      "boostClockGHz": 2.4,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon NPU"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6700"
+    },
+    "ndd-371": {
+      "id": "ndd-371",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 8100 Max",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.42,
+      "gpuKeys": [
+        "mali:g610mc6"
+      ],
+      "integratedGpu": "ARM Mali-G610 MC6",
+      "winBrandString": "MediaTek Dimensity 8100 Max @ 2.85 GHz",
+      "boostClockGHz": 2.85,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5",
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 580"
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 6E / Bluetooth 5.3"
+    },
+    "ndd-373": {
+      "id": "ndd-373",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 8+ Gen 1",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.33,
+      "gpuKeys": [
+        "adreno:730"
+      ],
+      "integratedGpu": "Qualcomm Adreno 730",
+      "winBrandString": "Qualcomm Snapdragon 8+ Gen 1 @ 3.19 GHz",
+      "boostClockGHz": 3.19,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon NPU"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 6900"
+    },
+    "ndd-374": {
+      "id": "ndd-374",
+      "vendor": "UNISOC",
+      "model": "Unisoc Tiger T310",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.85,
+      "gpuKeys": [
+        "ge8300"
+      ],
+      "integratedGpu": "PowerVR GE8300",
+      "winBrandString": "Unisoc Tiger T310 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-376": {
+      "id": "ndd-376",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 9200",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.35,
+      "gpuKeys": [
+        "mali:g715mp11"
+      ],
+      "integratedGpu": "ARM Mali-G715 MP11",
+      "winBrandString": "MediaTek Dimensity 9200 @ 3.05 GHz",
+      "boostClockGHz": 3.05,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5X"
+        ],
+        "maxSpeedMTs": 8533
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 690"
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 7"
+    },
+    "ndd-379": {
+      "id": "ndd-379",
+      "vendor": "Samsung",
+      "model": "Samsung Exynos 1580",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.31,
+      "gpuKeys": [
+        "xclipse 540"
+      ],
+      "integratedGpu": "Xclipse 540",
+      "winBrandString": "Samsung Exynos 1580 @ 2.90 GHz",
+      "boostClockGHz": 2.9
+    },
+    "ndd-380": {
+      "id": "ndd-380",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 6100+",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.05,
+      "gpuKeys": [
+        "mali:g57mp2"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP2",
+      "winBrandString": "MediaTek Dimensity 6100+ @ 2.20 GHz",
+      "boostClockGHz": 2.2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek AI Accelerator"
+      }
+    },
+    "ndd-381": {
+      "id": "ndd-381",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G100",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.05,
+      "gpuKeys": [
+        "mali:g57mp2"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP2",
+      "winBrandString": "MediaTek Helio G100 @ 2.20 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 5",
+      "boostClockGHz": 2.2
+    },
+    "ndd-382": {
+      "id": "ndd-382",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G81",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.85,
+      "gpuKeys": [
+        "mali:g52mp2"
+      ],
+      "integratedGpu": "ARM Mali-G52 MP2",
+      "winBrandString": "MediaTek Helio G81 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-383": {
+      "id": "ndd-383",
+      "vendor": "Other",
+      "model": "Allwinner A733",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.84,
+      "gpuKeys": [
+        "img bxm-4-64"
+      ],
+      "integratedGpu": "IMG BXM-4-64",
+      "cache": {
+        "l1KB": 640,
+        "l1IKB": 320,
+        "l1DKB": 320,
+        "l2KB": 1280,
+        "l3KB": 1024,
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Allwinner A733 Datasheet V1.01 §3.1 (2025-12-11)"
+      },
+      "winBrandString": "Allwinner A733 @ 2.00 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR5"
+        ]
+      },
+      "npu": {
+        "vendor": "Allwinner",
+        "name": "Allwinner NPU",
+        "topsPeak": 3
+      },
+      "boostClockGHz": 2
+    },
+    "ndd-384": {
+      "id": "ndd-384",
+      "vendor": "UNISOC",
+      "model": "Unisoc T620",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.9,
+      "gpuKeys": [
+        "mali:g57mp1"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP1",
+      "winBrandString": "Unisoc T620 @ 2.20 GHz",
+      "boostClockGHz": 2.2
+    },
+    "ndd-385": {
+      "id": "ndd-385",
+      "vendor": "UNISOC",
+      "model": "Unisoc T606",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.6,
+      "gpuKeys": [
+        "mali:g57mp1"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP1",
+      "winBrandString": "Unisoc T606 @ 1.60 GHz"
+    },
+    "ndd-386": {
+      "id": "ndd-386",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 7300",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.25,
+      "gpuKeys": [
+        "mali:g615mp2"
+      ],
+      "integratedGpu": "ARM Mali-G615 MP2",
+      "winBrandString": "MediaTek Dimensity 7300 @ 2.50 GHz",
+      "boostClockGHz": 2.5,
+      "memorySpec": {
+        "generations": [
+          "LPDDR5",
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek NPU 655"
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 6E / Bluetooth 5.4"
+    },
+    "ndd-387": {
+      "id": "ndd-387",
+      "vendor": "UNISOC",
+      "model": "Unisoc T820",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.25,
+      "gpuKeys": [
+        "mali:g57mp4"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP4",
+      "winBrandString": "Unisoc T820 @ 2.70 GHz",
+      "boostClockGHz": 2.7
+    },
+    "ndd-388": {
+      "id": "ndd-388",
+      "vendor": "UNISOC",
+      "model": "Unisoc Tiger T616",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.85,
+      "gpuKeys": [
+        "mali:g57mp1"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP1",
+      "winBrandString": "Unisoc Tiger T616 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-389": {
+      "id": "ndd-389",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G99",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.05,
+      "gpuKeys": [
+        "mali:g57mp2"
+      ],
+      "integratedGpu": "ARM Mali-G57 MP2",
+      "winBrandString": "MediaTek Helio G99 @ 2.20 GHz",
+      "boostClockGHz": 2.2,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 5"
+    },
+    "ndd-390": {
+      "id": "ndd-390",
+      "vendor": "MediaTek",
+      "model": "MediaTek Dimensity 8020",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.3,
+      "gpuKeys": [
+        "mali:g77mp9"
+      ],
+      "integratedGpu": "ARM Mali-G77 MP9",
+      "winBrandString": "MediaTek Dimensity 8020 @ 2.60 GHz",
+      "boostClockGHz": 2.6,
+      "memorySpec": {
+        "generations": [
+          "LPDDR4X"
+        ],
+        "maxSpeedMTs": 4266
+      },
+      "npu": {
+        "vendor": "MediaTek",
+        "name": "MediaTek APU 570"
+      },
+      "coupledNetworkHardware": "MediaTek Integrated Wi-Fi 6E"
+    },
+    "ndd-391": {
+      "id": "ndd-391",
+      "vendor": "Other",
+      "model": "Rockchip RK3562",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "mali:g52"
+      ],
+      "integratedGpu": "ARM Mali-G52 2EE",
+      "winBrandString": "Rockchip RK3562 @ 2.00 GHz"
+    },
+    "ndd-392": {
+      "id": "ndd-392",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT8788V",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2,
+      "gpuKeys": [
+        "mali:g72mp3"
+      ],
+      "integratedGpu": "ARM Mali-G72 MP3",
+      "winBrandString": "MediaTek MT8788V @ 2.00 GHz"
+    },
+    "ndd-393": {
+      "id": "ndd-393",
+      "vendor": "MediaTek",
+      "model": "MediaTek MTK8768",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.75,
+      "gpuKeys": [
+        "ge8320"
+      ],
+      "integratedGpu": "PowerVR GE8320",
+      "winBrandString": "MediaTek MTK8768 @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-394": {
+      "id": "ndd-394",
+      "vendor": "MediaTek",
+      "model": "MediaTek Helio G37",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.05,
+      "gpuKeys": [
+        "ge8320"
+      ],
+      "integratedGpu": "PowerVR GE8320",
+      "winBrandString": "MediaTek Helio G37 @ 2.30 GHz",
+      "boostClockGHz": 2.3
+    },
+    "ndd-401": {
+      "id": "ndd-401",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6580WP",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "baseClockGHz": 1.3,
+      "gpuKeys": [
+        "mali-400 mp2"
+      ],
+      "integratedGpu": "ARM Mali-400 MP2",
+      "winBrandString": "MediaTek MT6580WP @ 1.30 GHz"
+    },
+    "ndd-402": {
+      "id": "ndd-402",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT6577T",
+      "architecture": "arm64",
+      "physicalCores": 2,
+      "logicalCores": 2,
+      "baseClockGHz": 1,
+      "gpuKeys": [
+        "sgx531"
+      ],
+      "integratedGpu": "PowerVR SGX531",
+      "winBrandString": "MediaTek MT6577T @ 1.00 GHz"
+    },
+    "ndd-403": {
+      "id": "ndd-403",
+      "vendor": "MediaTek",
+      "model": "MediaTek MT8768CA",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 1.75,
+      "gpuKeys": [
+        "ge8320"
+      ],
+      "integratedGpu": "PowerVR GE8320",
+      "winBrandString": "MediaTek MT8768CA @ 2.00 GHz",
+      "boostClockGHz": 2
+    },
+    "ndd-404": {
+      "id": "ndd-404",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 850",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.38,
+      "gpuKeys": [
+        "adreno:630"
+      ],
+      "integratedGpu": "Qualcomm Adreno 630",
+      "winBrandString": "Qualcomm Snapdragon 850 @ 2.95 GHz",
+      "boostClockGHz": 2.95
+    },
+    "adb-snapdragon-8-elite-gen-5-sm8850": {
+      "id": "adb-snapdragon-8-elite-gen-5-sm8850",
+      "vendor": "Qualcomm",
+      "model": "Snapdragon 8 Elite Gen 5 (SM8850)",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 3.88,
+      "boostClockGHz": 4.61,
+      "gpuKeys": [
+        "adreno:840"
+      ],
+      "winBrandString": "Snapdragon 8 Elite Gen 5 (SM8850) @ 4.61 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR5X"
+        ]
+      },
+      "npu": {
+        "vendor": "Qualcomm",
+        "name": "Qualcomm Hexagon NPU"
+      },
+      "coupledNetworkHardware": "Qualcomm FastConnect 7900",
+      "cache": {
+        "l2KB": 24576,
+        "slcKB": 8192,
+        "topologyNote": "2x 12 MB L2 clusters (24 MB L2) + 8 MB SLC; L1 unconfirmed",
+        "evidenceTier": "T1_official",
+        "evidenceSource": "Qualcomm Snapdragon 8 Elite Gen 5 official spec (24 MB total L2)"
+      },
+      "integratedGpu": "Qualcomm Adreno 840",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/infiniti.yml"
+    },
+    "adb-google-tensor-g2-gs201": {
+      "id": "adb-google-tensor-g2-gs201",
+      "vendor": "Google",
+      "model": "Google Tensor G2 (GS201)",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.2,
+      "boostClockGHz": 2.85,
+      "gpuKeys": [
+        "mali:g710"
+      ],
+      "winBrandString": "Google Tensor G2 (GS201) @ 2.85 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR5"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "Google",
+        "name": "Google Edge TPU Gen 2"
+      }
+    },
+    "adb-google-tensor-g4-gs401": {
+      "id": "adb-google-tensor-g4-gs401",
+      "vendor": "Google",
+      "model": "Google Tensor G4 (GS401)",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.32,
+      "boostClockGHz": 3.1,
+      "gpuKeys": [
+        "mali:g715"
+      ],
+      "winBrandString": "Google Tensor G4 (GS401) @ 3.10 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR5X"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "Google",
+        "name": "Google Edge TPU Gen 3"
+      }
+    },
+    "adb-exynos-2200": {
+      "id": "adb-exynos-2200",
+      "vendor": "Samsung",
+      "model": "Exynos 2200",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "baseClockGHz": 2.21,
+      "boostClockGHz": 2.8,
+      "gpuKeys": [
+        "xclipse:920"
+      ],
+      "winBrandString": "Exynos 2200 @ 2.80 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR5"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "Samsung",
+        "name": "Samsung Dual-Core NPU",
+        "topsPeak": 26
+      }
+    },
+    "adb-google-tensor-g3-gs301": {
+      "id": "adb-google-tensor-g3-gs301",
+      "vendor": "Google",
+      "model": "Google Tensor G3 (GS301)",
+      "architecture": "arm64",
+      "physicalCores": 9,
+      "logicalCores": 9,
+      "baseClockGHz": 2.13,
+      "boostClockGHz": 2.91,
+      "gpuKeys": [
+        "mali:g715"
+      ],
+      "winBrandString": "Google Tensor G3 (GS301) @ 2.91 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR5X"
+        ],
+        "maxSpeedMTs": 6400
+      },
+      "npu": {
+        "vendor": "Google",
+        "name": "Google Edge TPU Gen 3"
+      }
+    },
+    "adb-exynos-2400": {
+      "id": "adb-exynos-2400",
+      "vendor": "Samsung",
+      "model": "Exynos 2400",
+      "architecture": "arm64",
+      "physicalCores": 10,
+      "logicalCores": 10,
+      "baseClockGHz": 2.46,
+      "boostClockGHz": 3.21,
+      "gpuKeys": [
+        "xclipse:940"
+      ],
+      "winBrandString": "Exynos 2400 @ 3.21 GHz",
+      "memorySpec": {
+        "generations": [
+          "LPDDR5X"
+        ],
+        "maxSpeedMTs": 8533
+      },
+      "npu": {
+        "vendor": "Samsung",
+        "name": "Samsung 17K MAC NPU",
+        "topsPeak": 26
+      }
+    },
+    "qcom-msm8916t-412": {
+      "id": "qcom-msm8916t-412",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 412",
+      "architecture": "arm64",
+      "physicalCores": 4,
+      "logicalCores": 4,
+      "gpuKeys": [
+        "adreno:306"
+      ],
+      "integratedGpu": "Qualcomm Adreno 306",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/vegetalte_variant2.yml"
+    },
+    "qcom-msm8929-415": {
+      "id": "qcom-msm8929-415",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 415",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:405"
+      ],
+      "integratedGpu": "Qualcomm Adreno 405",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/A6020_variant1.yml"
+    },
+    "qcom-sm4375-4-gen-1": {
+      "id": "qcom-sm4375-4-gen-1",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 4 Gen 1",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:619"
+      ],
+      "integratedGpu": "Qualcomm Adreno 619",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/fogo.yml"
+    },
+    "qcom-sm6375-ac-6s-gen-3": {
+      "id": "qcom-sm6375-ac-6s-gen-3",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 6s Gen 3",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:619"
+      ],
+      "integratedGpu": "Qualcomm Adreno 619",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/fogos_variant2.yml"
+    },
+    "qcom-sm6350-690-5g": {
+      "id": "qcom-sm6350-690-5g",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 690 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:619l"
+      ],
+      "integratedGpu": "Qualcomm Adreno 619L",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/billie.yml"
+    },
+    "qcom-sm8150-ac-860": {
+      "id": "qcom-sm8150-ac-860",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 860",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:640"
+      ],
+      "integratedGpu": "Qualcomm Adreno 640",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/vayu.yml"
+    },
+    "qcom-sm7350-ab-780g-5g": {
+      "id": "qcom-sm7350-ab-780g-5g",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 780G 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:642"
+      ],
+      "integratedGpu": "Qualcomm Adreno 642",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/renoir.yml"
+    },
+    "qcom-sm7325-ae-778g-5g": {
+      "id": "qcom-sm7325-ae-778g-5g",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 778G+ 5G",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:642l"
+      ],
+      "integratedGpu": "Qualcomm Adreno 642L",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/Spacewar.yml"
+    },
+    "qcom-qcm6490-dragonwing-qcm6490": {
+      "id": "qcom-qcm6490-dragonwing-qcm6490",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Dragonwing QCM6490",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:643l"
+      ],
+      "integratedGpu": "Qualcomm Adreno 643L",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/otter_variant2.yml"
+    },
+    "qcom-sm8350-g3x-gen-1": {
+      "id": "qcom-sm8350-g3x-gen-1",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon G3x Gen 1",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:660"
+      ],
+      "integratedGpu": "Qualcomm Adreno 660",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/nicole_variant2.yml"
+    },
+    "qcom-sm8350-ac-888-": {
+      "id": "qcom-sm8350-ac-888-",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 888+",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:660"
+      ],
+      "integratedGpu": "Qualcomm Adreno 660",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/xpeng_variant2.yml"
+    },
+    "qcom-sm6450-6-gen-1": {
+      "id": "qcom-sm6450-6-gen-1",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 6 Gen 1",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:710"
+      ],
+      "integratedGpu": "Qualcomm Adreno 710",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/genevn.yml"
+    },
+    "qcom-sm6475-ab-6-gen-3": {
+      "id": "qcom-sm6475-ab-6-gen-3",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 6 Gen 3",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:710"
+      ],
+      "integratedGpu": "Qualcomm Adreno 710",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/pdx268.yml"
+    },
+    "qcom-sm7435-ab-7s-gen-2": {
+      "id": "qcom-sm7435-ab-7s-gen-2",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 7s Gen 2",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:710"
+      ],
+      "integratedGpu": "Qualcomm Adreno 710",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/garnet_variant5.yml"
+    },
+    "qcom-sm7550-ab-7-gen-3": {
+      "id": "qcom-sm7550-ab-7-gen-3",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 7 Gen 3",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:720"
+      ],
+      "integratedGpu": "Qualcomm Adreno 720",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/benz.yml"
+    },
+    "qcom-sm7475-ab-7-gen-2": {
+      "id": "qcom-sm7475-ab-7-gen-2",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 7+ Gen 2",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:725"
+      ],
+      "integratedGpu": "Qualcomm Adreno 725",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/marble_variant3.yml"
+    },
+    "qcom-sm7675-ab-7-gen-3": {
+      "id": "qcom-sm7675-ab-7-gen-3",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 7+ Gen 3",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:732"
+      ],
+      "integratedGpu": "Qualcomm Adreno 732",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/avalon.yml"
+    },
+    "qcom-sm8635-8s-gen-3": {
+      "id": "qcom-sm8635-8s-gen-3",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 8s Gen 3",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:735"
+      ],
+      "integratedGpu": "Qualcomm Adreno 735",
+      "gpuEvidenceSource": "https://www.mi.com/global/support/faq/details/KA-165333/",
+      "boostClockGHz": 3
+    },
+    "qcom-qcs8550-dragonwing-qcs8550": {
+      "id": "qcom-qcs8550-dragonwing-qcs8550",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Dragonwing QCS8550",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:740"
+      ],
+      "integratedGpu": "Qualcomm Adreno 740",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/RPN.yml"
+    },
+    "qcom-sm7635-7s-gen-3": {
+      "id": "qcom-sm7635-7s-gen-3",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 7s Gen 3",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:810"
+      ],
+      "integratedGpu": "Qualcomm Adreno 810",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/FP6.yml"
+    },
+    "qcom-cq8725s-dragonwing-cq8725s": {
+      "id": "qcom-cq8725s-dragonwing-cq8725s",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Dragonwing CQ8725S",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:830"
+      ],
+      "integratedGpu": "Qualcomm Adreno 830",
+      "gpuEvidenceSource": "https://github.com/LineageOS/lineage_wiki/blob/14a36a07db381f12db16c1a588221181ce1f50df/_data/devices/odin3.yml"
+    },
+    "qcom-sm8735": {
+      "id": "qcom-sm8735",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 8s Gen 4",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "boostClockGHz": 3.21,
+      "gpuKeys": [
+        "adreno:825"
+      ],
+      "integratedGpu": "Qualcomm Adreno 825",
+      "gpuEvidenceSource": "https://www.mi.com/global/product/poco-f7/specs/"
+    },
+    "qcom-sm6225-ad": {
+      "id": "qcom-sm6225-ad",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 685",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "boostClockGHz": 2.8,
+      "gpuKeys": [
+        "adreno:610"
+      ],
+      "integratedGpu": "Qualcomm Adreno 610",
+      "gpuEvidenceSource": "https://www.mi.com/my/product/redmi-note-12/specs/"
+    },
+    "qcom-snapdragon-7-gen-4": {
+      "id": "qcom-snapdragon-7-gen-4",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 7 Gen 4",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:722"
+      ],
+      "integratedGpu": "Qualcomm Adreno 722",
+      "gpuEvidenceSource": "https://www.honor.com/global/phones/honor-600/spec/"
+    },
+    "qcom-snapdragon-7s-gen-4": {
+      "id": "qcom-snapdragon-7s-gen-4",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 7s Gen 4",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:810"
+      ],
+      "integratedGpu": "Qualcomm Adreno 810",
+      "gpuEvidenceSource": "https://www.mi.com/global/support/faq/details/KA-611514/"
+    },
+    "qcom-snapdragon-4-gen-2": {
+      "id": "qcom-snapdragon-4-gen-2",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 4 Gen 2",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:613"
+      ],
+      "integratedGpu": "Qualcomm Adreno 613",
+      "gpuEvidenceSource": "https://www.honor.com/in/phones/honor-x7c-5g/spec/"
+    },
+    "qcom-snapdragon-8-gen-5": {
+      "id": "qcom-snapdragon-8-gen-5",
+      "vendor": "Qualcomm",
+      "model": "Qualcomm Snapdragon 8 Gen 5",
+      "architecture": "arm64",
+      "physicalCores": 8,
+      "logicalCores": 8,
+      "gpuKeys": [
+        "adreno:829"
+      ],
+      "integratedGpu": "Qualcomm Adreno 829",
+      "gpuEvidenceSource": "https://browser.geekbench.com/v6/compute/6977973",
+      "socEvidenceSource": "https://www.oneplus.com/us/15r/specs"
+    }
+  },
+  "gpuToSocs": {
+    "adreno:740": [
+      "qcom-sm8550",
+      "qcom-qcs8550-dragonwing-qcs8550"
+    ],
+    "adreno:750": [
+      "qcom-sm8650"
+    ],
+    "adreno:830": [
+      "qcom-sm8750",
+      "qcom-cq8725s-dragonwing-cq8725s"
+    ],
+    "immortalis:g925": [
+      "mtk-dimensity-9400"
+    ],
+    "immortalis:g720": [
+      "mtk-dimensity-9300"
+    ],
+    "mali:g720mp12": [
+      "mtk-dimensity-9300"
+    ],
+    "mali:g720": [
+      "mtk-dimensity-9300"
+    ],
+    "mali-400 mp2": [
+      "ndd-1",
+      "ndd-4",
+      "ndd-6",
+      "ndd-21",
+      "ndd-23",
+      "ndd-36",
+      "ndd-58",
+      "ndd-71",
+      "ndd-93",
+      "ndd-165",
+      "ndd-215",
+      "ndd-238",
+      "ndd-239",
+      "ndd-287",
+      "ndd-311",
+      "ndd-330",
+      "ndd-331",
+      "ndd-335",
+      "ndd-336",
+      "ndd-338",
+      "ndd-341",
+      "ndd-352",
+      "ndd-361",
+      "ndd-401"
+    ],
+    "mali-400 ": [
+      "ndd-1",
+      "ndd-4",
+      "ndd-6",
+      "ndd-21",
+      "ndd-23",
+      "ndd-36",
+      "ndd-58",
+      "ndd-71",
+      "ndd-73",
+      "ndd-93",
+      "ndd-102",
+      "ndd-165",
+      "ndd-215",
+      "ndd-233",
+      "ndd-238",
+      "ndd-239",
+      "ndd-287",
+      "ndd-311",
+      "ndd-330",
+      "ndd-331",
+      "ndd-335",
+      "ndd-336",
+      "ndd-338",
+      "ndd-341",
+      "ndd-352",
+      "ndd-361",
+      "ndd-401"
+    ],
+    "mali-450 mp4": [
+      "ndd-2",
+      "ndd-3",
+      "ndd-34",
+      "ndd-211",
+      "ndd-228",
+      "ndd-313",
+      "ndd-329"
+    ],
+    "mali-450 ": [
+      "ndd-2",
+      "ndd-3",
+      "ndd-34",
+      "ndd-211",
+      "ndd-228",
+      "ndd-313",
+      "ndd-329"
+    ],
+    "adreno:304": [
+      "ndd-10",
+      "ndd-11"
+    ],
+    "sgx540": [
+      "ndd-13",
+      "ndd-29",
+      "ndd-72",
+      "ndd-95",
+      "ndd-132"
+    ],
+    "adreno:225": [
+      "ndd-14",
+      "ndd-140"
+    ],
+    "adreno:320": [
+      "ndd-15",
+      "ndd-134",
+      "ndd-138"
+    ],
+    "g6430": [
+      "ndd-16",
+      "ndd-108",
+      "ndd-136",
+      "ndd-209"
+    ],
+    "adreno:306": [
+      "ndd-17",
+      "qcom-msm8916t-412"
+    ],
+    "sgx544mp2": [
+      "ndd-18",
+      "ndd-131",
+      "ndd-206",
+      "ndd-316"
+    ],
+    "sgx544": [
+      "ndd-18",
+      "ndd-112",
+      "ndd-131",
+      "ndd-206",
+      "ndd-316",
+      "ndd-351"
+    ],
+    "adreno:508": [
+      "ndd-19"
+    ],
+    "adreno:308": [
+      "ndd-20",
+      "ndd-229",
+      "ndd-281"
+    ],
+    "adreno:405": [
+      "ndd-22",
+      "ndd-65",
+      "ndd-68",
+      "qcom-msm8929-415"
+    ],
+    "adreno:540": [
+      "ndd-25"
+    ],
+    "mali:g51mp4": [
+      "ndd-28",
+      "ndd-37",
+      "ndd-213"
+    ],
+    "mali:g51": [
+      "ndd-28",
+      "ndd-37",
+      "ndd-213"
+    ],
+    "mali:t628mp4": [
+      "ndd-30",
+      "ndd-223",
+      "ndd-227"
+    ],
+    "mali:t628": [
+      "ndd-30",
+      "ndd-70",
+      "ndd-223",
+      "ndd-227",
+      "ndd-263"
+    ],
+    "adreno:200": [
+      "ndd-31",
+      "ndd-145",
+      "ndd-149",
+      "ndd-150",
+      "ndd-217",
+      "ndd-218"
+    ],
+    "adreno:302": [
+      "ndd-33",
+      "ndd-119"
+    ],
+    "adreno:505": [
+      "ndd-35",
+      "ndd-41",
+      "ndd-43"
+    ],
+    "ge8320": [
+      "ndd-38",
+      "ndd-44",
+      "ndd-47",
+      "ndd-284",
+      "ndd-323",
+      "ndd-340",
+      "ndd-355",
+      "ndd-367",
+      "ndd-393",
+      "ndd-394",
+      "ndd-403"
+    ],
+    "mali:t720": [
+      "ndd-39",
+      "ndd-56",
+      "ndd-69",
+      "ndd-86",
+      "ndd-113",
+      "ndd-121",
+      "ndd-168",
+      "ndd-230",
+      "ndd-247",
+      "ndd-251",
+      "ndd-254",
+      "ndd-278",
+      "ndd-279",
+      "ndd-310",
+      "ndd-339"
+    ],
+    "mali:t830mp2": [
+      "ndd-42",
+      "ndd-48",
+      "ndd-66",
+      "ndd-252"
+    ],
+    "mali:t830": [
+      "ndd-42",
+      "ndd-48",
+      "ndd-66",
+      "ndd-252",
+      "ndd-255"
+    ],
+    "mali:g57mp5": [
+      "ndd-45"
+    ],
+    "mali:g57": [
+      "ndd-45",
+      "ndd-55",
+      "ndd-274",
+      "ndd-297",
+      "ndd-300",
+      "ndd-302",
+      "ndd-350",
+      "ndd-354",
+      "ndd-356",
+      "ndd-366",
+      "ndd-380",
+      "ndd-381",
+      "ndd-384",
+      "ndd-385",
+      "ndd-387",
+      "ndd-388",
+      "ndd-389"
+    ],
+    "adreno:205": [
+      "ndd-49",
+      "ndd-158",
+      "ndd-286"
+    ],
+    "mali:g72mp12": [
+      "ndd-50"
+    ],
+    "mali:g72": [
+      "ndd-50",
+      "ndd-97",
+      "ndd-114",
+      "ndd-241",
+      "ndd-256",
+      "ndd-257",
+      "ndd-290",
+      "ndd-392"
+    ],
+    "vivante gc4000": [
+      "ndd-51"
+    ],
+    "mali:g76mp10": [
+      "ndd-52"
+    ],
+    "mali:g76": [
+      "ndd-52",
+      "ndd-54",
+      "ndd-67",
+      "ndd-262",
+      "ndd-269",
+      "ndd-299",
+      "ndd-321",
+      "ndd-325"
+    ],
+    "mali:g77mp8": [
+      "ndd-53"
+    ],
+    "mali:g77": [
+      "ndd-53",
+      "ndd-249",
+      "ndd-296",
+      "ndd-306",
+      "ndd-324",
+      "ndd-347",
+      "ndd-369",
+      "ndd-390"
+    ],
+    "mali:g76mp16": [
+      "ndd-54"
+    ],
+    "mali:g57mp6": [
+      "ndd-55"
+    ],
+    "mali:g52mp6": [
+      "ndd-57"
+    ],
+    "mali:g52": [
+      "ndd-57",
+      "ndd-199",
+      "ndd-226",
+      "ndd-250",
+      "ndd-253",
+      "ndd-318",
+      "ndd-319",
+      "ndd-322",
+      "ndd-349",
+      "ndd-382",
+      "ndd-391"
+    ],
+    "mali:t760mp2": [
+      "ndd-60",
+      "ndd-159",
+      "ndd-176"
+    ],
+    "mali:t760": [
+      "ndd-60",
+      "ndd-159",
+      "ndd-176",
+      "ndd-264"
+    ],
+    "adreno:512": [
+      "ndd-61"
+    ],
+    "adreno:616": [
+      "ndd-62",
+      "ndd-289"
+    ],
+    "mali:g71mp2": [
+      "ndd-63",
+      "ndd-169",
+      "ndd-237",
+      "ndd-248"
+    ],
+    "mali:g71": [
+      "ndd-63",
+      "ndd-169",
+      "ndd-221",
+      "ndd-222",
+      "ndd-237",
+      "ndd-248",
+      "ndd-271",
+      "ndd-259"
+    ],
+    "adreno:506": [
+      "ndd-64",
+      "ndd-204",
+      "ndd-214",
+      "ndd-272"
+    ],
+    "mali:g76mp12": [
+      "ndd-67",
+      "ndd-269"
+    ],
+    "mali:t720mp2": [
+      "ndd-69",
+      "ndd-86",
+      "ndd-113",
+      "ndd-251",
+      "ndd-254",
+      "ndd-279"
+    ],
+    "mali:t628mp6": [
+      "ndd-70",
+      "ndd-263"
+    ],
+    "mali-400 mp4": [
+      "ndd-73",
+      "ndd-102",
+      "ndd-233"
+    ],
+    "ge8100": [
+      "ndd-76",
+      "ndd-142",
+      "ndd-293"
+    ],
+    "adreno:305": [
+      "ndd-78",
+      "ndd-111",
+      "ndd-212",
+      "ndd-294",
+      "ndd-295"
+    ],
+    "g6200": [
+      "ndd-85"
+    ],
+    "amd radeon r5": [
+      "ndd-92"
+    ],
+    "adreno:330": [
+      "ndd-94",
+      "ndd-139",
+      "ndd-243"
+    ],
+    "adreno:430": [
+      "ndd-96"
+    ],
+    "mali:g72mp3": [
+      "ndd-97",
+      "ndd-114",
+      "ndd-256",
+      "ndd-257",
+      "ndd-290",
+      "ndd-392"
+    ],
+    "gx6650": [
+      "ndd-106"
+    ],
+    "ge8322": [
+      "ndd-109"
+    ],
+    "adreno:203": [
+      "ndd-110",
+      "ndd-200",
+      "ndd-219",
+      "ndd-220"
+    ],
+    "adreno:510": [
+      "ndd-115",
+      "ndd-196",
+      "ndd-328"
+    ],
+    "mali:t860mp4": [
+      "ndd-116"
+    ],
+    "mali:t860": [
+      "ndd-116",
+      "ndd-117",
+      "ndd-162",
+      "ndd-312"
+    ],
+    "mali:t860mp2": [
+      "ndd-117",
+      "ndd-162",
+      "ndd-312"
+    ],
+    "gx6450": [
+      "ndd-125"
+    ],
+    "mali-400 mp": [
+      "ndd-133",
+      "ndd-185",
+      "ndd-195",
+      "ndd-210",
+      "ndd-240",
+      "ndd-245",
+      "ndd-266",
+      "ndd-277",
+      "ndd-280"
+    ],
+    "intel hd (bay trail)": [
+      "ndd-135",
+      "ndd-155",
+      "ndd-156"
+    ],
+    "adreno:650": [
+      "ndd-141",
+      "ndd-207",
+      "ndd-304"
+    ],
+    "sgx545": [
+      "ndd-152"
+    ],
+    "intel hd 4000": [
+      "ndd-153"
+    ],
+    "adreno:418": [
+      "ndd-157"
+    ],
+    "intel hd (cherry trail)": [
+      "ndd-160",
+      "ndd-189",
+      "ndd-315"
+    ],
+    "adreno:504": [
+      "ndd-172"
+    ],
+    "adreno:530": [
+      "ndd-173",
+      "ndd-208"
+    ],
+    "mali:t880mp2": [
+      "ndd-174",
+      "ndd-232",
+      "ndd-309"
+    ],
+    "mali:t880": [
+      "ndd-174",
+      "ndd-194",
+      "ndd-216",
+      "ndd-225",
+      "ndd-232",
+      "ndd-270",
+      "ndd-291",
+      "ndd-309"
+    ],
+    "ge8300": [
+      "ndd-175",
+      "ndd-337",
+      "ndd-374"
+    ],
+    "vivante gc800": [
+      "ndd-177"
+    ],
+    "sgx543mp4": [
+      "ndd-181"
+    ],
+    "sgx543": [
+      "ndd-181",
+      "ndd-191"
+    ],
+    "sgx543mp2": [
+      "ndd-191"
+    ],
+    "mali:t880mp4": [
+      "ndd-194",
+      "ndd-216",
+      "ndd-225",
+      "ndd-291"
+    ],
+    "adreno:640": [
+      "ndd-197",
+      "ndd-234",
+      "qcom-sm8150-ac-860"
+    ],
+    "adreno:630": [
+      "ndd-198",
+      "ndd-404"
+    ],
+    "mali:g52mc2": [
+      "ndd-199",
+      "ndd-226",
+      "ndd-253",
+      "ndd-318",
+      "ndd-319",
+      "ndd-322",
+      "ndd-349"
+    ],
+    "vivante gc1000": [
+      "ndd-201"
+    ],
+    "adreno:220": [
+      "ndd-202"
+    ],
+    "intel hd 515": [
+      "ndd-203"
+    ],
+    "adreno:509": [
+      "ndd-205"
+    ],
+    "mali:g71mp8": [
+      "ndd-221",
+      "ndd-222"
+    ],
+    "mali:g72mp18": [
+      "ndd-241"
+    ],
+    "adreno:620": [
+      "ndd-242",
+      "ndd-303"
+    ],
+    "adreno:610": [
+      "ndd-244",
+      "ndd-283",
+      "ndd-285",
+      "ndd-363",
+      "qcom-sm6225-ad"
+    ],
+    "mali:g77mp11": [
+      "ndd-249"
+    ],
+    "mali:g52mp1": [
+      "ndd-250"
+    ],
+    "mali:t830mp3": [
+      "ndd-255"
+    ],
+    "adreno:612": [
+      "ndd-258"
+    ],
+    "adreno:618": [
+      "ndd-260",
+      "ndd-261",
+      "ndd-273",
+      "ndd-364"
+    ],
+    "mali:g76mp5": [
+      "ndd-262",
+      "ndd-299"
+    ],
+    "mali:t760mp8": [
+      "ndd-264"
+    ],
+    "mali:g78mp14": [
+      "ndd-267"
+    ],
+    "mali:g78": [
+      "ndd-267",
+      "ndd-301"
+    ],
+    "mali:t880mp12": [
+      "ndd-270"
+    ],
+    "mali:g71mp20": [
+      "ndd-271"
+    ],
+    "mali:g57mp3": [
+      "ndd-274",
+      "ndd-300"
+    ],
+    "adreno:619": [
+      "ndd-275",
+      "ndd-307",
+      "ndd-358",
+      "qcom-sm4375-4-gen-1",
+      "qcom-sm6375-ac-6s-gen-3"
+    ],
+    "adreno:420": [
+      "ndd-276"
+    ],
+    "mali:g77mp9": [
+      "ndd-296",
+      "ndd-390"
+    ],
+    "mali:g57mc5": [
+      "ndd-297"
+    ],
+    "mali:g78mp10": [
+      "ndd-301"
+    ],
+    "mali:g57mp2": [
+      "ndd-302",
+      "ndd-356",
+      "ndd-380",
+      "ndd-381",
+      "ndd-389"
+    ],
+    "adreno:660": [
+      "ndd-305",
+      "qcom-sm8350-g3x-gen-1",
+      "qcom-sm8350-ac-888-"
+    ],
+    "mali:g77mc9": [
+      "ndd-306",
+      "ndd-324",
+      "ndd-347",
+      "ndd-369"
+    ],
+    "mali-450 mp": [
+      "ndd-314",
+      "ndd-333"
+    ],
+    "mali:g76mp4": [
+      "ndd-321",
+      "ndd-325"
+    ],
+    "gm9446": [
+      "ndd-345",
+      "ndd-346"
+    ],
+    "mali:g57mc2": [
+      "ndd-350"
+    ],
+    "mali:g57mp1": [
+      "ndd-354",
+      "ndd-366",
+      "ndd-384",
+      "ndd-385",
+      "ndd-388"
+    ],
+    "adreno:730": [
+      "ndd-357",
+      "ndd-373"
+    ],
+    "adreno:642": [
+      "qcom-sm7350-ab-780g-5g"
+    ],
+    "mali:g710mp10": [
+      "ndd-362"
+    ],
+    "mali:g710": [
+      "ndd-362",
+      "adb-google-tensor-g2-gs201"
+    ],
+    "mali:g68mp4": [
+      "ndd-368"
+    ],
+    "mali:g68": [
+      "ndd-368"
+    ],
+    "adreno:644": [
+      "ndd-370"
+    ],
+    "mali:g610mc6": [
+      "ndd-371"
+    ],
+    "mali:g610": [
+      "ndd-371"
+    ],
+    "mali:g715mp11": [
+      "ndd-376"
+    ],
+    "mali:g715": [
+      "ndd-376",
+      "adb-google-tensor-g4-gs401",
+      "adb-google-tensor-g3-gs301"
+    ],
+    "xclipse 540": [
+      "ndd-379"
+    ],
+    "mali:g52mp2": [
+      "ndd-382"
+    ],
+    "img bxm-4-64": [
+      "ndd-383"
+    ],
+    "mali:g615mp2": [
+      "ndd-386"
+    ],
+    "mali:g615": [
+      "ndd-386"
+    ],
+    "mali:g57mp4": [
+      "ndd-387"
+    ],
+    "sgx531": [
+      "ndd-402"
+    ],
+    "xclipse:920": [
+      "adb-exynos-2200"
+    ],
+    "xclipse:940": [
+      "adb-exynos-2400"
+    ],
+    "adreno:615": [
+      "ndd-298"
+    ],
+    "adreno:619l": [
+      "qcom-sm6350-690-5g"
+    ],
+    "adreno:642l": [
+      "ndd-359",
+      "qcom-sm7325-ae-778g-5g"
+    ],
+    "adreno:643l": [
+      "qcom-qcm6490-dragonwing-qcm6490"
+    ],
+    "adreno:710": [
+      "qcom-sm6450-6-gen-1",
+      "qcom-sm6475-ab-6-gen-3",
+      "qcom-sm7435-ab-7s-gen-2"
+    ],
+    "adreno:720": [
+      "qcom-sm7550-ab-7-gen-3"
+    ],
+    "adreno:725": [
+      "qcom-sm7475-ab-7-gen-2"
+    ],
+    "adreno:732": [
+      "qcom-sm7675-ab-7-gen-3"
+    ],
+    "adreno:735": [
+      "qcom-sm8635-8s-gen-3"
+    ],
+    "adreno:810": [
+      "qcom-sm7635-7s-gen-3",
+      "qcom-snapdragon-7s-gen-4"
+    ],
+    "adreno:840": [
+      "adb-snapdragon-8-elite-gen-5-sm8850"
+    ],
+    "adreno:825": [
+      "qcom-sm8735"
+    ],
+    "adreno:722": [
+      "qcom-snapdragon-7-gen-4"
+    ],
+    "adreno:613": [
+      "qcom-snapdragon-4-gen-2"
+    ],
+    "adreno:829": [
+      "qcom-snapdragon-8-gen-5"
+    ]
+  }
+}

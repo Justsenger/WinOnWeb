@@ -1,4 +1,4 @@
-import type { CpuCacheSpec, CpuSkuSpec, FieldEstimation, HardwareProfile, MemorySpec, UnknownReason } from 'hw-profiler';
+import type { CpuCacheSpec, CpuSkuSpec, FieldEstimation, HardwareProfile, MemorySpec, UnknownReason } from './hw-profiler/index.js';
 import {
   collectDeviceHardwareReport,
   collectStorageProbeInfo,

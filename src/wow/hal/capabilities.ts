@@ -1,4 +1,4 @@
-import { probeHardware, type HardwareProfile } from 'hw-profiler';
+import { probeHardware, type HardwareProfile } from './hw-profiler/index.js';
 
 export interface StorageProbeInfo {
   supported: boolean;
